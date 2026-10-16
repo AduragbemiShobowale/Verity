@@ -25,7 +25,7 @@ export function WarehouseDashboard() {
       <div className="kpis">
         <Kpi label="Ready to pick" value={data?.ready} to="/warehouse/pick" />
         <Kpi label="In picking" value={data?.picking} to="/warehouse/pick" />
-        <Kpi label="Low-stock items" value={data?.low.length} to="/warehouse/stock" alert={data?.low.length > 0} />
+        <Kpi label="Low-stock items" value={data?.low.length} to="/warehouse/stock?view=low" alert={data?.low.length > 0} />
         <Kpi label="Packed today" value={data?.packedToday} />
       </div>
       <div className="grid-main">
@@ -147,15 +147,30 @@ export function Picking() {
   )
 }
 
+const isLow = (p) => p.active && p.on_hand - p.reserved <= p.reorder_level
+
 export function StockLevels() {
-  const { data } = useLoad(() => q(supabase.from('products').select('*').order('name')))
+  const [view, setView] = useState(new URLSearchParams(window.location.search).get('view') || 'all')
+  const [s, setS] = useState('')
+  const all = useLoad(() => q(supabase.from('products').select('*').order('name')))
+  const counts = all.data && { all: all.data.length, low: all.data.filter(isLow).length, out: all.data.filter((p) => p.active && p.on_hand - p.reserved <= 0).length, unpriced: all.data.filter((p) => !p.active).length }
+  const data = all.data?.filter((p) => (view === 'low' ? isLow(p) : view === 'out' ? p.active && p.on_hand - p.reserved <= 0 : view === 'unpriced' ? !p.active : true))
+    .filter((p) => (p.name + ' ' + p.sku).toLowerCase().includes(s.toLowerCase()))
+    .sort((a, b) => (view === 'low' ? (a.on_hand - a.reserved - a.reorder_level) - (b.on_hand - b.reserved - b.reorder_level) : 0))
   return (
     <>
       <PageHead title="Stock levels" sub="Available = on hand − reserved for approved orders.">
         <Link className="btn primary" to="/warehouse/new-product">New product</Link>
       </PageHead>
+      <div className="tabs">
+        {[['all', 'All products'], ['low', 'Low stock'], ['out', 'Out of stock'], ['unpriced', 'Not on sale']].map(([k, l]) => (
+          <button key={k} className={view === k ? 'on' : ''} onClick={() => setView(k)}>{l}{counts ? ` (${counts[k]})` : ''}</button>
+        ))}
+      </div>
+      <input placeholder="Search name or SKU…" value={s} onChange={(e) => setS(e.target.value)} style={{ maxWidth: 320 }} />
+      {view === 'low' && <p className="muted small">At or below the reorder level, lowest first. Use Stock in when the supplier delivers.</p>}
       <Card pad={false}>
-        {!data ? <Loading /> : (
+        {!data ? <Loading /> : data.length === 0 ? <Empty>{view === 'low' ? 'Nothing is low. Every product is above its reorder level.' : 'No products match.'}</Empty> : (
           <div className="table-wrap"><table>
             <thead><tr><th>Product</th><th className="num">On hand</th><th className="num">Reserved</th><th className="num">Available</th><th className="num">Reorder level</th><th /></tr></thead>
             <tbody>{data.map((p) => {
@@ -166,7 +181,7 @@ export function StockLevels() {
                   <td className="num">{p.on_hand}</td><td className="num">{p.reserved}</td>
                   <td className="num"><strong style={avail <= p.reorder_level ? { color: 'var(--bad)' } : {}}>{avail}</strong></td>
                   <td className="num">{p.reorder_level}</td>
-                  <td>{avail <= p.reorder_level && <Badge tone="bad">Reorder</Badge>}</td></tr>
+                  <td>{isLow(p) && <Badge tone="bad">{avail <= 0 ? 'Out of stock' : 'Reorder'}</Badge>}</td></tr>
               )
             })}</tbody>
           </table></div>
