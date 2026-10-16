@@ -111,6 +111,7 @@ end $function$
 CREATE OR REPLACE FUNCTION public._err(msg text)
  RETURNS void
  LANGUAGE plpgsql
+ SET search_path TO 'public'
 AS $function$
 begin raise exception using message = msg, errcode = 'P0001'; end $function$
 ;
