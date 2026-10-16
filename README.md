@@ -29,7 +29,7 @@ The app points at the Verity Supabase project by default. To use another project
 
 ### Demo accounts
 
-All use the password `VerityDemo#2026`. They're listed on the sign-in page; remove that list and these accounts before real use.
+All use the password `VerityDemo#2026`. Change or remove these accounts before real use.
 
 | Role | E-mail |
 | --- | --- |

@@ -115,7 +115,7 @@ export default function Layout() {
   return (
     <div className="shell" data-role={role}>
       <aside className={`side ${open ? 'open' : ''}`}>
-        <div className="brand"><BrandMark /> Verity</div>
+        <NavLink to="/" className="brand" style={{ textDecoration: 'none' }} aria-label="Verity home"><BrandMark /> Verity</NavLink>
         <div className="role-chip">{ROLE_LABEL[role]}</div>
         <nav className="nav">
           {menu.map((m) => (

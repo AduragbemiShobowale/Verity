@@ -26,7 +26,7 @@ function Top({ title, back }) {
   return (
     <header className="driver-top">
       {back ? <Link to="/" className="icon-btn" aria-label="Back">←</Link> : null}
-      <strong style={{ flex: 1, fontSize: 16 }}>{title}</strong>
+      <Link to="/" style={{ flex: 1, fontSize: 16, fontWeight: 700, color: '#fff', textDecoration: 'none' }}>{title}</Link>
       <Bell />
       {!back && <button className="icon-btn" onClick={signOut} aria-label="Sign out" title="Sign out">⎋</button>}
     </header>

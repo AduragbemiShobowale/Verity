@@ -9,7 +9,7 @@ export function AuthFrame({ children, wide }) {
   return (
     <div className="auth">
       <div className="auth-art">
-        <div className="brand" style={{ color: '#fff' }}><BrandMark /> Verity</div>
+        <Link to="/" className="brand" style={{ color: '#fff', textDecoration: 'none' }}><BrandMark /> Verity</Link>
         <div className="stack-lg">
           <h1>Orders that arrive right the first time.</h1>
           <ul>
@@ -27,16 +27,6 @@ export function AuthFrame({ children, wide }) {
   )
 }
 
-const DEMO = [
-  ['Customer', 'buyer@adebayo.example'],
-  ['Customer 2', 'orders@okafor.example'],
-  ['Ops Desk', 'ops@verity.example'],
-  ['Finance', 'finance@verity.example'],
-  ['Warehouse', 'warehouse@verity.example'],
-  ['Dispatch', 'dispatch@verity.example'],
-  ['Driver', 'driver1@verity.example'],
-  ['Admin', 'admin@verity.example'],
-]
 
 export function Login() {
   const [email, setEmail] = useState('')
@@ -66,14 +56,6 @@ export function Login() {
       <div className="row between">
         <Link to="/forgot">Forgot password?</Link>
         <span>New business? <Link to="/register">Register</Link></span>
-      </div>
-      <div className="demo">
-        <strong>Demo accounts</strong> <span className="muted">(password VerityDemo#2026)</span>
-        <div className="grid-2" style={{ gap: 2, marginTop: 6 }}>
-          {DEMO.map(([r, e]) => (
-            <button key={e} type="button" onClick={() => { setEmail(e); setPassword('VerityDemo#2026') }}>{r}: {e}</button>
-          ))}
-        </div>
       </div>
     </AuthFrame>
   )
