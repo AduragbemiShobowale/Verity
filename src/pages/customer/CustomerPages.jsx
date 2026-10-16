@@ -241,7 +241,7 @@ export function Invoices() {
               const left = i.orders.payment_attempts_allowed - i.payments.length
               return (
                 <tr key={i.id}>
-                  <td><strong>{i.invoice_no}</strong></td>
+                  <td><Link to={'/invoice/' + i.id}><strong>{i.invoice_no}</strong></Link></td>
                   <td><Link to={'/orders/' + i.order_id}>{i.orders.order_no}</Link></td>
                   <td>{dateTime(i.due_at)}<div className="small" style={{ color: 'var(--warn)' }}>{hoursLeft(i.due_at)}</div></td>
                   <td><StatusBadge status={i.orders.status} customer />
@@ -261,7 +261,7 @@ export function Invoices() {
             <thead><tr><th>Invoice</th><th>Order</th><th>Issued</th><th>Status</th><th className="num">Total</th></tr></thead>
             <tbody>{data.inv.map((i) => (
               <tr key={i.id}>
-                <td>{i.invoice_no}</td><td><Link to={'/orders/' + i.order_id}>{i.orders.order_no}</Link></td><td>{date(i.created_at)}</td>
+                <td><Link to={'/invoice/' + i.id}>{i.invoice_no}</Link></td><td><Link to={'/orders/' + i.order_id}>{i.orders.order_no}</Link></td><td>{date(i.created_at)}</td>
                 <td><Badge tone={i.status === 'paid' ? 'good' : i.status === 'issued' ? 'warn' : 'muted'}>{i.status}</Badge></td>
                 <td className="num">{money(i.total)}</td>
               </tr>

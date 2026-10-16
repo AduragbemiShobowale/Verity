@@ -1,6 +1,6 @@
-// Admin-only account management. Runs with the service role so it can
-// create and ban auth users; every request is checked against the caller's
-// profile role first.
+// Account management: Admin manages all accounts, Dispatch manages drivers.
+// Runs with the service role so it can create and ban auth users; every
+// request is checked against the caller's profile role first.
 import { createClient } from "npm:@supabase/supabase-js@2.45.4";
 
 const cors = {
@@ -34,13 +34,25 @@ Deno.serve(async (req) => {
   const { data: caller } = await service.auth.getUser(token);
   if (!caller?.user) return json({ error: "Sign in again." }, 401);
   const { data: me } = await service.from("profiles").select("role,status").eq("id", caller.user.id).single();
-  if (me?.role !== "admin" || me?.status !== "active") return json({ error: "Only an administrator can do this." }, 403);
+  // Admin manages every account. Dispatch may only add, deactivate and reset drivers.
+  const isAdmin = me?.role === "admin" && me?.status === "active";
+  const isDispatch = me?.role === "dispatch" && me?.status === "active";
+  if (!isAdmin && !isDispatch) return json({ error: "You do not have permission to manage accounts." }, 403);
 
   let body: Record<string, any>;
   try {
     body = await req.json();
   } catch {
     return json({ error: "Invalid request." }, 400);
+  }
+
+  if (isDispatch) {
+    if (body.action === "create_staff" && body.role !== "driver") return json({ error: "Dispatch can only add drivers." }, 403);
+    if (body.action === "create_customer") return json({ error: "Only an administrator can create customer accounts." }, 403);
+    if (body.action === "set_status" || body.action === "reset_password") {
+      const { data: target } = await service.from("profiles").select("role").eq("id", String(body.user_id ?? "")).single();
+      if (target?.role !== "driver") return json({ error: "Dispatch can only manage driver accounts." }, 403);
+    }
   }
 
   const audit = (action: string, entityId: string, value: unknown) =>

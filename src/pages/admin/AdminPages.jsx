@@ -322,7 +322,7 @@ export function AdminCatalogue() {
             <tbody>{data.map((p) => (
               <tr key={p.id}><td><strong>{p.name}</strong><div className="muted mono">{p.sku} · per {p.unit}</div></td><td className="num">{money(p.price)}</td>
                 <td className="muted">{p.min_qty}–{p.max_qty}</td><td className="num">{p.reorder_level}</td><td className="num">{p.on_hand - p.reserved}</td>
-                <td><Badge tone={p.active ? 'good' : 'muted'}>{p.active ? 'active' : 'inactive'}</Badge></td>
+                <td>{!p.active && Number(p.price) === 0 ? <Badge tone="warn">Needs a price</Badge> : <Badge tone={p.active ? 'good' : 'muted'}>{p.active ? 'active' : 'inactive'}</Badge>}</td>
                 <td><button className="btn sm" onClick={() => setEdit(p)}>Edit</button></td></tr>
             ))}</tbody>
           </table></div>
@@ -341,6 +341,7 @@ function ProductModal({ p, onClose, onDone }) {
     const row = { ...f, sku: f.sku.trim().toUpperCase(), price: Number(f.price), min_qty: Number(f.min_qty), max_qty: Number(f.max_qty), reorder_level: Number(f.reorder_level) }
     if (!row.sku || !row.name || !(row.price >= 0)) throw new Error('SKU, name and price are required.')
     if (row.min_qty < 1 || row.max_qty < row.min_qty) throw new Error('Check the order limits.')
+    if (row.active && !(row.price > 0)) throw new Error('Set a price above 0 before activating the product.')
     await q(p.id ? supabase.from('products').update(row).eq('id', p.id).select() : supabase.from('products').insert(row).select())
     onDone()
   }, 'Saved.')

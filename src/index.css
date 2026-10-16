@@ -211,3 +211,11 @@ tr.selected td { background: var(--accent-soft); }
   .kpi .v { font-size: 22px; }
   td, th { padding: 9px 10px; }
 }
+
+@media print {
+  .side, .top, .no-print, .side-scrim { display: none !important; }
+  .shell { display: block; }
+  body { background: #fff; }
+  .page { padding: 0; max-width: none; }
+  .invoice-doc { box-shadow: none; border: 0; }
+}

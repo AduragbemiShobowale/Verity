@@ -142,7 +142,7 @@ export function FinanceInvoices() {
           <div className="table-wrap"><table>
             <thead><tr><th>Invoice</th><th>Order</th><th>Customer</th><th>Due</th><th className="num">Total</th></tr></thead>
             <tbody>{data.map((i) => (
-              <tr key={i.id}><td>{i.invoice_no}</td><td><Link to={'/order/' + i.order_id}>{i.orders?.order_no}</Link></td><td>{i.customers?.name}</td>
+              <tr key={i.id}><td><Link to={'/invoice/' + i.id}>{i.invoice_no}</Link></td><td><Link to={'/order/' + i.order_id}>{i.orders?.order_no}</Link></td><td>{i.customers?.name}</td>
                 <td>{dateTime(i.due_at)}{status === 'issued' && <div className="muted small">{hoursLeft(i.due_at)}</div>}</td><td className="num">{money(i.total)}</td></tr>
             ))}</tbody>
           </table></div>
