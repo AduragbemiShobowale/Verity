@@ -26,7 +26,7 @@ export function AdminDashboard() {
   })
   return (
     <>
-      <PageHead title="Administrator console" sub="Accounts, catalogue, prices, rules and the audit trail. Admin does not approve orders or confirm payments." />
+      <PageHead hero title="Administrator console" sub="Accounts, catalogue, prices, rules and the audit trail. Admin does not approve orders or confirm payments." />
       <div className="kpis">
         <Kpi label="Registrations to review" value={data?.toReview} to="/admin/registrations" alert={data?.toReview > 0} />
         <Kpi label="Active customers" value={data?.active} to="/admin/customers" />

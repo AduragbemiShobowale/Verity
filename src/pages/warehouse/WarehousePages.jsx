@@ -21,7 +21,7 @@ export function WarehouseDashboard() {
   })
   return (
     <>
-      <PageHead title="Warehouse" sub="Only paid orders reach the pick list." />
+      <PageHead hero title="Warehouse" sub="Only paid orders reach the pick list." />
       <div className="kpis">
         <Kpi label="Ready to pick" value={data?.ready} to="/warehouse/pick" />
         <Kpi label="In picking" value={data?.picking} to="/warehouse/pick" />

@@ -20,7 +20,7 @@ export function FinanceDashboard() {
   })
   return (
     <>
-      <PageHead title="Finance" sub="Match uploaded proofs against the bank statement, and pay refunds." />
+      <PageHead hero title="Finance" sub="Match uploaded proofs against the bank statement, and pay refunds." />
       <div className="kpis">
         <Kpi label="Payments to verify" value={data?.toVerify} to="/finance/payments" alert={data?.toVerify > 0} />
         <Kpi label="Confirmed today" value={data?.confirmedToday} />

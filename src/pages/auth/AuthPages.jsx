@@ -4,11 +4,13 @@ import toast from 'react-hot-toast'
 import { supabase, rpc } from '../../lib/supabase'
 import { useAuth } from '../../context/AuthContext'
 import { BrandMark } from '../../components/Layout'
+import AuthScene from '../../components/AuthScene'
 
 export function AuthFrame({ children, wide }) {
   return (
     <div className="auth">
       <div className="auth-art">
+        <AuthScene />
         <Link to="/" className="brand" style={{ color: '#fff', textDecoration: 'none' }}><BrandMark /> Verity</Link>
         <div className="stack-lg">
           <h1>Orders that arrive right the first time.</h1>
@@ -21,7 +23,10 @@ export function AuthFrame({ children, wide }) {
         <small style={{ color: '#9fbab4' }}>Intelligent order processing for logistics teams</small>
       </div>
       <div className="auth-form">
-        <div className={`auth-card ${wide ? 'wide' : ''}`}>{children}</div>
+        <div className={`auth-card ${wide ? 'wide' : ''}`}>
+          <div className="auth-mini"><AuthScene compact /></div>
+          {children}
+        </div>
       </div>
     </div>
   )

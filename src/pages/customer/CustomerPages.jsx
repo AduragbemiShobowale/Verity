@@ -27,7 +27,7 @@ export function CustomerDashboard() {
   }
   return (
     <>
-      <PageHead title={`Welcome, ${customer?.contact_name?.split(' ')[0] || ''}`} sub={customer?.name}>
+      <PageHead hero title={`Welcome, ${customer?.contact_name?.split(' ')[0] || ''}`} sub={customer?.name}>
         <Link className="btn primary" to="/new-order">New order</Link>
       </PageHead>
       <div className="kpis">

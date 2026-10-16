@@ -67,9 +67,9 @@ export function Card({ title, action, children, pad = true, className = '' }) {
 
 export const Empty = ({ children }) => <div className="empty">{children}</div>
 
-export function PageHead({ title, sub, children }) {
+export function PageHead({ title, sub, children, hero }) {
   return (
-    <div className="page-head">
+    <div className={`page-head ${hero ? 'hero' : ''}`}>
       <div>
         <h1>{title}</h1>
         {sub && <p>{sub}</p>}
