@@ -1,0 +1,531 @@
+{
+ "run": {
+  "run_id": 4,
+  "seed": 0.42,
+  "orders": 500,
+  "customers": 20,
+  "products": 12,
+  "categories": 14
+ },
+ "groups": {
+  "clean": 216,
+  "errors": 284,
+  "targeted": 197,
+  "untargeted": 87
+ },
+ "outcomes": {
+  "warn": 75,
+  "pass": 233,
+  "fail": 192
+ },
+ "outcomes_by_group": {
+  "Clean orders": {
+   "warn": 33,
+   "pass": 183
+  },
+  "Errors with a rule": {
+   "fail": 179,
+   "warn": 18
+  },
+  "Errors without a rule": {
+   "pass": 50,
+   "warn": 24,
+   "fail": 13
+  }
+ },
+ "confusion_all": {
+  "tp": 234,
+  "fn": 50,
+  "fp": 33,
+  "tn": 183,
+  "n": 500,
+  "accuracy": 83.4,
+  "precision": 87.6,
+  "recall": 82.4,
+  "specificity": 84.7,
+  "f1": 84.9
+ },
+ "confusion_targeted": {
+  "tp": 197,
+  "fn": 0,
+  "fp": 33,
+  "tn": 183,
+  "n": 413,
+  "accuracy": 92.0,
+  "precision": 85.7,
+  "recall": 100.0,
+  "specificity": 84.7,
+  "f1": 92.3
+ },
+ "categories": [
+  {
+   "key": "clean",
+   "label": "Clean order (no error)",
+   "targeted": false,
+   "n": 216,
+   "blocked": 0,
+   "warned": 33,
+   "passed": 183,
+   "flagged": 33,
+   "by_expected_rule": null,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": null,
+   "pass_rate": 84.7
+  },
+  {
+   "key": "bad_sku",
+   "label": "SKU not in catalogue",
+   "targeted": true,
+   "n": 20,
+   "blocked": 20,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 20,
+   "by_expected_rule": 20,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "missing_address",
+   "label": "Missing delivery address",
+   "targeted": true,
+   "n": 22,
+   "blocked": 22,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 22,
+   "by_expected_rule": 22,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "missing_date",
+   "label": "Missing delivery date",
+   "targeted": true,
+   "n": 11,
+   "blocked": 11,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 11,
+   "by_expected_rule": 11,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "past_date",
+   "label": "Delivery date in the past",
+   "targeted": true,
+   "n": 19,
+   "blocked": 19,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 19,
+   "by_expected_rule": 19,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "qty_below_min",
+   "label": "Quantity below minimum",
+   "targeted": true,
+   "n": 23,
+   "blocked": 23,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 23,
+   "by_expected_rule": 23,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "qty_above_max",
+   "label": "Quantity above maximum",
+   "targeted": true,
+   "n": 15,
+   "blocked": 15,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 15,
+   "by_expected_rule": 15,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "fractional_qty",
+   "label": "Fractional quantity",
+   "targeted": true,
+   "n": 28,
+   "blocked": 28,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 28,
+   "by_expected_rule": 28,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "over_stock",
+   "label": "Quantity above available stock",
+   "targeted": true,
+   "n": 16,
+   "blocked": 16,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 16,
+   "by_expected_rule": 16,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "duplicate",
+   "label": "Duplicate order",
+   "targeted": true,
+   "n": 18,
+   "blocked": 0,
+   "warned": 18,
+   "passed": 0,
+   "flagged": 18,
+   "by_expected_rule": 18,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "inactive_product",
+   "label": "Discontinued product",
+   "targeted": true,
+   "n": 25,
+   "blocked": 25,
+   "warned": 0,
+   "passed": 0,
+   "flagged": 25,
+   "by_expected_rule": 25,
+   "incidental": 0,
+   "incidental_rules": {},
+   "detection_rate": 100.0,
+   "pass_rate": null
+  },
+  {
+   "key": "wrong_product",
+   "label": "Wrong (but valid) product chosen",
+   "targeted": false,
+   "n": 35,
+   "blocked": 13,
+   "warned": 1,
+   "passed": 21,
+   "flagged": 14,
+   "by_expected_rule": null,
+   "incidental": 14,
+   "incidental_rules": {
+    "quantity": 13,
+    "duplicate": 1
+   },
+   "detection_rate": 40.0,
+   "pass_rate": null
+  },
+  {
+   "key": "qty_typo",
+   "label": "Plausible quantity typo (20 → 200)",
+   "targeted": false,
+   "n": 30,
+   "blocked": 0,
+   "warned": 19,
+   "passed": 11,
+   "flagged": 19,
+   "by_expected_rule": null,
+   "incidental": 19,
+   "incidental_rules": {
+    "unusual_quantity": 17,
+    "duplicate": 2
+   },
+   "detection_rate": 63.3,
+   "pass_rate": null
+  },
+  {
+   "key": "wrong_address",
+   "label": "Wrong saved address chosen",
+   "targeted": false,
+   "n": 22,
+   "blocked": 0,
+   "warned": 4,
+   "passed": 18,
+   "flagged": 4,
+   "by_expected_rule": null,
+   "incidental": 4,
+   "incidental_rules": {
+    "unusual_quantity": 4
+   },
+   "detection_rate": 18.2,
+   "pass_rate": null
+  }
+ ],
+ "fp_reasons": {
+  "unusual_quantity": 32,
+  "duplicate": 1
+ },
+ "rules": [
+  {
+   "rule": "unusual_quantity",
+   "label": "Unusual quantity",
+   "total": 93,
+   "on_errors": 61,
+   "on_clean": 32,
+   "fail": 0,
+   "warn": 0,
+   "severity": "warn"
+  },
+  {
+   "rule": "quantity",
+   "label": "Quantity limits",
+   "total": 79,
+   "on_errors": 79,
+   "on_clean": 0,
+   "fail": 0,
+   "warn": 0,
+   "severity": "fail"
+  },
+  {
+   "rule": "stock",
+   "label": "Stock availability",
+   "total": 56,
+   "on_errors": 56,
+   "on_clean": 0,
+   "fail": 0,
+   "warn": 0,
+   "severity": "fail"
+  },
+  {
+   "rule": "sku",
+   "label": "SKU / product active",
+   "total": 45,
+   "on_errors": 45,
+   "on_clean": 0,
+   "fail": 0,
+   "warn": 0,
+   "severity": "fail"
+  },
+  {
+   "rule": "mandatory",
+   "label": "Mandatory fields",
+   "total": 33,
+   "on_errors": 33,
+   "on_clean": 0,
+   "fail": 0,
+   "warn": 0,
+   "severity": "fail"
+  },
+  {
+   "rule": "duplicate",
+   "label": "Duplicate order",
+   "total": 22,
+   "on_errors": 21,
+   "on_clean": 1,
+   "fail": 0,
+   "warn": 0,
+   "severity": "warn"
+  },
+  {
+   "rule": "delivery",
+   "label": "Delivery date & address",
+   "total": 19,
+   "on_errors": 19,
+   "on_clean": 0,
+   "fail": 0,
+   "warn": 0,
+   "severity": "fail"
+  }
+ ],
+ "timing": {
+  "mean": 25.12,
+  "median": 18.73,
+  "p95": 70.08,
+  "min": 1.76,
+  "max": 101.88,
+  "sd": 20.75,
+  "by_outcome": {
+   "pass": 24.24,
+   "warn": 24.51,
+   "fail": 26.42
+  }
+ },
+ "hist": [
+  {
+   "from": 0,
+   "to": 5,
+   "n": 59
+  },
+  {
+   "from": 5,
+   "to": 10,
+   "n": 84
+  },
+  {
+   "from": 10,
+   "to": 15,
+   "n": 68
+  },
+  {
+   "from": 15,
+   "to": 20,
+   "n": 52
+  },
+  {
+   "from": 20,
+   "to": 25,
+   "n": 42
+  },
+  {
+   "from": 25,
+   "to": 30,
+   "n": 36
+  },
+  {
+   "from": 30,
+   "to": 35,
+   "n": 29
+  },
+  {
+   "from": 35,
+   "to": 40,
+   "n": 27
+  },
+  {
+   "from": 40,
+   "to": 45,
+   "n": 23
+  },
+  {
+   "from": 45,
+   "to": 50,
+   "n": 18
+  },
+  {
+   "from": 50,
+   "to": 55,
+   "n": 10
+  },
+  {
+   "from": 55,
+   "to": 60,
+   "n": 9
+  },
+  {
+   "from": 60,
+   "to": 65,
+   "n": 11
+  },
+  {
+   "from": 65,
+   "to": 70,
+   "n": 6
+  },
+  {
+   "from": 70,
+   "to": 75,
+   "n": 9
+  },
+  {
+   "from": 75,
+   "to": 80,
+   "n": 7
+  },
+  {
+   "from": 80,
+   "to": 85,
+   "n": 3
+  },
+  {
+   "from": 85,
+   "to": 90,
+   "n": 4
+  },
+  {
+   "from": 90,
+   "to": 95,
+   "n": 0
+  },
+  {
+   "from": 95,
+   "to": 100,
+   "n": 1
+  },
+  {
+   "from": 100,
+   "to": 105,
+   "n": 2
+  }
+ ],
+ "dataset": {
+  "value_mean": 1435692.17,
+  "value_median": 895098.75,
+  "value_min": 4300,
+  "value_max": 21639105,
+  "value_total": 717846085.0,
+  "lines_mean": 2.03,
+  "units_mean": 111.3,
+  "orders_per_customer": {
+   "min": 16,
+   "max": 33,
+   "mean": 25.0
+  },
+  "by_region": {
+   "Ikeja": 107,
+   "Lagos Mainland": 97,
+   "Lagos Island": 85,
+   "Lekki-Ajah": 72,
+   "Ibadan": 59,
+   "Abuja": 58,
+   "No address given": 22
+  },
+  "by_company": {
+   "Ola-Ade Hardware & Tiles": 33,
+   "Surulere Paint & Finish": 30,
+   "Marina Point Facilities": 30,
+   "Greenfield Estates Nigeria": 29,
+   "Victoria Island Fit-Out Ltd": 29,
+   "Eko Bridge Contractors": 28,
+   "Agege Steel Works": 28,
+   "Adeyemi & Sons Construction Ltd": 26,
+   "Yaba Tech Hub Builders": 26,
+   "Zuma Rock Engineering": 26,
+   "Magodo Residential Ltd": 25,
+   "Lekki Coastal Developers": 25,
+   "Apapa Port Works Supplies": 25,
+   "Ajah Sunrise Housing Co-op": 23,
+   "Oyo Central Builders": 23,
+   "Gwarinpa Homes Ltd": 20,
+   "Kanu Brothers Building Supplies": 20,
+   "Bodija Interiors": 19,
+   "Ibadan Prime Homes Ltd": 19,
+   "Northgate Realty Abuja": 16
+  }
+ },
+ "mandatory": {
+  "passed_orders": 286,
+  "complete": 286,
+  "pct": 100.0
+ },
+ "statuses": {
+  "pending_approval": 286,
+  "validation_failed": 192,
+  "draft": 22
+ }
+}
