@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import { useLive } from './Live'
 import { supabase } from '../lib/supabase'
 import { ROLE_LABEL, ago } from '../lib/format'
+import { Modal } from './ui'
 
 const count = (table, build) => async () => {
   const { count: c } = await build(supabase.from(table).select('id', { count: 'exact', head: true }))
@@ -95,8 +96,9 @@ export function Bell() {
 
 function NavCount({ fn }) {
   const { tick } = useLive()
+  const loc = useLocation()
   const [n, setN] = useState(0)
-  useEffect(() => { fn().then(setN).catch(() => {}) }, [tick]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { fn().then(setN).catch(() => {}) }, [tick, loc.pathname, loc.search]) // eslint-disable-line react-hooks/exhaustive-deps
   return n > 0 ? <span className="count">{n}</span> : null
 }
 
@@ -109,6 +111,7 @@ export const BrandMark = () => (
 export default function Layout() {
   const { role, profile, customer, signOut } = useAuth()
   const [open, setOpen] = useState(false)
+  const [confirmOut, setConfirmOut] = useState(false)
   const loc = useLocation()
   useEffect(() => setOpen(false), [loc.pathname])
   const menu = MENUS[role] || []
@@ -131,7 +134,7 @@ export default function Layout() {
             <div className="muted small">{customer?.name || profile?.email}</div>
           </div>
           <NavLink to="/account" className="small">Account & password</NavLink>
-          <button className="btn sm" onClick={signOut}>Sign out</button>
+          <button className="btn sm" onClick={() => setConfirmOut(true)}>Sign out</button>
         </div>
       </aside>
       <div className="main">
@@ -144,7 +147,15 @@ export default function Layout() {
           <Outlet />
         </main>
       </div>
-      {open && <div className="modal-back" style={{ zIndex: 55, background: 'rgba(0,0,0,.25)' }} onClick={() => setOpen(false)} />}
+      {open && <div className="side-scrim" onClick={() => setOpen(false)} />}
+      {confirmOut && (
+        <Modal title="Sign out?" onClose={() => setConfirmOut(false)} footer={<>
+          <button className="btn" onClick={() => setConfirmOut(false)}>Stay signed in</button>
+          <button className="btn primary" onClick={signOut}>Sign out</button>
+        </>}>
+          <p>You will need your e-mail and password to sign in again.</p>
+        </Modal>
+      )}
     </div>
   )
 }

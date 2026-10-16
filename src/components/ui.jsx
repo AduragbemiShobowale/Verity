@@ -106,6 +106,7 @@ export function Modal({ title, onClose, children, footer, wide }) {
 
 // Asks for a reason (or other text) and runs an action with it.
 export function ReasonModal({ title, label = 'Reason', placeholder, confirm = 'Confirm', danger, required = true, minLength = 1, options, onClose, onSubmit, children }) {
+  const { bump } = useLive()
   const [text, setText] = useState('')
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState(null)
@@ -114,6 +115,7 @@ export function ReasonModal({ title, label = 'Reason', placeholder, confirm = 'C
     setBusy(true); setErr(null)
     try {
       await onSubmit(text.trim())
+      bump?.()
       onClose()
     } catch (e) {
       setErr(e.message)
@@ -183,11 +185,13 @@ export function Timeline({ events, customer }) {
 
 // Runs an async action with a busy flag and toast on error/success.
 export function useAction() {
+  const { bump } = useLive()
   const [busy, setBusy] = useState(false)
   const run = async (fn, success) => {
     setBusy(true)
     try {
       const r = await fn()
+      bump?.()
       if (success) toast.success(typeof success === 'function' ? success(r) : success)
       return r
     } catch (e) {
