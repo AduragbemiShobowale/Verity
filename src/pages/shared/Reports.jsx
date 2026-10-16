@@ -39,7 +39,7 @@ export default function Reports() {
   const cats = sim ? Object.entries(sim.summary.by_category).sort((a, b) => (UNTARGETED.includes(a[0]) - UNTARGETED.includes(b[0])) || b[1].n - a[1].n) : []
   return (
     <>
-      <PageHead title="Performance & success criteria" sub="Live figures from real orders, plus the latest validation simulation.">
+      <PageHead hero title="Performance & success criteria" sub="Live figures from real orders, plus the latest validation simulation.">
         {role === 'admin' && <button className="btn primary" disabled={busy} onClick={() => run(async () => { await rpc('run_simulation', { p_n: 500, p_seed: Math.random() }); reload() }, 'Simulation finished.')}>{busy ? 'Running 500 orders…' : 'Run 500-order simulation'}</button>}
       </PageHead>
 

@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import { rpc } from '../../lib/supabase'
 import { useAuth } from '../../context/AuthContext'
 import { date, dateTime } from '../../lib/format'
-import { StatusBadge, Badge, Kpi, Empty, Loading, ReasonModal, useLoad, useAction } from '../../components/ui'
+import { PageHead, StatusBadge, Badge, Kpi, Empty, Loading, ReasonModal, useLoad, useAction } from '../../components/ui'
 
 // Phone-first pages inside the shared layout (sidebar on desktop, menu
 // button on a phone). The driver sees only their own assigned orders, the
@@ -32,7 +32,7 @@ export function DriverDashboard() {
   const next = onRoad[0] || waiting[0]
   return (
     <div className="driver-page">
-      <Head title={`Hello ${profile?.full_name?.split(' ')[0] || ''}`} sub={new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })} />
+      <PageHead hero title={`Hello ${profile?.full_name?.split(' ')[0] || ''}`} sub={new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })} />
       <div className="kpis">
         <Kpi label="To collect at warehouse" value={now.data ? waiting.length : null} to="/deliveries" />
         <Kpi label="On the road" value={now.data ? onRoad.length : null} to="/deliveries" />

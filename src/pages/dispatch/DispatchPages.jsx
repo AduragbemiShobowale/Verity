@@ -28,7 +28,7 @@ export function DispatchBoard() {
   const toggle = (id) => setPicked(picked.includes(id) ? picked.filter((x) => x !== id) : [...picked, id])
   return (
     <>
-      <PageHead title="Dispatch board" sub="Group packed orders by area, then assign a driver and vehicle." />
+      <PageHead hero title="Dispatch board" sub="Group packed orders by area, then assign a driver and vehicle." />
       <div className="kpis">
         <Kpi label="Ready to assign" value={data.ready.length - failed.length} />
         <Kpi label="Out for delivery" value={active.filter((d) => d.orders.status === 'out_for_delivery').length} />

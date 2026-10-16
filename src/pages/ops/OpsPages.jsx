@@ -35,7 +35,7 @@ export function OpsDashboard() {
   })
   return (
     <>
-      <PageHead title="Operations & Approval Desk" sub="Approvals, shortages and every open order." />
+      <PageHead hero title="Operations & Approval Desk" sub="Approvals, shortages and every open order." />
       <div className="kpis">
         <Kpi label="Pending approval" value={data?.pending} to="/ops/approvals" alert={data?.pending > 0} />
         <Kpi label="Shortage cases" value={data?.shortage} to="/ops/shortages" alert={data?.shortage > 0} />
