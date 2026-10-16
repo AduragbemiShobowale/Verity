@@ -46,6 +46,11 @@ export const MENUS = {
     { to: '/warehouse/adjust', label: 'Adjustments' },
     { to: '/warehouse/movements', label: 'Stock history' },
   ],
+  driver: [
+    { to: '/', label: 'Dashboard', end: true },
+    { to: '/deliveries', label: 'My deliveries', count: async () => (await supabase.rpc('driver_deliveries')).data?.length || 0 },
+    { to: '/history', label: 'Recent deliveries' },
+  ],
   dispatch: [
     { to: '/', label: 'Dispatch board', end: true },
     { to: '/dispatch/log', label: 'Delivery log' },

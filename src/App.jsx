@@ -12,7 +12,7 @@ import { OpsDashboard, Approvals, Shortages, OpsRefunds, Alerts, OpsCustomers } 
 import { FinanceDashboard, PaymentsToVerify, FinanceRefunds, FinanceInvoices } from './pages/finance/FinancePages'
 import { WarehouseDashboard, PickList, Picking, StockLevels, StockIn, Adjustments, Movements, NewProduct } from './pages/warehouse/WarehousePages'
 import { DispatchBoard, Fleet, DeliveryLog } from './pages/dispatch/DispatchPages'
-import DriverApp from './pages/driver/DriverApp'
+import { DriverDashboard, DriverList, DriverDetail, DriverHistory } from './pages/driver/DriverApp'
 import { AdminDashboard, Registrations, Users, AdminCustomers, AdminCatalogue, AdminRegions, Rules, AuditLog } from './pages/admin/AdminPages'
 
 const ROUTES = {
@@ -34,6 +34,7 @@ const ROUTES = {
     ['/warehouse/stock-in', <StockIn />], ['/warehouse/new-product', <NewProduct />], ['/warehouse/adjust', <Adjustments />], ['/warehouse/movements', <Movements />],
     ['/stock/:id', <StockLevels />], ['/order/:id', <StaffOrder />],
   ],
+  driver: [['/', <DriverDashboard />], ['/deliveries', <DriverList />], ['/delivery/:id', <DriverDetail />], ['/history', <DriverHistory />], ['/driver', <DriverDashboard />]],
   dispatch: [['/', <DispatchBoard />], ['/dispatch', <DispatchBoard />], ['/dispatch/fleet', <Fleet />], ['/dispatch/log', <DeliveryLog />], ['/order/:id', <StaffOrder />]],
   admin: [
     ['/', <AdminDashboard />], ['/admin/registrations', <Registrations />], ['/admin/users', <Users />], ['/admin/customers', <AdminCustomers />],
@@ -75,7 +76,6 @@ export default function App() {
     if (!customer) return <RegistrationForm />
     if (customer.status !== 'active') return <AccountStatus />
   }
-  if (role === 'driver') return <DriverApp />
 
   return (
     <Routes>
