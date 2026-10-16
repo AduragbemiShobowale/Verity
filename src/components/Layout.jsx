@@ -41,12 +41,14 @@ export const MENUS = {
     { to: '/', label: 'Dashboard', end: true },
     { to: '/warehouse/pick', label: 'Pick list', count: count('orders', (q) => q.in('status', ['paid', 'picking'])) },
     { to: '/warehouse/stock', label: 'Stock levels' },
+    { to: '/warehouse/new-product', label: 'New product' },
     { to: '/warehouse/stock-in', label: 'Stock in' },
     { to: '/warehouse/adjust', label: 'Adjustments' },
     { to: '/warehouse/movements', label: 'Stock history' },
   ],
   dispatch: [
     { to: '/', label: 'Dispatch board', end: true },
+    { to: '/dispatch/log', label: 'Delivery log' },
     { to: '/dispatch/fleet', label: 'Drivers & vehicles' },
   ],
   admin: [
@@ -54,7 +56,7 @@ export const MENUS = {
     { to: '/admin/registrations', label: 'Registrations', count: count('customers', (q) => q.eq('status', 'awaiting_review')) },
     { to: '/admin/users', label: 'Users & roles' },
     { to: '/admin/customers', label: 'Customers' },
-    { to: '/admin/catalogue', label: 'Catalogue & prices' },
+    { to: '/admin/catalogue', label: 'Catalogue & prices', count: count('products', (q) => q.eq('active', false).eq('price', 0)) },
     { to: '/admin/regions', label: 'Regions & fees' },
     { to: '/admin/rules', label: 'Rules & settings' },
     { to: '/admin/audit', label: 'Audit log' },

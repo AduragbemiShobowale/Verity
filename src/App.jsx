@@ -7,37 +7,38 @@ import NewOrder from './pages/customer/NewOrder'
 import { CustomerDashboard, MyOrders, OrderDetail, Invoices, DeliveryCodes, Catalogue, Profile } from './pages/customer/CustomerPages'
 import { AllOrders, StaffOrder } from './pages/shared/StaffOrder'
 import Reports from './pages/shared/Reports'
+import InvoiceView from './pages/shared/InvoiceView'
 import { OpsDashboard, Approvals, Shortages, OpsRefunds, Alerts, OpsCustomers } from './pages/ops/OpsPages'
 import { FinanceDashboard, PaymentsToVerify, FinanceRefunds, FinanceInvoices } from './pages/finance/FinancePages'
-import { WarehouseDashboard, PickList, Picking, StockLevels, StockIn, Adjustments, Movements } from './pages/warehouse/WarehousePages'
-import { DispatchBoard, Fleet } from './pages/dispatch/DispatchPages'
+import { WarehouseDashboard, PickList, Picking, StockLevels, StockIn, Adjustments, Movements, NewProduct } from './pages/warehouse/WarehousePages'
+import { DispatchBoard, Fleet, DeliveryLog } from './pages/dispatch/DispatchPages'
 import DriverApp from './pages/driver/DriverApp'
 import { AdminDashboard, Registrations, Users, AdminCustomers, AdminCatalogue, AdminRegions, Rules, AuditLog } from './pages/admin/AdminPages'
 
 const ROUTES = {
   customer: [
     ['/', <CustomerDashboard />], ['/new-order', <NewOrder />], ['/orders', <MyOrders />], ['/orders/:id', <OrderDetail />],
-    ['/invoices', <Invoices />], ['/codes', <DeliveryCodes />], ['/catalogue', <Catalogue />], ['/profile', <Profile />],
+    ['/invoices', <Invoices />], ['/invoice/:id', <InvoiceView />], ['/codes', <DeliveryCodes />], ['/catalogue', <Catalogue />], ['/profile', <Profile />],
   ],
   ops: [
     ['/', <OpsDashboard />], ['/ops/approvals', <Approvals />], ['/ops/shortages', <Shortages />], ['/ops/orders', <AllOrders />],
     ['/ops/orders/:id', <StaffOrder />], ['/ops/refunds', <OpsRefunds />], ['/ops/alerts', <Alerts />], ['/ops/customers', <OpsCustomers />],
-    ['/order/:id', <StaffOrder />], ['/reports', <Reports />],
+    ['/order/:id', <StaffOrder />], ['/reports', <Reports />], ['/invoice/:id', <InvoiceView />],
   ],
   finance: [
     ['/', <FinanceDashboard />], ['/finance/payments', <PaymentsToVerify />], ['/finance/refunds', <FinanceRefunds />],
-    ['/finance/invoices', <FinanceInvoices />], ['/order/:id', <StaffOrder />],
+    ['/finance/invoices', <FinanceInvoices />], ['/order/:id', <StaffOrder />], ['/invoice/:id', <InvoiceView />],
   ],
   warehouse: [
     ['/', <WarehouseDashboard />], ['/warehouse/pick', <PickList />], ['/warehouse/pick/:id', <Picking />], ['/warehouse/stock', <StockLevels />],
-    ['/warehouse/stock-in', <StockIn />], ['/warehouse/adjust', <Adjustments />], ['/warehouse/movements', <Movements />],
+    ['/warehouse/stock-in', <StockIn />], ['/warehouse/new-product', <NewProduct />], ['/warehouse/adjust', <Adjustments />], ['/warehouse/movements', <Movements />],
     ['/stock/:id', <StockLevels />], ['/order/:id', <StaffOrder />],
   ],
-  dispatch: [['/', <DispatchBoard />], ['/dispatch', <DispatchBoard />], ['/dispatch/fleet', <Fleet />], ['/order/:id', <StaffOrder />]],
+  dispatch: [['/', <DispatchBoard />], ['/dispatch', <DispatchBoard />], ['/dispatch/fleet', <Fleet />], ['/dispatch/log', <DeliveryLog />], ['/order/:id', <StaffOrder />]],
   admin: [
     ['/', <AdminDashboard />], ['/admin/registrations', <Registrations />], ['/admin/users', <Users />], ['/admin/customers', <AdminCustomers />],
     ['/admin/catalogue', <AdminCatalogue />], ['/admin/regions', <AdminRegions />], ['/admin/rules', <Rules />], ['/admin/audit', <AuditLog />],
-    ['/reports', <Reports />], ['/ops/orders', <AllOrders />], ['/order/:id', <StaffOrder />], ['/stock/:id', <AdminCatalogue />],
+    ['/reports', <Reports />], ['/ops/orders', <AllOrders />], ['/order/:id', <StaffOrder />], ['/stock/:id', <AdminCatalogue />], ['/invoice/:id', <InvoiceView />],
   ],
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { supabase, rpc } from '../../lib/supabase'
+import { supabase, rpc, adminUsers } from '../../lib/supabase'
 import { date, dateTime, ago } from '../../lib/format'
 import { Card, PageHead, Kpi, StatusBadge, Badge, Empty, Loading, Modal, ReasonModal, useLoad, q, useAction } from '../../components/ui'
 
@@ -110,47 +110,159 @@ function AssignModal({ ids, drivers, vehicles, board, onClose, onDone }) {
 export function Fleet() {
   const [run, busy] = useAction()
   const [f, setF] = useState({ plate: '', description: '', capacity: '' })
+  const [addDriver, setAddDriver] = useState(false)
+  const [secret, setSecret] = useState(null)
   const { data, reload } = useLoad(async () => {
-    const [drivers, vehicles] = await Promise.all([
-      q(supabase.from('profiles').select('id,full_name,email,phone,status,drivers(licence_no,active)').eq('role', 'driver').order('full_name')),
+    const [drivers, vehicles, onRoad] = await Promise.all([
+      q(supabase.from('profiles').select('id,full_name,email,phone,status,last_login,must_change_password,drivers(licence_no,active)').eq('role', 'driver').order('full_name')),
       q(supabase.from('vehicles').select('*').order('plate')),
+      q(supabase.from('deliveries').select('driver_id,vehicle_id,orders(status)').eq('current', true)),
     ])
-    return { drivers, vehicles }
+    const busyIds = onRoad.filter((d) => ['assigned', 'out_for_delivery'].includes(d.orders?.status))
+    return { drivers, vehicles, busyDrivers: busyIds.map((d) => d.driver_id), busyVehicles: busyIds.map((d) => d.vehicle_id) }
   })
   if (!data) return <Loading />
+  const setStatus = (d, status) => run(async () => { await adminUsers({ action: 'set_status', user_id: d.id, status }); reload() },
+    status === 'active' ? 'Driver reactivated.' : 'Driver deactivated. They can no longer sign in or be assigned.')
+  const reset = (d) => run(async () => { const r = await adminUsers({ action: 'reset_password', user_id: d.id }); setSecret({ email: d.email, password: r.temp_password }) })
   return (
     <>
-      <PageHead title="Drivers & vehicles" />
-      <div className="grid-2">
-        <Card title="Drivers" pad={false}>
-          <div className="table-wrap"><table>
-            <thead><tr><th>Name</th><th>Phone</th><th>Licence</th><th>Status</th></tr></thead>
-            <tbody>{data.drivers.map((d) => (
-              <tr key={d.id}><td>{d.full_name}<div className="muted small">{d.email}</div></td><td>{d.phone}</td><td className="mono">{d.drivers?.licence_no}</td>
-                <td><Badge tone={d.status === 'active' ? 'good' : 'muted'}>{d.status}</Badge></td></tr>
-            ))}</tbody>
-          </table></div>
-          <div className="card-body muted small">Driver accounts are created by the administrator.</div>
-        </Card>
-        <Card title="Vehicles" pad={false}>
-          <div className="table-wrap"><table>
-            <thead><tr><th>Plate</th><th>Description</th><th className="num">Capacity (kg)</th><th /></tr></thead>
-            <tbody>{data.vehicles.map((v) => (
-              <tr key={v.id}><td className="mono">{v.plate}</td><td>{v.description}</td><td className="num">{v.capacity}</td>
-                <td><button className="btn sm" disabled={busy} onClick={() => run(async () => { await q(supabase.from('vehicles').update({ active: !v.active }).eq('id', v.id).select()); reload() })}>{v.active ? 'Retire' : 'Reactivate'}</button></td></tr>
-            ))}</tbody>
-          </table></div>
-          <div className="card-body form-grid">
+      <PageHead title="Drivers & vehicles">
+        <button className="btn primary" onClick={() => setAddDriver(true)}>Add driver</button>
+      </PageHead>
+      <Card title="Drivers" pad={false}>
+        <div className="table-wrap"><table>
+          <thead><tr><th>Name</th><th>Phone</th><th>Licence</th><th>Status</th><th>Last sign-in</th><th /></tr></thead>
+          <tbody>{data.drivers.map((d) => (
+            <tr key={d.id}>
+              <td><strong>{d.full_name}</strong><div className="muted small">{d.email}</div></td>
+              <td>{d.phone}</td><td className="mono">{d.drivers?.licence_no}</td>
+              <td><Badge tone={d.status === 'active' ? 'good' : 'muted'}>{d.status === 'active' ? 'Active' : 'Deactivated'}</Badge>
+                {data.busyDrivers.includes(d.id) && <> <Badge tone="info">On a delivery</Badge></>}
+                {d.must_change_password && <div className="muted small">Has not set own password yet</div>}</td>
+              <td className="muted">{d.last_login ? ago(d.last_login) : 'never'}</td>
+              <td className="row" style={{ justifyContent: 'flex-end' }}>
+                <button className="btn sm" disabled={busy} onClick={() => reset(d)}>Reset password</button>
+                {d.status === 'active'
+                  ? <button className="btn sm danger" disabled={busy || data.busyDrivers.includes(d.id)} title={data.busyDrivers.includes(d.id) ? 'Unassign their deliveries first' : ''} onClick={() => setStatus(d, 'inactive')}>Deactivate</button>
+                  : <button className="btn sm" disabled={busy} onClick={() => setStatus(d, 'active')}>Reactivate</button>}
+              </td>
+            </tr>
+          ))}</tbody>
+        </table></div>
+        <div className="card-body muted small">Deactivating a driver blocks their sign-in and removes them from the assign list. Their past deliveries stay on record.</div>
+      </Card>
+      <Card title="Vehicles" pad={false}>
+        <div className="table-wrap"><table>
+          <thead><tr><th>Plate</th><th>Description</th><th className="num">Capacity (kg)</th><th>Status</th><th /></tr></thead>
+          <tbody>{data.vehicles.map((v) => (
+            <tr key={v.id}><td className="mono">{v.plate}</td><td>{v.description}</td><td className="num">{v.capacity}</td>
+              <td><Badge tone={v.active ? 'good' : 'muted'}>{v.active ? 'In service' : 'Out of service'}</Badge>
+                {data.busyVehicles.includes(v.id) && <> <Badge tone="info">On the road</Badge></>}</td>
+              <td><button className="btn sm" disabled={busy} onClick={() => run(async () => { await q(supabase.from('vehicles').update({ active: !v.active }).eq('id', v.id).select()); reload() },
+                v.active ? 'Taken out of service.' : 'Back in service.')}>{v.active ? 'Take out of service' : 'Return to service'}</button></td></tr>
+          ))}</tbody>
+        </table></div>
+        <div className="card-body stack">
+          <p className="muted small">"Out of service" is for a vehicle being repaired, sold or written off: it disappears from the assign list but its delivery history is kept. Nothing is deleted.</p>
+          <div className="form-grid">
             <label className="field">Plate<input value={f.plate} onChange={(e) => setF({ ...f, plate: e.target.value })} /></label>
             <label className="field">Capacity (kg)<input type="number" value={f.capacity} onChange={(e) => setF({ ...f, capacity: e.target.value })} /></label>
-            <label className="field full">Description<input value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} /></label>
+            <label className="field full">Description<input value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} placeholder="5-tonne truck" /></label>
             <div className="full"><button className="btn primary" disabled={!f.plate.trim() || busy} onClick={() => run(async () => {
               await q(supabase.from('vehicles').insert({ plate: f.plate.trim().toUpperCase(), description: f.description, capacity: f.capacity ? Number(f.capacity) : null }).select())
               setF({ plate: '', description: '', capacity: '' }); reload()
             }, 'Vehicle added.')}>Add vehicle</button></div>
           </div>
-        </Card>
+        </div>
+      </Card>
+      {addDriver && <AddDriverModal onClose={() => setAddDriver(false)} onDone={(r) => { setAddDriver(false); setSecret({ email: r.email, password: r.temp_password }); reload() }} />}
+      {secret && (
+        <Modal title="Temporary password" onClose={() => setSecret(null)} footer={<button className="btn primary" onClick={() => setSecret(null)}>Done</button>}>
+          <p>Give this to <strong>{secret.email}</strong> privately. It is shown only once. They sign in with it on their phone and must choose their own password straight away.</p>
+          <div className="code-box" style={{ fontSize: 20, letterSpacing: '.08em' }}>{secret.password}</div>
+        </Modal>
+      )}
+    </>
+  )
+}
+
+function AddDriverModal({ onClose, onDone }) {
+  const [f, setF] = useState({ full_name: '', email: '', phone: '', licence_no: '' })
+  const [run, busy] = useAction()
+  const set = (k) => (e) => setF({ ...f, [k]: e.target.value })
+  return (
+    <Modal title="Add driver" onClose={onClose} footer={<>
+      <button className="btn" onClick={onClose}>Cancel</button>
+      <button className="btn primary" disabled={busy || !f.full_name.trim() || !f.email.trim() || !f.phone.trim()}
+        onClick={() => run(async () => onDone(await adminUsers({ action: 'create_staff', role: 'driver', ...f })))}>{busy ? 'Creating…' : 'Create driver account'}</button>
+    </>}>
+      <label className="field">Full name<input value={f.full_name} onChange={set('full_name')} /></label>
+      <label className="field">E-mail (their username)<input type="email" value={f.email} onChange={set('email')} /></label>
+      <label className="field">Phone <span className="hint">Shown to nobody but staff; used to reach the driver</span><input value={f.phone} onChange={set('phone')} inputMode="tel" /></label>
+      <label className="field">Driving licence no.<input value={f.licence_no} onChange={set('licence_no')} /></label>
+    </Modal>
+  )
+}
+
+export function DeliveryLog() {
+  const today = new Date().toISOString().slice(0, 10)
+  const monthAgo = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10)
+  const [from, setFrom] = useState(monthAgo)
+  const [to, setTo] = useState(today)
+  const [outcome, setOutcome] = useState('all')
+  const { data } = useLoad(() => rpc('delivery_log', { p_from: from || null, p_to: to || null }), [from, to])
+  const rows = (data || []).filter((r) => outcome === 'all' || (outcome === 'delivered' ? ['delivered', 'override'].includes(r.outcome) : r.outcome === outcome))
+  const done = (data || []).filter((r) => ['delivered', 'override'].includes(r.outcome))
+  const mins = (a, b) => (a && b ? Math.round((new Date(b) - new Date(a)) / 60000) : null)
+  const csv = () => {
+    const head = ['Order', 'Customer', 'Region', 'Driver', 'Vehicle', 'Assigned', 'Picked up', 'Finished', 'Outcome', 'Confirmed by', 'Wrong code attempts', 'Note']
+    const lines = rows.map((r) => [r.order_no, r.customer, r.region, r.driver, r.vehicle, r.assigned_at, r.picked_up_at, r.finished_at, r.outcome, r.confirmed_by, r.wrong_code_attempts ?? '', r.note ?? '']
+      .map((x) => `"${String(x ?? '').replace(/"/g, '""')}"`).join(','))
+    const url = URL.createObjectURL(new Blob([[head.join(','), ...lines].join('\n')], { type: 'text/csv' }))
+    Object.assign(document.createElement('a'), { href: url, download: `delivery-log-${from}-to-${to}.csv` }).click()
+    URL.revokeObjectURL(url)
+  }
+  return (
+    <>
+      <PageHead title="Delivery log" sub="Every finished delivery: who took it, when, and how the handover was confirmed.">
+        <button className="btn" disabled={!rows.length} onClick={csv}>Download CSV</button>
+      </PageHead>
+      <div className="row">
+        <label className="field">From<input type="date" value={from} onChange={(e) => setFrom(e.target.value)} /></label>
+        <label className="field">To<input type="date" value={to} onChange={(e) => setTo(e.target.value)} /></label>
+        <label className="field">Outcome
+          <select value={outcome} onChange={(e) => setOutcome(e.target.value)}>
+            <option value="all">All</option><option value="delivered">Delivered</option><option value="override">Ops override only</option><option value="failed">Failed</option>
+          </select>
+        </label>
       </div>
+      <div className="kpis">
+        <Kpi label="Delivered" value={done.length} />
+        <Kpi label="Confirmed by customer code" value={done.filter((r) => r.outcome === 'delivered').length} />
+        <Kpi label="Ops overrides" value={done.filter((r) => r.outcome === 'override').length} alert={done.some((r) => r.outcome === 'override')} />
+        <Kpi label="Failed attempts" value={(data || []).filter((r) => r.outcome === 'failed').length} />
+      </div>
+      <Card pad={false}>
+        {!data ? <Loading /> : rows.length === 0 ? <Empty>No finished deliveries in this period.</Empty> : (
+          <div className="table-wrap"><table>
+            <thead><tr><th>Order</th><th>Customer</th><th>Driver</th><th>Picked up</th><th>Finished</th><th>Outcome</th><th>Confirmed by</th><th className="num">Wrong codes</th></tr></thead>
+            <tbody>{rows.map((r) => (
+              <tr key={r.delivery_id}>
+                <td><Link to={'/order/' + r.order_id}><strong>{r.order_no}</strong></Link><div className="muted small">{r.region}</div></td>
+                <td>{r.customer}</td>
+                <td>{r.driver}<div className="muted small">{r.vehicle}</div></td>
+                <td className="nowrap">{dateTime(r.picked_up_at)}</td>
+                <td className="nowrap">{dateTime(r.finished_at)}{mins(r.picked_up_at, r.finished_at) != null && <div className="muted small">{mins(r.picked_up_at, r.finished_at)} min on the road</div>}</td>
+                <td><Badge tone={r.outcome === 'delivered' ? 'good' : r.outcome === 'override' ? 'warn' : 'bad'}>{r.outcome === 'override' ? 'delivered (override)' : r.outcome}</Badge>
+                  {r.note && <div className="muted small" style={{ maxWidth: 260 }}>{r.note}</div>}</td>
+                <td>{r.confirmed_by}</td>
+                <td className="num">{r.wrong_code_attempts ?? '—'}</td>
+              </tr>
+            ))}</tbody>
+          </table></div>
+        )}
+      </Card>
     </>
   )
 }

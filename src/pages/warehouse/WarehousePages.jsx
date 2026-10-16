@@ -151,7 +151,9 @@ export function StockLevels() {
   const { data } = useLoad(() => q(supabase.from('products').select('*').order('name')))
   return (
     <>
-      <PageHead title="Stock levels" sub="Available = on hand − reserved for approved orders." />
+      <PageHead title="Stock levels" sub="Available = on hand − reserved for approved orders.">
+        <Link className="btn primary" to="/warehouse/new-product">New product</Link>
+      </PageHead>
       <Card pad={false}>
         {!data ? <Loading /> : (
           <div className="table-wrap"><table>
@@ -159,7 +161,8 @@ export function StockLevels() {
             <tbody>{data.map((p) => {
               const avail = p.on_hand - p.reserved
               return (
-                <tr key={p.id}><td><strong>{p.name}</strong><div className="muted mono">{p.sku}{!p.active && ' · inactive'}</div></td>
+                <tr key={p.id}><td><strong>{p.name}</strong><div className="muted mono">{p.sku}</div>
+                  {!p.active && <Badge tone={Number(p.price) > 0 ? 'muted' : 'warn'}>{Number(p.price) > 0 ? 'Not sold' : 'Waiting for Admin to set a price'}</Badge>}</td>
                   <td className="num">{p.on_hand}</td><td className="num">{p.reserved}</td>
                   <td className="num"><strong style={avail <= p.reorder_level ? { color: 'var(--bad)' } : {}}>{avail}</strong></td>
                   <td className="num">{p.reorder_level}</td>
@@ -211,6 +214,37 @@ function StockForm({ mode }) {
     </>
   )
 }
+export function NewProduct() {
+  const nav = useNavigate()
+  const [f, setF] = useState({ sku: '', name: '', unit: '', qty: '', reference: '', reorder: '' })
+  const [run, busy] = useAction()
+  const set = (k) => (e) => setF({ ...f, [k]: e.target.value })
+  const save = () => run(async () => {
+    await rpc('warehouse_add_product', { p_sku: f.sku, p_name: f.name, p_unit: f.unit, p_qty: Number(f.qty || 0), p_reference: f.reference, p_reorder_level: Number(f.reorder || 0) })
+    nav('/warehouse/stock')
+  }, 'Product added. Admin has been asked to set its price.')
+  return (
+    <>
+      <PageHead title="New product" sub="For goods the catalogue does not have yet. Customers cannot order it until Admin sets the price and switches it on." />
+      <Card>
+        <div className="form-grid">
+          <label className="field">SKU <span className="hint">Letters, numbers, dashes, e.g. PVC-6</span><input value={f.sku} onChange={set('sku')} /></label>
+          <label className="field">Unit <span className="hint">bag, carton, length…</span><input value={f.unit} onChange={set('unit')} /></label>
+          <label className="field full">Product name<input value={f.name} onChange={set('name')} placeholder="PVC pipe, 6 inch, 6 m" /></label>
+          <label className="field">Opening stock received<input type="number" min="0" value={f.qty} onChange={set('qty')} /></label>
+          <label className="field">Delivery note / PO reference<input value={f.reference} onChange={set('reference')} placeholder="GRN-0042" /></label>
+          <label className="field">Reorder level <span className="hint">Alert when available stock falls to this</span><input type="number" min="0" value={f.reorder} onChange={set('reorder')} /></label>
+          <div className="notice info full">Price and order limits are set by the administrator, so the people who handle stock never decide what it costs.</div>
+          <div className="full row">
+            <button className="btn primary" disabled={busy || !f.sku.trim() || !f.name.trim() || (Number(f.qty) > 0 && !f.reference.trim())} onClick={save}>Add product</button>
+            <Link className="btn" to="/warehouse/stock">Cancel</Link>
+          </div>
+        </div>
+      </Card>
+    </>
+  )
+}
+
 export const StockIn = () => <StockForm mode="in" />
 export const Adjustments = () => <StockForm mode="adjust" />
 

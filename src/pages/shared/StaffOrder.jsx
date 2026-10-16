@@ -143,7 +143,7 @@ export function StaffOrder() {
             {vr.length ? <ValidationReport results={vr} /> : <p className="muted">Not validated yet.</p>}
           </Card>
           {inv && (
-            <Card title={`Invoice ${inv.invoice_no}`} action={<Badge tone={inv.status === 'paid' ? 'good' : 'warn'}>{inv.status}</Badge>}>
+            <Card title={`Invoice ${inv.invoice_no}`} action={<span className="row"><Link to={'/invoice/' + inv.id}>View invoice</Link><Badge tone={inv.status === 'paid' ? 'good' : 'warn'}>{inv.status}</Badge></span>}>
               <div className="stack">
                 <div className="row between"><span className="muted">Due</span><span>{dateTime(inv.due_at)}</span></div>
                 {inv.payments.length === 0 && <p className="muted">No payment uploaded yet.</p>}
