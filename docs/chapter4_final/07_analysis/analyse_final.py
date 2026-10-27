@@ -93,6 +93,17 @@ def ms_between(a, b):
     return (f(b) - f(a)).total_seconds() * 1000
 
 
+CATNAME = {r['sku']: r['name'] for r in csv.DictReader(open(HERE.parent / '01_system_facts' / 'catalogue_snapshot.csv'))}
+
+
+def on_planted_line(r):
+    """For no-rule errors: does a warning name the product line that carries the planted error?"""
+    key = {'qty_typo': 'sku', 'wrong_product': 'entered_sku'}.get(r['planted_error'])
+    if not key:
+        return False
+    return any(msg.startswith(CATNAME[r['answer'][key]] + ':') for msg in r['messages'])
+
+
 def analyse(rows):
     clean = [r for r in rows if r['planted_error'] == 'clean']
     err = [r for r in rows if r['planted_error'] != 'clean']
@@ -152,6 +163,9 @@ def analyse(rows):
         'confusion_all_errors': confusion(err, clean),
         'confusion_rule_targeted': confusion(tgt, clean),
         'no_rule_detection': prop(sum(r['flagged'] for r in untgt), len(untgt)),
+        'no_rule_flag_on_planted_line': {t: {'flagged': sum(r['flagged'] for r in untgt if r['planted_error'] == t),
+                                             'warning_names_planted_line': sum(r['flagged'] and on_planted_line(r) for r in untgt if r['planted_error'] == t)}
+                                         for t in ('qty_typo', 'wrong_product', 'wrong_address')},
         'by_type': by_type,
         'rules': rules,
         'false_alarm_reasons': dict(Counter(x for r in clean if r['flagged'] for x in r['rules_triggered'])),
