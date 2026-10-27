@@ -137,6 +137,10 @@ def table(caption, headers, rows, source, widths=None, size=9.5):
             cells[i].text = ''
             cells[i].paragraphs[0].add_run(str(v)).font.size = Pt(size)
     if widths:
+        t.autofit = False
+        grid = t._tbl.tblGrid
+        for gc, w in zip(grid.findall(qn('w:gridCol')), widths):
+            gc.set(qn('w:w'), str(int(w * 567)))
         for row in t.rows:
             for i, w in enumerate(widths):
                 row.cells[i].width = Cm(w)
@@ -197,8 +201,7 @@ for txt in ('CHAPTER FOUR', 'SYSTEM IMPLEMENTATION, TESTING AND RESULTS'):
     tp.runs[0].font.size = Pt(14)
 note_box('Note for the group. This draft covers the technical part of Chapter Four, the system, its testing and the simulation. '
          'The questionnaire results are written separately and can be inserted as their own section. Results that depend on the '
-         'manual-entry comparison are marked [DATA PENDING], and [EXACT CHAPTER ONE WORDING NEEDED] marks where the Chapter One '
-         'wording goes. Delete this note before submission.')
+         'manual-entry comparison are marked [DATA PENDING]. Delete this note before submission.')
 H2('4.1 Introduction')
 P('This chapter reports the evaluation of Verity, the intelligent order processing system developed in this project. '
   'It covers the implemented system with its testing, and a controlled simulation in which orders with known planted errors '
@@ -237,9 +240,12 @@ P('Validation is carried out by nine rules that run every time a customer submit
   'until the customer corrects it and two raise a warning that sends the order to a person for review. Table 4.3 maps the '
   'nine rules to the seven checks set out in Table 2.1. The customer-details check is served by two rules, one for the account '
   'status and one for the delivery address, and the unusual-quantity rule is an addition that no check in Table 2.1 requires.')
-table('Validation rules mapped to the seven checks of Table 2.1', ['Rule', 'What it checks', 'Severity', 'Check in Table 2.1'],
-      [[r['rule'], r['check'], 'Blocking' if r['severity'] == 'blocking' else 'Warning', r['maps_to_seven_checks']] for r in RULES],
-      '_validate function, 01_system_facts/validation_rules_and_run4_coverage.csv.', widths=[3.5, 7, 2, 3.5])
+DQ = {'Mandatory fields': 'Completeness', 'SKU': 'Accuracy', 'Quantity': 'Accuracy', 'Stock': 'Currency', 'Customer details': 'Completeness',
+      'Pricing': 'Accuracy and consistency', 'Duplicate orders': 'Uniqueness'}
+table('Validation rules mapped to the seven checks of Table 2.1', ['Rule', 'What it checks', 'Severity', 'Check in Table 2.1', 'Data quality dimension in Table 2.1'],
+      [[r['rule'], r['check'], 'Blocking' if r['severity'] == 'blocking' else 'Warning', r['maps_to_seven_checks'].replace('(none; additional check)', 'None, an additional check'),
+        DQ.get(r['maps_to_seven_checks'], 'None')] for r in RULES],
+      '_validate function, 01_system_facts/validation_rules_and_run4_coverage.csv.', widths=[3.2, 6, 1.8, 2.6, 2.4])
 H3('4.2.3 Functional testing')
 P(f'Functional testing exercised the order lifecycle end to end against the live database while acting as each role. Every '
   f'test ran inside a transaction that was rolled back, so no test data remained. The fourteen cases of the earlier test run '
@@ -523,62 +529,96 @@ trace(f"{mand['k']}/{mand['n']}", 'mandatory completion, replicate 1', 'metrics_
 # =====================================================================================================================
 H2('4.5 Evaluation against the success criteria and discussion')
 H3('4.5.1 Evaluation against the objectives')
-P(f'Table 4.18 sets each objective against its success criterion. The wording of the objectives in Chapter One was not available '
-  f'when this chapter was drafted, so the table marks where that wording must be inserted and describes each objective in brief. '
-  f'Objective 1 is not listed because its criterion was not supplied.')
+P('Table 4.18 sets each objective of Section 1.3, in its Chapter One wording, against its success criterion and the result of '
+  'this evaluation.')
+OBJ = [
+    'To design and develop a web-based order processing system that replaces manual order entry done through Excel sheets and through e-mail and WhatsApp messages.',
+    'To implement an automatic validation engine that checks SKU, quantity, customer details, pricing, duplicate orders, stock and mandatory fields, and to achieve at least 90 percent validation accuracy.',
+    'To reduce manual data-entry errors by at least 60 percent and to achieve 100 percent completion of mandatory fields.',
+    'To improve order processing speed by 30 to 50 percent through digital approval, payment confirmation, fulfilment and delivery workflows.',
+    'To evaluate the usability and acceptance of the system through a questionnaire and a test run of 500 simulated orders.',
+]
 obj_rows = [
-    [f'{WORDING} Objective 2, validation engine for SKU, quantity, customer details, pricing, duplicate orders, stock and mandatory fields',
-     'At least 90 percent validation accuracy',
+    [f'1. {OBJ[0]}', 'A working web-based system through which orders are entered and processed without rekeying',
+     f'Built and deployed. Orders are entered in the portal, from an uploaded Excel or CSV sheet, or from a pasted message. {ft_pass} of {len(FT)} functional tests passed. CSV export of orders and webhooks are not built',
+     'not applicable', 'Met'],
+    [f'2. {OBJ[1]}', 'At least 90 percent validation accuracy',
      f'Primary {pc(A["accuracy"]["pct"])} percent, all errors. Secondary {pc(T["accuracy"]["pct"])} percent, rule-targeted errors. Replicates {RR["accuracy_all"]["min"]} to {RR["accuracy_all"]["max"]} and {RR["accuracy_targeted"]["min"]} to {RR["accuracy_targeted"]["max"]}',
      f'{ci(A["accuracy"])} and {ci(T["accuracy"])}', 'Partly met'],
-    [f'{WORDING} Objective 3, fewer manual entry errors', 'At least 60 percent fewer manual entry errors', PENDING, PENDING, 'Pending'],
-    [f'{WORDING} Objective 3, mandatory fields', '100 percent mandatory-field completion',
+    [f'3. {OBJ[2]}', 'At least 60 percent fewer manual entry errors', PENDING, PENDING, 'Pending'],
+    ['3. As above', '100 percent completion of mandatory fields',
      f'{mand["k"]} of {mand["n"]} orders reaching approval, 100 percent in all three replicates', ci(mand), 'Met'],
-    [f'{WORDING} Objective 4, processing speed', '30 to 50 percent faster processing', PENDING, PENDING, 'Pending'],
-    [f'{WORDING} Objective 5, simulated orders', '500 simulated orders processed', '500 orders in each of three replicates, 1,500 in all', 'not applicable', 'Met'],
+    [f'4. {OBJ[3]}', '30 to 50 percent faster processing', PENDING, PENDING, 'Pending'],
+    [f'5. {OBJ[4]}', 'Test run of 500 simulated orders', '500 orders in each of three replicates, 1,500 in all', 'not applicable', 'Met'],
+    ['5. As above', 'Usability and acceptance by questionnaire', 'Reported in the questionnaire results, not in this technical chapter', 'not applicable', 'Reported separately'],
 ]
-table('Objectives and success criteria', ['Objective', 'Criterion', 'Result', '95% CI', 'Status'], obj_rows,
-      'Sections 4.2 to 4.4. Accuracy judged on the primary measure with the secondary measure in support.', widths=[4.5, 3.2, 4.8, 2.2, 1.3], size=8.5)
-P(f'The accuracy objective is rated Partly met. On the primary measure accuracy did not reach 90 percent in any replicate, and the '
-  f'upper end of the replicate 1 interval was {A["accuracy"]["ci95"][1]:.1f} percent. On the rule-targeted errors it exceeded 90 percent '
-  f'in every replicate and the whole interval lay above the target. Both measures share the same false alarms, so the gap between '
-  f'them comes from the {A["fn"]} errors without a rule that were missed, {40 - BT["wrong_product"]["detection"]["k"] - BT["wrong_address"]["detection"]["k"]} of them wrong products or wrong addresses. The '
-  f'mandatory-fields criterion is Met. The error-reduction and speed criteria remain Pending until the manual baseline is run and '
-  f'scored with analyze_baseline.py. Below about 80 paired orders that comparison of errors will be indicative only.')
+table('Objectives of Section 1.3 and their success criteria', ['Objective, Chapter One wording', 'Criterion', 'Result', '95% CI', 'Status'], obj_rows,
+      'Section 1.3 and Sections 4.2 to 4.4 of this chapter. Accuracy judged on the primary measure with the secondary measure in support.',
+      widths=[5.2, 3, 4.6, 2, 1.4], size=8.5)
+P(f'Objective 1 is rated Met because orders can be entered and taken through the whole lifecycle without being retyped by staff. '
+  f'Two features named in the scope of Section 1.5 are missing, the CSV export of orders and the webhooks for connection to other '
+  f'systems, and the route for pasting a WhatsApp message was built but not covered by a functional test. The accuracy part of '
+  f'Objective 2 is rated Partly met. On the primary measure accuracy did not reach 90 percent in any replicate, and the upper end '
+  f'of the replicate 1 interval was {A["accuracy"]["ci95"][1]:.1f} percent. On the rule-targeted errors it exceeded 90 percent in '
+  f'every replicate and the whole interval lay above the target. Both measures share the same false alarms, so the gap between '
+  f'them comes from the {A["fn"]} errors without a rule that were missed, '
+  f'{40 - BT["wrong_product"]["detection"]["k"] - BT["wrong_address"]["detection"]["k"]} of them wrong products or wrong addresses.')
+P('The mandatory-fields part of Objective 3 is Met. The error-reduction part of Objective 3 and the speed criterion of Objective 4 '
+  'remain Pending until the manual baseline is run and scored with analyze_baseline.py, and below about 80 paired orders that '
+  'comparison of errors will be indicative only. The simulated test run required by Objective 5 is Met, while its usability and '
+  'acceptance part is reported with the questionnaire results.')
 H3('4.5.2 Answers to the research questions')
-P(f'The research questions are answered below in the order of Chapter One. Their exact wording was not available, so each is '
-  f'marked for insertion and, as an assumption, the questions are taken to follow the order of the objectives.')
-rq = [
-    ('Research question 1', f'{WORDING} The implemented system shows that order entry, validation, approval, payment, picking and '
-     f'delivery can be run as one controlled lifecycle of {FACTS["status_count"]} statuses with role-based access, and '
-     f'{ft_pass} of {len(FT)} functional tests passed. The failed tests concern features that are missing or incomplete, '
-     f'and Section 4.2 reports each of them.'),
-    ('Research question 2', f'{WORDING} Automated validation caught every rule-targeted error in all three replicates and reached '
-     f'{pc(A["accuracy"]["pct"])} percent accuracy when errors outside the rules were included. That is below the 90 percent target, '
-     f'and most of the remaining errors are of a kind no rule can detect.'),
-    ('Research question 3', f'{WORDING} No mandatory field was missing on any order that reached approval. Whether Verity reduces '
-     f'manual entry errors by 60 percent cannot yet be answered and is {PENDING}.'),
-    ('Research question 4', f'{WORDING} Validation itself takes milliseconds per order, but the criterion concerns end-to-end '
-     f'processing time against manual handling, and that answer is {PENDING}.'),
-    ('Research question 5', f'{WORDING} Usability and acceptance are answered from the questionnaire, which is reported '
-     f'separately. The technical evaluation contributes the 500 simulated orders per replicate that this objective also requires.'),
+P('Each research question of Section 1.4 is restated below in its Chapter One wording and answered from the technical evaluation.')
+RQ = [
+    ('How can an order processing system be designed to replace manual order entry in a logistics company.',
+     f'Verity shows that it can be done by having the customer enter the order against the live catalogue and by running every '
+     f'later step as one controlled lifecycle of {FACTS["status_count"]} statuses, with each role limited to its own actions and '
+     f'every change recorded. Customers can also upload a spreadsheet or paste a message, which the system reads into the same '
+     f'validated form. Of {len(FT)} functional tests, {ft_pass} passed, and the failures concern features that are missing or '
+     f'incomplete, as Section 4.2 reports.'),
+    ('How accurately can an automatic validation engine detect erroneous orders.',
+     f'Every error that a rule targets was detected in all three replicates, which gave an accuracy of {pc(T["accuracy"]["pct"])} '
+     f'percent on those errors. When realistic errors that no rule targets were included the accuracy was '
+     f'{pc(A["accuracy"]["pct"])} percent, below the 90 percent target, and most of the errors that passed were of a kind no rule '
+     f'can detect.'),
+    ('By how much does the system reduce manual data-entry errors compared with manual entry.',
+     f'This comparison needs the manual baseline and is {PENDING}. The simulation shows that no order reached approval with a '
+     f'mandatory field missing.'),
+    ('By how much does the system improve order processing speed.',
+     f'Validation itself takes milliseconds per order, but the question concerns end-to-end processing time against manual '
+     f'handling, and that answer is {PENDING}.'),
+    ('How usable and acceptable do intended users find the system.',
+     'This question is answered by the questionnaire, which is reported with the questionnaire results rather than in this '
+     'technical chapter.'),
 ]
-for k, v in rq:
-    P(f'{k}. {v}')
+for i, (q, a_) in enumerate(RQ, 1):
+    qp = para(f'Research question {i}. {q}', align=WD_ALIGN_PARAGRAPH.LEFT, after=2)
+    qp.runs[0].bold = True
+    P(a_)
 H3('4.5.3 Discussion')
-P('The DeLone and McLean (2003) model of information systems success offers a frame for these results. It links the qualities '
-  'of a system to its use and to user satisfaction, and through these to net benefits. The technical evaluation gives evidence on system quality. The engine stopped every planted error that '
-  'a rule targets and responded within a fraction of a second, although its response time grew as order volume grew in two of '
-  'the replicates. On information quality, each message stated the problem in plain words and named the product where the problem lay on a line, '
-  f'yet {A["fp"]} of the 200 clean orders received a warning that turned out to be unnecessary.'
-  ' False alarms of '
-  'this kind cost staff time and can teach users to ignore warnings, so they weigh against the net benefits the model predicts. '
-  'Service quality, use, user satisfaction and the net benefits themselves rest on the questionnaire and the manual baseline, '
-  'and remain to be assessed.')
-P('The results also show where the design reaches its limits. The rules check that each value is allowed, so they cannot tell when '
-  'a customer chooses an allowed value by mistake. The unusual-quantity warning partly closes that gap for quantities, at the cost of '
-  'false alarms, and the sensitivity analysis shows that the balance can be tuned but not removed. Errors in product choice or '
-  'address would need a different kind of check, such as confirming the order back to the customer before approval.')
+P('Section 2.4.3 adopted the information systems success model of DeLone and McLean (2003) as the frame that links what the '
+  'simulation measures to the outcomes the study expects. In that frame the validation engine stands for information quality, '
+  'and the reductions in error and processing time sought by Objectives 3 and 4 stand for net benefits. The evidence on '
+  'information quality is strong for the errors the rules were written for. Every one of them was stopped in every replicate, and '
+  f'no order reached approval with a mandatory field missing. It is weaker in two respects. Of the 200 clean orders, {A["fp"]} '
+  'received a warning that turned out to be unnecessary, and warnings of this kind cost staff time and can teach users to ignore '
+  'them. The engine also missed most errors that lie inside the allowed values. On system quality, validation responded within '
+  'a fraction of a second, although its response time grew with the number of orders in two of the replicates. The net benefits '
+  'remain to be measured, so the second gap identified in Section 2.6, the lack of a comparison between validated digital entry '
+  'and manual entry, is not yet closed.')
+P('The pattern of what the engine missed matches the evidence reviewed in Section 2.2.2. Barchard and Pace (2011) found that only '
+  'a small share of data entry errors are blank or outside the allowable range, so most cannot be caught by looking for obviously '
+  'wrong values. The simulation shows the same limit from the system side. The rules check that each value is allowed, so they '
+  'cannot tell when a customer chooses an allowed value by mistake, and a wrong but valid product or address passed in most cases. '
+  'The unusual-quantity warning partly closes the gap for quantities, at the cost of false alarms, and the sensitivity analysis '
+  'shows that the balance can be tuned but not removed. Errors in product choice or address would need a different kind of '
+  'check, such as confirming the order back to the customer before approval.')
+P('Two further results bear on the design set out in Chapter Two. Section 2.2.3 argued, following Elmagarmid et al. (2007), that '
+  'an order system can prevent duplicates at intake rather than clean them afterwards, and all 20 planted duplicates in each '
+  'replicate were held for the customer to confirm. Table 2.1 expects the pricing check to stop an outdated price. The engine '
+  'did so when the price changed after an order was saved, but an outdated price quoted on an uploaded sheet was replaced by the '
+  'list price without telling the customer, as functional test 16b shows. Finally, the integration route of Section 2.3.5 is only '
+  'partly in place, since CSV import works but CSV export of orders and webhooks have not been built.')
 
 # =====================================================================================================================
 H2('4.6 Limitations')
@@ -600,7 +640,6 @@ lims = [
     'the test environment.',
     'The comparison with manual order entry had not been carried out, so the objectives on error reduction and speed could not '
     'be assessed.',
-    'The exact wording of the objectives and research questions in Chapter One was not available to this chapter.',
 ]
 for x in lims:
     P(x)
@@ -619,8 +658,10 @@ P(f'Verity was built as a working order processing system with a controlled orde
 # =====================================================================================================================
 H2('References')
 refs = [
+    'Barchard, K. A., & Pace, L. A. (2011). Preventing human error: The impact of data entry methods on data accuracy and statistical results. Computers in Human Behavior, 27(5), 1834–1839. https://doi.org/10.1016/j.chb.2011.04.004',
     'Brown, L. D., Cai, T. T., & DasGupta, A. (2001). Interval estimation for a binomial proportion. Statistical Science, 16(2), 101–133. https://doi.org/10.1214/ss/1009213286',
     'DeLone, W. H., & McLean, E. R. (2003). The DeLone and McLean model of information systems success: A ten-year update. Journal of Management Information Systems, 19(4), 9–30. https://doi.org/10.1080/07421222.2003.11045748',
+    'Elmagarmid, A. K., Ipeirotis, P. G., & Verykios, V. S. (2007). Duplicate record detection: A survey. IEEE Transactions on Knowledge and Data Engineering, 19(1), 1–16. https://doi.org/10.1109/TKDE.2007.250581',
     'Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22(158), 209–212. https://doi.org/10.1080/01621459.1927.10502953',
 ]
 for r in refs:
