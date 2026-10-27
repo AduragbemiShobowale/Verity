@@ -1,0 +1,84 @@
+chapter_section,number_cited,meaning,source_file_field_cell_or_query
+4.2 and 4.6,150,target valid questionnaire responses,"project brief and success criteria, not a measured value"
+4.2 and 4.6,190,questionnaires to distribute,"project brief and success criteria, not a measured value"
+4.2 and 4.6,68,"SUS benchmark mean (Sauro and Lewis, 2016)","project brief and success criteria, not a measured value"
+4.2 and 4.6,90,"accuracy target, Objective 2","project brief and success criteria, not a measured value"
+4.2 and 4.6,60,"error-reduction target, Objective 3","project brief and success criteria, not a measured value"
+4.2 and 4.6,80,pairs below which the error comparison is indicative,"project brief and success criteria, not a measured value"
+4.4,500,orders per replicate,"design of run_simulation_final, supabase/migrations/0007_simulation_final.sql; counts confirmed in metrics_final.json replicates.n"
+4.4,200,clean orders per replicate,"design of run_simulation_final, supabase/migrations/0007_simulation_final.sql; counts confirmed in metrics_final.json replicates.n"
+4.4,300,erroneous orders per replicate,"design of run_simulation_final, supabase/migrations/0007_simulation_final.sql; counts confirmed in metrics_final.json replicates.n"
+4.4,240,rule-targeted orders per replicate,"design of run_simulation_final, supabase/migrations/0007_simulation_final.sql; counts confirmed in metrics_final.json replicates.n"
+4.4,20,orders per planted error type,"design of run_simulation_final, supabase/migrations/0007_simulation_final.sql; counts confirmed in metrics_final.json replicates.n"
+4.4,"0.42, 0.43, 0.44",random seeds of replicates 1 to 3,"design of run_simulation_final, supabase/migrations/0007_simulation_final.sql; counts confirmed in metrics_final.json replicates.n"
+4.4,24,duplicate window in hours,"design of run_simulation_final, supabase/migrations/0007_simulation_final.sql; counts confirmed in metrics_final.json replicates.n"
+4.4,"0.42, 0.43, 0.44",seeds confirmed,metrics_final.json run_ids; simulation_runs rows 5 to 7 summary.seed
+4.3,17,order statuses,01_system_facts/system_facts.json status_count; order_statuses.csv
+4.3,36,permitted transitions,01_system_facts/system_facts.json transition_count; state_machine_transitions.csv
+4.3,26,functional test cases,02_functional_tests/functional_tests.csv row count
+4.3,23,functional tests passed,02_functional_tests/functional_tests.csv result = Pass
+4.3,3,"functional tests failed (16b, 19, 21)",02_functional_tests/functional_tests.csv result = Fail
+4.3,"₦9,000","old price quoted on the uploaded sheet, case 16b",02_functional_tests/sample_import_old_price.csv row CEM-50
+4.3,"₦9,500","list price saved, case 16b",02_functional_tests/raw_test_output_2026-10-27.json ext 16_18 saved_lines CEM-50 unit_price
+4.4,13,run 4 wrong-product orders submitted empty,01_system_facts/system_facts.json run4_harness_defect (query in that field)
+4.4,35,run 4 wrong-product orders,01_system_facts/system_facts.json run4_harness_defect; simulation_orders run_id = 4
+4.5,172,"clean orders passed, replicate 1",R1 Summary!C5; metrics_final.json replicates.1.outcomes_by_group
+4.5,28,"clean orders warned, replicate 1",R1 Summary!D5; metrics_final.json replicates.1.outcomes_by_group
+4.5,220,"rule-targeted orders blocked, replicate 1",R1 Summary!E6; metrics_final.json replicates.1.outcomes_by_group
+4.5,20,"rule-targeted orders warned, replicate 1",R1 Summary!D6; metrics_final.json replicates.1.outcomes_by_group
+4.5,24,"no-rule orders warned, replicate 1",R1 Summary!D7; metrics_final.json replicates.1.outcomes_by_group
+4.5,36,"no-rule orders passed, replicate 1",R1 Summary!C7; metrics_final.json replicates.1.outcomes_by_group
+4.5,220,"orders in status validation_failed after submission, replicate 1",metrics_final.json replicates.1.statuses_after_submit
+4.5,258,"orders in status pending_approval after submission, replicate 1",metrics_final.json replicates.1.statuses_after_submit
+4.5,22,"orders in status draft after submission, replicate 1",metrics_final.json replicates.1.statuses_after_submit
+4.5,14,"typing slips flagged, replicate 1",metrics_final.json replicates.1.by_type qty_typo; R1 Summary section D
+4.5,14,typing-slip warnings naming the slip line,metrics_final.json replicates.1.no_rule_flag_on_planted_line
+4.5,5,"wrong products flagged (and wrong addresses), none on the planted error",metrics_final.json replicates.1.by_type and no_rule_flag_on_planted_line
+4.5,87.2,"primary accuracy, replicate 1",R1 Summary!B16; metrics_final.json replicates.1.confusion
+4.5,84.0 to 89.8,primary accuracy 95% Wilson CI,R1 Summary!C16 and D; metrics_final.json
+4.5,93.6,"secondary accuracy, replicate 1",R1 Summary!B29; metrics_final.json replicates.1.confusion
+4.5,91.0 to 95.6,secondary accuracy 95% Wilson CI,R1 Summary!C29 and D; metrics_final.json
+4.5,90.4,"primary precision, replicate 1",R1 Summary!B17; metrics_final.json replicates.1.confusion
+4.5,86.5 to 93.3,primary precision 95% Wilson CI,R1 Summary!C17 and D; metrics_final.json
+4.5,89.6,"secondary precision, replicate 1",R1 Summary!B30; metrics_final.json replicates.1.confusion
+4.5,85.3 to 92.7,secondary precision 95% Wilson CI,R1 Summary!C30 and D; metrics_final.json
+4.5,88.0,"primary recall, replicate 1",R1 Summary!B18; metrics_final.json replicates.1.confusion
+4.5,83.8 to 91.2,primary recall 95% Wilson CI,R1 Summary!C18 and D; metrics_final.json
+4.5,100.0,"secondary recall, replicate 1",R1 Summary!B31; metrics_final.json replicates.1.confusion
+4.5,98.4 to 100.0,secondary recall 95% Wilson CI,R1 Summary!C31 and D; metrics_final.json
+4.5,86.0,"primary specificity, replicate 1",R1 Summary!B19; metrics_final.json replicates.1.confusion
+4.5,80.5 to 90.1,primary specificity 95% Wilson CI,R1 Summary!C19 and D; metrics_final.json
+4.5,86.0,"secondary specificity, replicate 1",R1 Summary!B32; metrics_final.json replicates.1.confusion
+4.5,80.5 to 90.1,secondary specificity 95% Wilson CI,R1 Summary!C32 and D; metrics_final.json
+4.5,14.0,"primary false_alarm_rate, replicate 1",R1 Summary!B20; metrics_final.json replicates.1.confusion
+4.5,9.9 to 19.5,primary false_alarm_rate 95% Wilson CI,R1 Summary!C20 and D; metrics_final.json
+4.5,14.0,"secondary false_alarm_rate, replicate 1",R1 Summary!B33; metrics_final.json replicates.1.confusion
+4.5,9.9 to 19.5,secondary false_alarm_rate 95% Wilson CI,R1 Summary!C33 and D; metrics_final.json
+4.5,36,errors without a rule that passed unflagged (false negatives),R1 Summary!C12; metrics_final.json replicates.1.confusion_all_errors.fn
+4.6,30,missed wrong products or wrong addresses,"metrics_final.json by_type wrong_product and wrong_address, 20 minus flagged each"
+4.5 and 4.6,28,false alarms on clean orders,R1 Summary!B13; metrics_final.json replicates.1.confusion_all_errors.fp
+4.5,40,stock rule on quantity-above-maximum and discontinued orders,metrics_final.json replicates.1.rules stock.on_other_error_types
+4.5,27,false alarms from unusual quantity,metrics_final.json replicates.1.false_alarm_reasons; R1 Summary section E
+4.5,1,false alarms from duplicate,metrics_final.json replicates.1.false_alarm_reasons
+4.5,94,orders on which unusual quantity fired,metrics_final.json replicates.1.rules; R1 Summary section E
+4.5,13.5,"unusual-quantity false alarms per clean order, percent",metrics_final.json replicates.1.rules
+4.5,28.72,"validation time mean, ms, replicate 1",R1 Summary!B71; metrics_final.json replicates.1.validation_ms
+4.5,22.16,"validation time median, ms, replicate 1",R1 Summary!B73; metrics_final.json replicates.1.validation_ms
+4.5,74.72,"validation time p95, ms, replicate 1",R1 Summary!B74; metrics_final.json replicates.1.validation_ms
+4.5,124.31,"validation time max, ms, replicate 1",R1 Summary!B76; metrics_final.json replicates.1.validation_ms
+4.5,29.78,"mean ms draft event to last event, status history",metrics_final.json replicates.1.status_history_draft_to_last_event_ms
+4.5,478,orders with more than one status event,metrics_final.json replicates.1.status_history_orders_with_two_or_more_events
+4.5,6.90 and 58.76,"mean ms of first and last 100 orders, replicate 1",metrics_final.json replicates.1.validation_ms_mean_by_block_of_100; R1 Summary section F block row; figures/fig4_4_timing_data.csv
+4.5,2.08 and 2.54,"mean ms of first and last 100 orders, replicate 3",metrics_final.json replicates.3.validation_ms_mean_by_block_of_100; R3 Summary section F block row; figures/fig4_4_timing_data.csv
+4.5,1.7,"largest replicate spread of a non-timing measure, percentage points (no-rule detection)",metrics_final.json replicate_range; Replicate range sheet
+4.6 and 4.8,86.8 to 87.2,primary accuracy across replicates,metrics_final.json replicate_range.accuracy_all; Replicate range sheet columns E and F
+4.6 and 4.8,93.0 to 93.6,secondary accuracy across replicates,metrics_final.json replicate_range.accuracy_targeted; Replicate range sheet columns E and F
+4.5,14.0,"false-alarm rate at 3 x average, 4 earlier orders",04_sensitivity/sensitivity_results.csv run 8; Sensitivity sheet
+4.5,70.0,"slip detection at 3 x average, 4 earlier orders",04_sensitivity/sensitivity_results.csv run 8; Sensitivity sheet
+4.5,8.5,"false-alarm rate at 5 x average, 4 earlier orders",04_sensitivity/sensitivity_results.csv run 10; Sensitivity sheet
+4.5,55.0,"slip detection at 5 x average, 4 earlier orders",04_sensitivity/sensitivity_results.csv run 10; Sensitivity sheet
+4.5,19.0,"false-alarm rate at 3 x average, 10 earlier orders",04_sensitivity/sensitivity_results.csv run 11; Sensitivity sheet
+4.5,80.0,"slip detection at 3 x average, 10 earlier orders",04_sensitivity/sensitivity_results.csv run 11; Sensitivity sheet
+4.5,0,differences between replay run 8 and replicate 1,comparison of 04_sensitivity/raw/runs8to13_replays_of_run5.json run 8 with 03_simulation/raw/run5_replicate1.json
+4.5,258 of 258,orders reaching approval with every mandatory field,R1 Summary section G; metrics_final.json replicates.1.mandatory_completion_reaching_approval
+4.5,98.5 to 100.0,mandatory completion 95% Wilson CI,R1 Summary!C82 and D
