@@ -191,74 +191,30 @@ MW = 'Verity_Simulation_Data_Final.xlsx'
 
 # =====================================================================================================================
 page_numbers()
-for txt in ('CHAPTER FOUR', 'RESULTS AND DISCUSSION'):
+for txt in ('CHAPTER FOUR', 'SYSTEM IMPLEMENTATION, TESTING AND RESULTS'):
     tp = para(txt, align=WD_ALIGN_PARAGRAPH.CENTER, after=4)
     tp.runs[0].bold = True
     tp.runs[0].font.size = Pt(14)
-note_box('Note for the group. This chapter is built from the evaluation files in docs/chapter4_final. Part B, the technical '
-         'evaluation, is complete. Part A and the manual-entry comparison are marked [DATA PENDING] until the questionnaire and '
-         'the baseline session have been run, and [EXACT CHAPTER ONE WORDING NEEDED] marks where the Chapter One wording goes. '
-         'DATA_PENDING.md lists every open item. Delete this note before submission.')
+note_box('Note for the group. This draft covers the technical part of Chapter Four, the system, its testing and the simulation. '
+         'The questionnaire results are written separately and can be inserted as their own section. Results that depend on the '
+         'manual-entry comparison are marked [DATA PENDING], and [EXACT CHAPTER ONE WORDING NEEDED] marks where the Chapter One '
+         'wording goes. Delete this note before submission.')
 H2('4.1 Introduction')
 P('This chapter reports the evaluation of Verity, the intelligent order processing system developed in this project. '
-  'It is written in two parts that are brought together in Section 4.6. Part A reports the questionnaire given to staff and '
-  'customers of the case organisation before and after a demonstration of the system. Part B reports the technical evaluation, '
-  'which covers the implemented system with its testing, and a controlled simulation in which orders with known planted '
-  'errors were submitted to the live validation engine.')
-P('At the time of writing the questionnaire had not been administered and the manual-entry comparison had not been run. '
+  'It covers the implemented system with its testing, and a controlled simulation in which orders with known planted errors '
+  'were submitted to the live validation engine. Section 4.5 sets the results against the success criteria of Chapter One. The '
+  'questionnaire on usability and acceptance is reported separately.')
+P('At the time of writing the comparison with manual order entry had not been run. '
   'Every result that depends on those activities is therefore marked [DATA PENDING] and every success criterion that rests on '
   'them is given the status Pending. All other figures in this chapter come from files and database queries produced during '
   'the evaluation, and each is listed with its source in the traceability table that accompanies the chapter.')
 
 # =====================================================================================================================
-H2('4.2 Part A. Questionnaire results')
-P('The questionnaire has two parts. Part I is completed before the demonstration and covers consent, respondent group, '
-  'current order handling, experience of order errors and their consequences, and the importance of twelve requirements. '
-  'Part II is completed straight after the demonstration and contains the System Usability Scale in its standard wording '
-  '(Brooke, 1996) together with items on perceived usefulness, ease of use, intention to use, facilitating conditions and '
-  'voluntariness adapted from Davis (1989) and Venkatesh et al. (2003). The target is 150 valid responses from about 190 '
-  'questionnaires distributed. No responses had been collected when this chapter was prepared, so Tables 4.1 to 4.4 are shells.')
-table('Respondents by group', ['Group', 'Distributed', 'Returned', 'Valid', 'Valid share of returned'],
-      [['Staff of the supplier', PENDING, PENDING, PENDING, PENDING], ['Customers', PENDING, PENDING, PENDING, PENDING],
-       ['Total', 'about 190', PENDING, f'{PENDING} (target 150)', PENDING]],
-      'questionnaire export, analysed with analyze_questionnaire.py. Not yet collected.')
-P('Table 4.1 will report how many questionnaires were distributed and returned in each group and how many met the validity '
-  'rule applied by the analysis script, which requires recorded consent and a complete set of usability items.')
-table('Reliability of the multi-item scales', ['Scale', 'Items', "Cronbach's alpha"],
-      [['System Usability Scale', 'SUS1 to SUS10, even items recoded', PENDING], ['Perceived usefulness', 'PU1 to PU3', PENDING],
-       ['Ease of use', 'EOU1 to EOU3', PENDING], ['Facilitating conditions', 'FC1 and FC2', PENDING]],
-      'questionnaire export, analysed with analyze_questionnaire.py. Not yet collected.')
-P("Table 4.2 will report Cronbach's alpha for each multi-item scale (Cronbach, 1951) as a check that the items in each scale "
-  'measure the same construct before scale scores are interpreted.')
-table('System Usability Scale scores against the benchmark of 68',
-      ['Statistic', 'Staff', 'Customers', 'All valid responses'],
-      [[x, PENDING, PENDING, PENDING] for x in ('n', 'Mean', 'SD, sample', '95% CI', 't against 68', 'p, two-sided',
-                                                 'Adjective, Bangor et al. (2009)', 'Acceptability, Bangor et al. (2008)', 'Grade, Sauro and Lewis (2016)')],
-      'questionnaire export, analysed with analyze_questionnaire.py. Not yet collected.')
-P('Table 4.3 will report the mean System Usability Scale score for each group with a 95 percent confidence interval and a '
-  'one-sample t test against the benchmark of 68 recommended by Sauro and Lewis (2016). The mean will be interpreted with the '
-  'adjective scale of Bangor et al. (2009) and the acceptability ranges of Bangor et al. (2008). It will also be placed on the '
-  'curved grading scale of Sauro and Lewis (2016).')
-table('Acceptance items, percent agreeing or strongly agreeing',
-      ['Item', 'Code', 'Staff', 'Customers', 'All', '95% CI for all'],
-      [['Perceived usefulness, three items', 'PU1 to PU3', PENDING, PENDING, PENDING, PENDING],
-       ['Ease of use compared with sending a message', 'EOU1 to EOU3', PENDING, PENDING, PENDING, PENDING],
-       ['Intention to use', 'BI1', PENDING, PENDING, PENDING, PENDING],
-       ['Has a device to access Verity', 'FC1', PENDING, PENDING, PENDING, PENDING],
-       ['Has enough data or internet access', 'FC2', PENDING, PENDING, PENDING, PENDING],
-       ['Use would be voluntary', 'VOL1', PENDING, PENDING, PENDING, PENDING]],
-      'questionnaire export, analysed with analyze_questionnaire.py. Not yet collected.')
-P('Table 4.4 will report the share of each group agreeing with the acceptance items, with Wilson intervals, so that intention '
-  'to use can be read alongside the facilitating-conditions and voluntariness items. Part I results on error types seen and '
-  'requirement importance will be reported in the same way once collected, using the error-type wording that matches the '
-  'fifteen planted error types of Part B.')
-
-# =====================================================================================================================
-H2('4.3 Part B. Implemented system and testing')
-H3('4.3.1 System components and order lifecycle')
+H2('4.2 Implemented system and testing')
+H3('4.2.1 System components and order lifecycle')
 P('Verity is a web application with a React interface hosted on Vercel and a Supabase back end built on PostgreSQL 17. '
   'All business rules run inside the database as functions, and row-level security decides which records each signed-in user '
-  'can read. Table 4.5 summarises the components that were built.')
+  'can read. Table 4.1 summarises the components that were built.')
 table('Components of the implemented system', ['Component', 'What it does'],
       [['Customer portal', 'Registration, order entry from the catalogue or from an uploaded Excel or CSV sheet, order status, payment proof upload, delivery code'],
        ['Ops Desk', 'Approval queue with validation results, customer screening, cancellations and delivery overrides'],
@@ -270,25 +226,25 @@ table('Components of the implemented system', ['Component', 'What it does'],
       'Verity source code and database, docs/chapter4_final/01_system_facts.', widths=[4, 12])
 trace(FACTS['status_count'], 'order statuses', '01_system_facts/system_facts.json status_count')
 trace(FACTS['transition_count'], 'permitted transitions', '01_system_facts/system_facts.json transition_count')
-P(f'Every order follows a lifecycle built from {FACTS["status_count"]} statuses, shown in Table 4.6. The database accepts '
+P(f'Every order follows a lifecycle built from {FACTS["status_count"]} statuses, shown in Table 4.2. The database accepts '
   f'only the {FACTS["transition_count"]} transitions listed in its transition table, so an order cannot skip a step such as '
   'payment verification, and each change is written to the status history with the time and the user who made it.')
 table('Order lifecycle statuses in order', ['No.', 'Status', 'Meaning'],
       [[r['position'], r['status'], r['meaning']] for r in STAT],
       'order_status type and order_transitions table, 01_system_facts/order_statuses.csv and state_machine_transitions.csv.', widths=[1.2, 4, 10.8])
-H3('4.3.2 Validation rules')
+H3('4.2.2 Validation rules')
 P('Validation is carried out by nine rules that run every time a customer submits an order. Seven of them block the order '
-  'until the customer corrects it and two raise a warning that sends the order to a person for review. Table 4.7 maps the '
+  'until the customer corrects it and two raise a warning that sends the order to a person for review. Table 4.3 maps the '
   'nine rules to the seven checks set out in Table 2.1. The customer-details check is served by two rules, one for the account '
   'status and one for the delivery address, and the unusual-quantity rule is an addition that no check in Table 2.1 requires.')
 table('Validation rules mapped to the seven checks of Table 2.1', ['Rule', 'What it checks', 'Severity', 'Check in Table 2.1'],
       [[r['rule'], r['check'], 'Blocking' if r['severity'] == 'blocking' else 'Warning', r['maps_to_seven_checks']] for r in RULES],
       '_validate function, 01_system_facts/validation_rules_and_run4_coverage.csv.', widths=[3.5, 7, 2, 3.5])
-H3('4.3.3 Functional testing')
+H3('4.2.3 Functional testing')
 P(f'Functional testing exercised the order lifecycle end to end against the live database while acting as each role. Every '
   f'test ran inside a transaction that was rolled back, so no test data remained. The fourteen cases of the earlier test run '
   f'were repeated and twelve new cases were added for inactive customers, stale prices, automatic approval, CSV import and '
-  f'export, and webhooks. Table 4.8 lists all {len(FT)} cases. Of these, {ft_pass} passed and {len(ft_fail)} failed.')
+  f'export, and webhooks. Table 4.4 lists all {len(FT)} cases. Of these, {ft_pass} passed and {len(ft_fail)} failed.')
 trace(len(FT), 'functional test cases', '02_functional_tests/functional_tests.csv row count')
 trace(ft_pass, 'functional tests passed', '02_functional_tests/functional_tests.csv result = Pass')
 table('Functional test cases', ['No.', 'Test case', 'Expected result', 'Actual result', 'Result'],
@@ -303,9 +259,9 @@ P('Three results are failures and are reported as such. In case 16b the uploaded
   'The only CSV export that exists is the delivery log used by Dispatch. Case 20 was passed by running the application code '
   'that builds that file on the rows the database returned for the Dispatch account, and the browser download step itself was '
   'not exercised.')
-H3('4.3.4 Access-control testing')
+H3('4.2.4 Access-control testing')
 P('Access control was tested by querying the database directly as each role, bypassing the interface, so that the result '
-  'shows what a user could reach even without the application screens. Table 4.9 gives the number of rows each account could '
+  'shows what a user could reach even without the application screens. Table 4.5 gives the number of rows each account could '
   'read. Customers saw only their own company records and no product or audit rows, and the driver could read no '
   'business records at all. Attempts by a customer to change a price and to switch off automatic approval changed no rows.')
 table('Rows visible to each account when querying the database directly',
@@ -317,8 +273,8 @@ P('The settings table, which holds values such as the tax rate and the automatic
   'account including drivers and customers. It could not be changed by them, but it is wider read access than the other tables allow.')
 
 # =====================================================================================================================
-H2('4.4 Simulation design and dataset')
-H3('4.4.1 Procedure')
+H2('4.3 Simulation design and dataset')
+H3('4.3.1 Procedure')
 P('Validation accuracy was measured with a controlled simulation. Orders were generated by a test harness and submitted through '
   'the same database functions a customer uses, save_draft followed by submit_order, so the rules saw them exactly as they would '
   'see a real order. Each order was either clean or carried one planted error of a known type. The harness held the planted error '
@@ -326,15 +282,15 @@ P('Validation accuracy was measured with a controlled simulation. Orders were ge
   'which orders were erroneous. Each run took place inside a transaction that was rolled back, which removed every simulated '
   'customer and order and left the live data unchanged. The status history and the timing of each order were captured before '
   'the rollback.')
-H3('4.4.2 Replicates and planted errors')
+H3('4.3.2 Replicates and planted errors')
 P('The final simulation used three replicates. Replicate 1 used the random seed 0.42 and is the headline result, while '
   'replicates 2 and 3 used the seeds 0.43 and 0.44. The further replicates '
   'show how much the measures move when the same design is drawn again. Each replicate contained 500 orders, made '
   'up of 200 clean orders and 300 erroneous orders, with 20 orders for each of fifteen planted error types. Twelve of the types '
   'are errors that a rule is designed to catch. The remaining three are realistic mistakes that no rule targets, shown at the '
-  'foot of Table 4.10. Including them means the accuracy figures '
+  'foot of Table 4.6. Including them means the accuracy figures '
   'reflect mistakes the rules were not written for as well as those they were. Automatic approval was switched off so that every '
-  'order passing validation went to the Ops Desk queue. Table 4.10 describes each planted error type.')
+  'order passing validation went to the Ops Desk queue. Table 4.6 describes each planted error type.')
 trace('500 x 3', 'orders per replicate', '03_simulation/raw/run5,6,7 row counts; metrics_final.json replicates.n.orders')
 types_rows = [
     ['SKU not in catalogue', 'An extra upload line with an unknown code such as XX-417', 'SKU'],
@@ -355,11 +311,11 @@ types_rows = [
 ]
 table('Planted error types and how each was created', ['Planted error', 'How it was planted', 'Rule expected to catch it'], types_rows,
       'run_simulation_final, supabase/migrations/0007_simulation_final.sql.', widths=[4.2, 8.3, 3.5])
-H3('4.4.3 Customers, catalogue and dataset')
+H3('4.3.3 Customers, catalogue and dataset')
 P(f'The simulation used the same twenty fictional customer companies and the same twelve-product catalogue as the first run. '
   f'Company names, contact names, telephone numbers and e-mail addresses are invented, and every e-mail address uses the reserved '
   f'.example domain. Each customer had two saved addresses in one of six delivery regions and four earlier orders, which give the '
-  f'unusual-quantity rule a history to compare against. Table 4.11 lists the companies and Table 4.12 describes the replicate 1 '
+  f'unusual-quantity rule a history to compare against. Table 4.7 lists the companies and Table 4.8 describes the replicate 1 '
   f'dataset. Figure 4.1 shows how the orders were spread across the delivery regions.')
 R1ROWS = json.loads((ROOT / '03_simulation' / 'raw' / 'run5_replicate1.json').read_text())
 comp = {}
@@ -382,7 +338,7 @@ table('Description of the replicate 1 dataset', ['Measure', 'Value'],
 trace(naira(DS['value_total']), 'total order value replicate 1', 'metrics_final.json replicates.1.dataset.value_total')
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_1_regions.png', 'Simulated orders by delivery region, replicate 1',
        '07_analysis/figures/fig4_1_regions_data.csv, from replicate 1, database run 5.')
-P('Table 4.13 shows one order of each kind from replicate 1, with the decision the system took and the first message it showed. '
+P('Table 4.9 shows one order of each kind from replicate 1, with the decision the system took and the first message it showed. '
   'Every order of all three replicates is listed in the accompanying workbook, Verity_Simulation_Data_Final.xlsx.')
 LBL = {t['key']: t['label'] for t in R1['by_type']}
 DEC = {'pass': 'Passed', 'warn': 'Warned', 'fail': 'Blocked'}
@@ -395,7 +351,7 @@ for r in R1ROWS:
 sample.sort(key=lambda x: list(LBL.values()).index(x[3]))
 table('Sample of simulated orders and the decision taken, replicate 1', ['Order', 'Company', 'Total', 'Planted error', 'Decision', 'First message shown'],
       sample, 'replicate 1, database run 5, first order of each kind in 03_simulation/replicate1_orders.csv.', widths=[1.7, 3.3, 2.4, 3.2, 1.6, 4.8], size=8)
-H3('4.4.4 Relation to the first run')
+H3('4.3.4 Relation to the first run')
 P('The first run of the simulation, run 4, is kept as the first run and is not replaced. It used 500 orders whose types were drawn '
   'at random, so group sizes were unequal, and it planted no inactive-customer or stale-price errors. A defect in its harness also '
   'submitted 13 of its 35 wrong-product orders with an empty line, which the quantity rule blocked. Those 13 blocks were artefacts '
@@ -404,8 +360,8 @@ P('The first run of the simulation, run 4, is kept as the first run and is not r
 trace(13, 'run 4 harness artefacts', '01_system_facts/system_facts.json run4_harness_defect')
 
 # =====================================================================================================================
-H2('4.5 Simulation results')
-H3('4.5.1 Overall outcomes')
+H2('4.4 Simulation results')
+H3('4.4.1 Overall outcomes')
 og = R1['outcomes_by_group']
 P(f'Figure 4.2 shows what happened to each group of orders in replicate 1. Of the 200 clean orders, {og["clean"]["pass"]} passed '
   f'and {og["clean"]["warn"]} were warned. All 240 orders with a rule-targeted error were stopped, {og["rule_targeted"]["fail"]} '
@@ -416,8 +372,8 @@ P(f'Figure 4.2 shows what happened to each group of orders in replicate 1. Of th
 trace(og['clean']['warn'], 'clean orders warned, replicate 1', 'metrics_final.json replicates.1.outcomes_by_group.clean.warn; workbook R1 Summary D5')
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_2_outcomes.png', 'Outcome of each group of orders in replicate 1',
        '07_analysis/figures/fig4_2_outcomes_data.csv, from replicate 1, database run 5.')
-H3('4.5.2 Detection by planted error type')
-P('Table 4.14 gives the detection rate for each planted error type with a 95 percent Wilson interval, which behaves better than '
+H3('4.4.2 Detection by planted error type')
+P('Table 4.10 gives the detection rate for each planted error type with a 95 percent Wilson interval, which behaves better than '
   'the simple normal interval for small groups and for rates near zero or one (Brown et al., 2001; Wilson, 1927). Every one of the '
   'twelve rule-targeted types was flagged in all 20 of its orders, and in each case by the rule designed for it. Figure 4.3 '
   'shows the same rates graphically.')
@@ -442,10 +398,10 @@ P(f'The three types without a rule tell a different story. The quantity typing s
   f'product or address is in effect invisible to the engine, which is what one would expect of rules that check whether a value '
   f'is allowed rather than whether it is what the customer meant.')
 trace(f"{NR['qty_typo']['warning_names_planted_line']}/{NR['qty_typo']['flagged']}", 'typo flags naming the typo line', 'metrics_final.json replicates.1.no_rule_flag_on_planted_line')
-H3('4.5.3 Classification performance')
+H3('4.4.3 Classification performance')
 P(f'For the binary measures an order counts as flagged when it is warned or blocked and as positive when it carries a planted error. '
   f'The primary measure uses all 300 erroneous orders against the 200 clean orders, and the secondary measure uses only the 240 '
-  f'rule-targeted orders against the same clean orders. Table 4.15 defines the measures. Table 4.16 gives both confusion matrices for replicate 1 and Table 4.17 '
+  f'rule-targeted orders against the same clean orders. Table 4.11 defines the measures. Table 4.12 gives both confusion matrices for replicate 1 and Table 4.13 '
   f'gives the measures with their intervals.')
 table('Definitions of the classification measures', ['Measure', 'Definition', 'Formula'],
       [['Accuracy', 'Share of all orders the system judged correctly, erroneous orders flagged and clean orders passed', '(TP + TN) / all orders'],
@@ -476,8 +432,8 @@ P(f'On the primary measure the engine reached an accuracy of {pc(A["accuracy"]["
   f'orders in each. Figure 4.4 shows the measures with their intervals and marks the values from replicates 2 and 3.')
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_4_measures.png', 'Validation measures with 95 percent Wilson intervals',
        '07_analysis/figures/fig4_4_measures_data.csv, from replicates 1 to 3, database runs 5 to 7.')
-H3('4.5.4 Rule activity and false alarms')
-P(f'Table 4.18 shows how often each rule fired. The seven blocking rules fired only on erroneous orders and never on a clean '
+H3('4.4.4 Rule activity and false alarms')
+P(f'Table 4.14 shows how often each rule fired. The seven blocking rules fired only on erroneous orders and never on a clean '
   f'one. The stock rule also fired on the {RU["stock"]["on_other_error_types"]} orders whose quantity was above the maximum or '
   f'whose product was discontinued, because both also exceed the stock on hand. All {R1["confusion_all_errors"]["fp"]} false alarms on '
   f'clean orders came from the two warning rules, {R1["false_alarm_reasons"].get("unusual_quantity", 0)} from the unusual-quantity '
@@ -492,10 +448,10 @@ table('Rule activity and false alarms, replicate 1',
 trace(RU['unusual_quantity']['on_clean_false_alarms'], 'unusual-quantity false alarms, replicate 1', 'metrics_final.json replicates.1.rules unusual_quantity; workbook R1 Summary E')
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_5_rules.png', 'Number of orders on which each validation rule fired, by kind of order, replicate 1',
        '07_analysis/figures/fig4_5_rules_data.csv, from replicate 1, database run 5.')
-H3('4.5.5 Processing time')
+H3('4.4.5 Processing time')
 blk = R1['validation_ms_mean_by_block_of_100']
 P(f'Validation time was measured as the clock time of submit_order inside the database, which validates the order and records '
-  f'the status change. It excludes network time and any time a person spends. Table 4.19 gives the statistics '
+  f'the status change. It excludes network time and any time a person spends. Table 4.15 gives the statistics '
   f'for replicate 1 and Figure 4.6 shows their distribution. The standard deviation is the sample value. The mean was {TM["mean"]} ms and the median {TM["median"]} ms, '
   f'with a 95th percentile of {TM["p95"]} ms and a maximum of {TM["max"]} ms. The time measured from the draft event to the last '
   f'event in the status history gave a mean of {R1["status_history_draft_to_last_event_ms"]["mean"]} ms over the '
@@ -515,9 +471,9 @@ P(f'The time was not stable across the run. Figure 4.7 shows that in replicate 1
   f'in that run. In every replicate a single order was validated in well under a second.')
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_7_timing_blocks.png', 'Validation time per order across each run, mean of each block of 100 orders',
        '07_analysis/figures/fig4_7_timing_blocks_data.csv, from replicates 1 to 3, database runs 5 to 7.')
-H3('4.5.6 Variation between replicates')
+H3('4.4.6 Variation between replicates')
 spread = max(round(RR[k]['max'] - RR[k]['min'], 1) for k in RR if not k.startswith('validation_ms'))
-P(f'Table 4.20 sets the key measures of the three replicates side by side. No accuracy or detection measure moved by more than '
+P(f'Table 4.16 sets the key measures of the three replicates side by side. No accuracy or detection measure moved by more than '
   f'{spread} percentage points between replicates, so the headline figures do not depend on the particular seed. The timing '
   f'measures moved by an order of magnitude, as described above.')
 trace(spread, 'largest replicate spread of a non-timing measure', 'metrics_final.json replicate_range, max minus min')
@@ -534,11 +490,11 @@ for lab, k in (('Accuracy, all errors', 'accuracy_all'), ('Precision, all errors
 table('Key measures in each replicate', ['Measure', 'Replicate 1', 'Replicate 2', 'Replicate 3', 'Range'], rng_rows,
       '07_analysis/metrics_final.json replicate_range, workbook sheet Replicate range.', widths=[6.4, 2.3, 2.3, 2.3, 2.7])
 trace(f"{RR['accuracy_all']['min']} to {RR['accuracy_all']['max']}", 'primary accuracy range', 'metrics_final.json replicate_range.accuracy_all; workbook Replicate range E4:F4')
-H3('4.5.7 Sensitivity of the unusual-quantity warning')
+H3('4.4.7 Sensitivity of the unusual-quantity warning')
 P(f'Because the unusual-quantity rule caused nearly all false alarms and also caught the quantity slips, its setting was examined. '
   f'Replicate 1 was replayed through the live functions with the threshold set from three to five times the customer\'s '
   f'average in steps of one, and with four or ten earlier orders per customer. The replay with the live setting reproduced replicate 1 exactly, with '
-  f'no difference in any order, so the six settings in Table 4.21 are compared on identical orders. These runs are for discussion '
+  f'no difference in any order, so the six settings in Table 4.17 are compared on identical orders. These runs are for discussion '
   f'only and the live setting was left at three.')
 srows = []
 for (f, h), s in sorted(SENS.items(), key=lambda kv: (kv[0][1], kv[0][0])):
@@ -556,7 +512,7 @@ P(f'Raising the threshold from three to five times the average with four earlier
   f'because each rests on 20 orders, so these differences show a direction rather than settled values. Figure 4.8 shows the trade-off.')
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_8_sensitivity.png', 'Effect of the unusual-quantity threshold and history length on false alarms and slip detection',
        '07_analysis/figures/fig4_8_sensitivity_data.csv, from replays of database run 5.')
-H3('4.5.8 Mandatory-field completion')
+H3('4.4.8 Mandatory-field completion')
 mand = R1['mandatory_completion_reaching_approval']
 P(f'Mandatory-field completion was measured on the orders that reached approval. All {mand["k"]} of the {mand["n"]} orders that '
   f'reached the approval queue in replicate 1 had every mandatory field filled, with a 95 '
@@ -565,9 +521,9 @@ P(f'Mandatory-field completion was measured on the orders that reached approval.
 trace(f"{mand['k']}/{mand['n']}", 'mandatory completion, replicate 1', 'metrics_final.json replicates.1.mandatory_completion_reaching_approval; workbook R1 Summary G')
 
 # =====================================================================================================================
-H2('4.6 Integrated evaluation and discussion')
-H3('4.6.1 Evaluation against the objectives')
-P(f'Table 4.22 sets each objective against its success criterion. The wording of the objectives in Chapter One was not available '
+H2('4.5 Evaluation against the success criteria and discussion')
+H3('4.5.1 Evaluation against the objectives')
+P(f'Table 4.18 sets each objective against its success criterion. The wording of the objectives in Chapter One was not available '
   f'when this chapter was drafted, so the table marks where that wording must be inserted and describes each objective in brief. '
   f'Objective 1 is not listed because its criterion was not supplied.')
 obj_rows = [
@@ -579,26 +535,24 @@ obj_rows = [
     [f'{WORDING} Objective 3, mandatory fields', '100 percent mandatory-field completion',
      f'{mand["k"]} of {mand["n"]} orders reaching approval, 100 percent in all three replicates', ci(mand), 'Met'],
     [f'{WORDING} Objective 4, processing speed', '30 to 50 percent faster processing', PENDING, PENDING, 'Pending'],
-    [f'{WORDING} Objective 5, usability and acceptance', 'Usability and acceptance shown by the questionnaire', PENDING, PENDING, 'Pending'],
     [f'{WORDING} Objective 5, simulated orders', '500 simulated orders processed', '500 orders in each of three replicates, 1,500 in all', 'not applicable', 'Met'],
 ]
 table('Objectives and success criteria', ['Objective', 'Criterion', 'Result', '95% CI', 'Status'], obj_rows,
-      'Sections 4.2 to 4.5. Accuracy judged on the primary measure with the secondary measure in support.', widths=[4.5, 3.2, 4.8, 2.2, 1.3], size=8.5)
+      'Sections 4.2 to 4.4. Accuracy judged on the primary measure with the secondary measure in support.', widths=[4.5, 3.2, 4.8, 2.2, 1.3], size=8.5)
 P(f'The accuracy objective is rated Partly met. On the primary measure accuracy did not reach 90 percent in any replicate, and the '
   f'upper end of the replicate 1 interval was {A["accuracy"]["ci95"][1]:.1f} percent. On the rule-targeted errors it exceeded 90 percent '
   f'in every replicate and the whole interval lay above the target. Both measures share the same false alarms, so the gap between '
   f'them comes from the {A["fn"]} errors without a rule that were missed, {40 - BT["wrong_product"]["detection"]["k"] - BT["wrong_address"]["detection"]["k"]} of them wrong products or wrong addresses. The '
   f'mandatory-fields criterion is Met. The error-reduction and speed criteria remain Pending until the manual baseline is run and '
-  f'scored with analyze_baseline.py. Below about 80 paired orders that comparison of errors will be indicative only. Usability and '
-  f'acceptance remain Pending until the questionnaire data exist.')
-H3('4.6.2 Answers to the research questions')
+  f'scored with analyze_baseline.py. Below about 80 paired orders that comparison of errors will be indicative only.')
+H3('4.5.2 Answers to the research questions')
 P(f'The research questions are answered below in the order of Chapter One. Their exact wording was not available, so each is '
   f'marked for insertion and, as an assumption, the questions are taken to follow the order of the objectives.')
 rq = [
     ('Research question 1', f'{WORDING} The implemented system shows that order entry, validation, approval, payment, picking and '
      f'delivery can be run as one controlled lifecycle of {FACTS["status_count"]} statuses with role-based access, and '
      f'{ft_pass} of {len(FT)} functional tests passed. The failed tests concern features that are missing or incomplete, '
-     f'and Section 4.3 reports each of them.'),
+     f'and Section 4.2 reports each of them.'),
     ('Research question 2', f'{WORDING} Automated validation caught every rule-targeted error in all three replicates and reached '
      f'{pc(A["accuracy"]["pct"])} percent accuracy when errors outside the rules were included. That is below the 90 percent target, '
      f'and most of the remaining errors are of a kind no rule can detect.'),
@@ -606,18 +560,17 @@ rq = [
      f'manual entry errors by 60 percent cannot yet be answered and is {PENDING}.'),
     ('Research question 4', f'{WORDING} Validation itself takes milliseconds per order, but the criterion concerns end-to-end '
      f'processing time against manual handling, and that answer is {PENDING}.'),
-    ('Research question 5', f'{WORDING} The answer on usability and acceptance depends on the questionnaire and is {PENDING}.'),
+    ('Research question 5', f'{WORDING} Usability and acceptance are answered from the questionnaire, which is reported '
+     f'separately. The technical evaluation contributes the 500 simulated orders per replicate that this objective also requires.'),
 ]
 for k, v in rq:
     P(f'{k}. {v}')
-P(f'The link between Part A and Part B, for example whether the errors respondents report most often are those the engine catches, '
-  f'can only be drawn once the questionnaire has been completed and is {PENDING}.')
-H3('4.6.3 Discussion')
+H3('4.5.3 Discussion')
 P('The DeLone and McLean (2003) model of information systems success offers a frame for these results. It links the qualities '
-  'of a system to its use and to user satisfaction, and through these to net benefits. Part B gives evidence on system quality. The engine stopped every planted error that '
+  'of a system to its use and to user satisfaction, and through these to net benefits. The technical evaluation gives evidence on system quality. The engine stopped every planted error that '
   'a rule targets and responded within a fraction of a second, although its response time grew as order volume grew in two of '
-  'the replicates. On information quality, each message stated the problem in plain words and named the product where the problem lay on a line, which the questionnaire '
-  f'can test from the user side, yet {A["fp"]} of the 200 clean orders received a warning that turned out to be unnecessary.'
+  'the replicates. On information quality, each message stated the problem in plain words and named the product where the problem lay on a line, '
+  f'yet {A["fp"]} of the 200 clean orders received a warning that turned out to be unnecessary.'
   ' False alarms of '
   'this kind cost staff time and can teach users to ignore warnings, so they weigh against the net benefits the model predicts. '
   'Service quality, use, user satisfaction and the net benefits themselves rest on the questionnaire and the manual baseline, '
@@ -628,7 +581,7 @@ P('The results also show where the design reaches its limits. The rules check th
   'address would need a different kind of check, such as confirming the order back to the customer before approval.')
 
 # =====================================================================================================================
-H2('4.7 Limitations')
+H2('4.6 Limitations')
 lims = [
     'The orders were generated by a harness, not taken from real customers. Each carried at most one planted error, and the '
     'proportion of erroneous orders was fixed at 60 percent. Real orders may carry several errors, and it is assumed that they are '
@@ -645,36 +598,29 @@ lims = [
     'The sensitivity analysis was run on replicate 1 alone, and each slip detection rate rests on 20 orders.',
     'The delivery-log export was tested by running its code outside the browser, because the live site could not be reached from '
     'the test environment.',
-    'The questionnaire and the manual baseline had not been carried out, so the objectives on error reduction, speed, usability '
-    'and acceptance could not be assessed.',
+    'The comparison with manual order entry had not been carried out, so the objectives on error reduction and speed could not '
+    'be assessed.',
     'The exact wording of the objectives and research questions in Chapter One was not available to this chapter.',
 ]
 for x in lims:
     P(x)
 
 # =====================================================================================================================
-H2('4.8 Summary')
+H2('4.7 Summary')
 P(f'Verity was built as a working order processing system with a controlled order lifecycle and nine validation rules, '
   f'protected by role-based access. Of {len(FT)} functional tests, {ft_pass} passed and the {len(ft_fail)} failures were reported. In three replicates of 500 '
   f'simulated orders the engine flagged every error that a rule targets, and accuracy on that basis was between '
   f'{RR["accuracy_targeted"]["min"]} and {RR["accuracy_targeted"]["max"]} percent. When realistic errors that no rule targets were '
   f'included, accuracy was between {RR["accuracy_all"]["min"]} and {RR["accuracy_all"]["max"]} percent, below the 90 percent target. '
   f'Nearly all false alarms came from the unusual-quantity warning, which also caught most quantity slips. Every order that reached '
-  f'approval had its mandatory fields. The questionnaire and the manual baseline remain to be carried out, and the objectives that '
-  f'depend on them are Pending.')
+  f'approval had its mandatory fields. The comparison with manual entry remains to be carried out, and the objectives on error '
+  f'reduction and speed are Pending until it is.')
 
 # =====================================================================================================================
 H2('References')
 refs = [
-    'Bangor, A., Kortum, P. T., & Miller, J. T. (2008). An empirical evaluation of the System Usability Scale. International Journal of Human–Computer Interaction, 24(6), 574–594. https://doi.org/10.1080/10447310802205776',
-    'Bangor, A., Kortum, P., & Miller, J. (2009). Determining what individual SUS scores mean: Adding an adjective rating scale. Journal of Usability Studies, 4(3), 114–123.',
-    'Brooke, J. (1996). SUS: A "quick and dirty" usability scale. In P. W. Jordan, B. Thomas, B. A. Weerdmeester, & I. L. McClelland (Eds.), Usability evaluation in industry (pp. 189–194). Taylor & Francis.',
     'Brown, L. D., Cai, T. T., & DasGupta, A. (2001). Interval estimation for a binomial proportion. Statistical Science, 16(2), 101–133. https://doi.org/10.1214/ss/1009213286',
-    'Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. Psychometrika, 16(3), 297–334. https://doi.org/10.1007/BF02310555',
-    'Davis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information technology. MIS Quarterly, 13(3), 319–340. https://doi.org/10.2307/249008',
     'DeLone, W. H., & McLean, E. R. (2003). The DeLone and McLean model of information systems success: A ten-year update. Journal of Management Information Systems, 19(4), 9–30. https://doi.org/10.1080/07421222.2003.11045748',
-    'Sauro, J., & Lewis, J. R. (2016). Quantifying the user experience: Practical statistics for user research (2nd ed.). Morgan Kaufmann.',
-    'Venkatesh, V., Morris, M. G., Davis, G. B., & Davis, F. D. (2003). User acceptance of information technology: Toward a unified view. MIS Quarterly, 27(3), 425–478. https://doi.org/10.2307/30036540',
     'Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22(158), 209–212. https://doi.org/10.1080/01621459.1927.10502953',
 ]
 for r in refs:

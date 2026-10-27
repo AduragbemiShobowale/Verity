@@ -107,7 +107,7 @@ cd ../08_chapter && python3 build_chapter.py && python3 check_style.py
 ### 08_chapter (Stage 2)
 | File | Description |
 |---|---|
-| Chapter_Four.docx | The chapter, in the layout of the run 4 chapter: 22 tables and 8 figures, each with a Source line, page numbers, and an APA 7 reference list. |
+| Chapter_Four.docx | The technical chapter, in the layout of the run 4 chapter: 18 tables and 8 figures, each with a Source line, page numbers, and an APA 7 reference list. |
 | chapter_tables.xlsx | Every chapter table as an editable sheet. |
 | build_chapter.py | Builds the chapter and its tables from the files above. |
 | check_style.py | Checks the running text against the writing rules. Last run: 0 hard findings. |
@@ -116,5 +116,5 @@ cd ../08_chapter && python3 build_chapter.py && python3 check_style.py
 ### Root
 | File | Description |
 |---|---|
-| TRACEABILITY.csv | Each number in the running text, with its file and field, workbook cell or query. 83 entries, all checked. |
+| TRACEABILITY.csv | Each number in the running text, with its file and field, workbook cell or query. 80 entries, all checked. |
 | DATA_PENDING.md | Every [DATA PENDING] or wording placeholder, and what closes it. |
