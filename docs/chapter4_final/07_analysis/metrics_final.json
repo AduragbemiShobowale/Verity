@@ -1,0 +1,2842 @@
+{
+ "replicates": {
+  "1": {
+   "orders": 500,
+   "clean": 200,
+   "errors": 300,
+   "rule_targeted": 240,
+   "no_rule": 60,
+   "outcomes": {
+    "fail": 220,
+    "pass": 208,
+    "warn": 72
+   },
+   "outcomes_by_group": {
+    "clean": {
+     "pass": 172,
+     "warn": 28
+    },
+    "rule_targeted": {
+     "fail": 220,
+     "warn": 20
+    },
+    "no_rule": {
+     "warn": 24,
+     "pass": 36
+    }
+   },
+   "statuses_after_submit": {
+    "validation_failed": 220,
+    "pending_approval": 258,
+    "draft": 22
+   },
+   "confusion_all_errors": {
+    "tp": 264,
+    "fn": 36,
+    "fp": 28,
+    "tn": 172,
+    "n": 500,
+    "accuracy": {
+     "k": 436,
+     "n": 500,
+     "pct": 87.2,
+     "ci95": [
+      84.0,
+      89.8
+     ]
+    },
+    "precision": {
+     "k": 264,
+     "n": 292,
+     "pct": 90.4,
+     "ci95": [
+      86.5,
+      93.3
+     ]
+    },
+    "recall": {
+     "k": 264,
+     "n": 300,
+     "pct": 88.0,
+     "ci95": [
+      83.8,
+      91.2
+     ]
+    },
+    "specificity": {
+     "k": 172,
+     "n": 200,
+     "pct": 86.0,
+     "ci95": [
+      80.5,
+      90.1
+     ]
+    },
+    "false_alarm_rate": {
+     "k": 28,
+     "n": 200,
+     "pct": 14.0,
+     "ci95": [
+      9.9,
+      19.5
+     ]
+    },
+    "f1_pct": 89.2
+   },
+   "confusion_rule_targeted": {
+    "tp": 240,
+    "fn": 0,
+    "fp": 28,
+    "tn": 172,
+    "n": 440,
+    "accuracy": {
+     "k": 412,
+     "n": 440,
+     "pct": 93.6,
+     "ci95": [
+      91.0,
+      95.6
+     ]
+    },
+    "precision": {
+     "k": 240,
+     "n": 268,
+     "pct": 89.6,
+     "ci95": [
+      85.3,
+      92.7
+     ]
+    },
+    "recall": {
+     "k": 240,
+     "n": 240,
+     "pct": 100.0,
+     "ci95": [
+      98.4,
+      100.0
+     ]
+    },
+    "specificity": {
+     "k": 172,
+     "n": 200,
+     "pct": 86.0,
+     "ci95": [
+      80.5,
+      90.1
+     ]
+    },
+    "false_alarm_rate": {
+     "k": 28,
+     "n": 200,
+     "pct": 14.0,
+     "ci95": [
+      9.9,
+      19.5
+     ]
+    },
+    "f1_pct": 94.5
+   },
+   "no_rule_detection": {
+    "k": 24,
+    "n": 60,
+    "pct": 40.0,
+    "ci95": [
+     28.6,
+     52.6
+    ]
+   },
+   "by_type": [
+    {
+     "key": "clean",
+     "label": "Clean order (no error)",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 200,
+     "blocked": 0,
+     "warned": 28,
+     "passed": 172,
+     "detection": null,
+     "clean_pass": {
+      "k": 172,
+      "n": 200,
+      "pct": 86.0,
+      "ci95": [
+       80.5,
+       90.1
+      ]
+     },
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "bad_sku",
+     "label": "SKU not in catalogue",
+     "rule_targeted": true,
+     "expected_rule": "sku",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "inactive_product",
+     "label": "Discontinued product",
+     "rule_targeted": true,
+     "expected_rule": "sku",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "missing_address",
+     "label": "Missing delivery address",
+     "rule_targeted": true,
+     "expected_rule": "mandatory",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "missing_date",
+     "label": "Missing delivery date",
+     "rule_targeted": true,
+     "expected_rule": "mandatory",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "past_date",
+     "label": "Delivery date in the past",
+     "rule_targeted": true,
+     "expected_rule": "delivery",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "qty_below_min",
+     "label": "Quantity below minimum",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "qty_above_max",
+     "label": "Quantity above maximum",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "fractional_qty",
+     "label": "Fractional quantity",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "over_stock",
+     "label": "Quantity above available stock",
+     "rule_targeted": true,
+     "expected_rule": "stock",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "duplicate",
+     "label": "Duplicate order",
+     "rule_targeted": true,
+     "expected_rule": "duplicate",
+     "n": 20,
+     "blocked": 0,
+     "warned": 20,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "inactive_customer",
+     "label": "Customer account not active",
+     "rule_targeted": true,
+     "expected_rule": "customer_status",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "stale_price",
+     "label": "Price changed after the order was saved",
+     "rule_targeted": true,
+     "expected_rule": "pricing",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "wrong_product",
+     "label": "Wrong but valid product",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 5,
+     "passed": 15,
+     "detection": {
+      "k": 5,
+      "n": 20,
+      "pct": 25.0,
+      "ci95": [
+       11.2,
+       46.9
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 5,
+     "other_rules": {
+      "unusual_quantity": 5
+     }
+    },
+    {
+     "key": "qty_typo",
+     "label": "Plausible quantity typing slip",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 14,
+     "passed": 6,
+     "detection": {
+      "k": 14,
+      "n": 20,
+      "pct": 70.0,
+      "ci95": [
+       48.1,
+       85.5
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 14,
+     "other_rules": {
+      "unusual_quantity": 14
+     }
+    },
+    {
+     "key": "wrong_address",
+     "label": "Wrong saved address",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 5,
+     "passed": 15,
+     "detection": {
+      "k": 5,
+      "n": 20,
+      "pct": 25.0,
+      "ci95": [
+       11.2,
+       46.9
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 5,
+     "other_rules": {
+      "unusual_quantity": 4,
+      "duplicate": 1
+     }
+    }
+   ],
+   "rules": [
+    {
+     "rule": "mandatory",
+     "label": "Mandatory fields",
+     "severity": "fail",
+     "orders_fired": 40,
+     "on_target_type": 40,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "sku",
+     "label": "SKU and product active",
+     "severity": "fail",
+     "orders_fired": 40,
+     "on_target_type": 40,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "quantity",
+     "label": "Quantity limits",
+     "severity": "fail",
+     "orders_fired": 60,
+     "on_target_type": 60,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "stock",
+     "label": "Stock availability",
+     "severity": "fail",
+     "orders_fired": 60,
+     "on_target_type": 20,
+     "on_other_error_types": 40,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "customer_status",
+     "label": "Customer status",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "pricing",
+     "label": "Pricing",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "delivery",
+     "label": "Delivery date and address",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "duplicate",
+     "label": "Duplicate order",
+     "severity": "warn",
+     "orders_fired": 22,
+     "on_target_type": 20,
+     "on_other_error_types": 1,
+     "on_clean_false_alarms": 1,
+     "false_alarm_rate_on_clean": {
+      "k": 1,
+      "n": 200,
+      "pct": 0.5,
+      "ci95": [
+       0.1,
+       2.8
+      ]
+     }
+    },
+    {
+     "rule": "unusual_quantity",
+     "label": "Unusual quantity",
+     "severity": "warn",
+     "orders_fired": 94,
+     "on_target_type": 0,
+     "on_other_error_types": 67,
+     "on_clean_false_alarms": 27,
+     "false_alarm_rate_on_clean": {
+      "k": 27,
+      "n": 200,
+      "pct": 13.5,
+      "ci95": [
+       9.4,
+       18.9
+      ]
+     }
+    }
+   ],
+   "false_alarm_reasons": {
+    "unusual_quantity": 27,
+    "duplicate": 1
+   },
+   "validation_ms": {
+    "n": 500,
+    "mean": 28.72,
+    "sd_sample": 23.27,
+    "median": 22.16,
+    "p95": 74.72,
+    "min": 2.45,
+    "max": 124.31
+   },
+   "validation_ms_by_outcome": {
+    "pass": {
+     "n": 208,
+     "mean": 27.85,
+     "sd_sample": 21.34,
+     "median": 22.31,
+     "p95": 71.59,
+     "min": 2.88,
+     "max": 94.84
+    },
+    "warn": {
+     "n": 72,
+     "mean": 31.84,
+     "sd_sample": 25.28,
+     "median": 22.59,
+     "p95": 80.19,
+     "min": 4.81,
+     "max": 114.3
+    },
+    "fail": {
+     "n": 220,
+     "mean": 28.53,
+     "sd_sample": 24.33,
+     "median": 21.56,
+     "p95": 75.57,
+     "min": 2.45,
+     "max": 124.31
+    }
+   },
+   "validation_ms_mean_by_block_of_100": [
+    6.9,
+    13.77,
+    26.29,
+    37.89,
+    58.76
+   ],
+   "status_history_draft_to_last_event_ms": {
+    "n": 478,
+    "mean": 29.78,
+    "sd_sample": 23.82,
+    "median": 23.12,
+    "p95": 76.28,
+    "min": 2.79,
+    "max": 126.6
+   },
+   "status_history_orders_with_two_or_more_events": 478,
+   "mandatory_completion_reaching_approval": {
+    "k": 258,
+    "n": 258,
+    "pct": 100.0,
+    "ci95": [
+     98.5,
+     100.0
+    ]
+   },
+   "dataset": {
+    "customers": 20,
+    "regions": {
+     "Lagos Mainland": 102,
+     "Ibadan": 93,
+     "Ikeja": 80,
+     "Lagos Island": 76,
+     "Lekki-Ajah": 74,
+     "Abuja": 55,
+     "No address given": 20
+    },
+    "orders_per_customer_min": 16,
+    "orders_per_customer_max": 42,
+    "lines_mean": 2.31,
+    "units_mean": 126.5,
+    "value_mean": 1594495.04,
+    "value_median": 981367.5,
+    "value_min": 8815.0,
+    "value_max": 20725462.5,
+    "value_total": 797247520.0
+   }
+  },
+  "2": {
+   "orders": 500,
+   "clean": 200,
+   "errors": 300,
+   "rule_targeted": 240,
+   "no_rule": 60,
+   "outcomes": {
+    "fail": 220,
+    "pass": 204,
+    "warn": 76
+   },
+   "outcomes_by_group": {
+    "clean": {
+     "pass": 169,
+     "warn": 31
+    },
+    "rule_targeted": {
+     "fail": 220,
+     "warn": 20
+    },
+    "no_rule": {
+     "pass": 35,
+     "warn": 25
+    }
+   },
+   "statuses_after_submit": {
+    "validation_failed": 220,
+    "pending_approval": 260,
+    "draft": 20
+   },
+   "confusion_all_errors": {
+    "tp": 265,
+    "fn": 35,
+    "fp": 31,
+    "tn": 169,
+    "n": 500,
+    "accuracy": {
+     "k": 434,
+     "n": 500,
+     "pct": 86.8,
+     "ci95": [
+      83.6,
+      89.5
+     ]
+    },
+    "precision": {
+     "k": 265,
+     "n": 296,
+     "pct": 89.5,
+     "ci95": [
+      85.5,
+      92.5
+     ]
+    },
+    "recall": {
+     "k": 265,
+     "n": 300,
+     "pct": 88.3,
+     "ci95": [
+      84.2,
+      91.5
+     ]
+    },
+    "specificity": {
+     "k": 169,
+     "n": 200,
+     "pct": 84.5,
+     "ci95": [
+      78.8,
+      88.9
+     ]
+    },
+    "false_alarm_rate": {
+     "k": 31,
+     "n": 200,
+     "pct": 15.5,
+     "ci95": [
+      11.1,
+      21.2
+     ]
+    },
+    "f1_pct": 88.9
+   },
+   "confusion_rule_targeted": {
+    "tp": 240,
+    "fn": 0,
+    "fp": 31,
+    "tn": 169,
+    "n": 440,
+    "accuracy": {
+     "k": 409,
+     "n": 440,
+     "pct": 93.0,
+     "ci95": [
+      90.2,
+      95.0
+     ]
+    },
+    "precision": {
+     "k": 240,
+     "n": 271,
+     "pct": 88.6,
+     "ci95": [
+      84.2,
+      91.8
+     ]
+    },
+    "recall": {
+     "k": 240,
+     "n": 240,
+     "pct": 100.0,
+     "ci95": [
+      98.4,
+      100.0
+     ]
+    },
+    "specificity": {
+     "k": 169,
+     "n": 200,
+     "pct": 84.5,
+     "ci95": [
+      78.8,
+      88.9
+     ]
+    },
+    "false_alarm_rate": {
+     "k": 31,
+     "n": 200,
+     "pct": 15.5,
+     "ci95": [
+      11.1,
+      21.2
+     ]
+    },
+    "f1_pct": 93.9
+   },
+   "no_rule_detection": {
+    "k": 25,
+    "n": 60,
+    "pct": 41.7,
+    "ci95": [
+     30.1,
+     54.3
+    ]
+   },
+   "by_type": [
+    {
+     "key": "clean",
+     "label": "Clean order (no error)",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 200,
+     "blocked": 0,
+     "warned": 31,
+     "passed": 169,
+     "detection": null,
+     "clean_pass": {
+      "k": 169,
+      "n": 200,
+      "pct": 84.5,
+      "ci95": [
+       78.8,
+       88.9
+      ]
+     },
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "bad_sku",
+     "label": "SKU not in catalogue",
+     "rule_targeted": true,
+     "expected_rule": "sku",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "inactive_product",
+     "label": "Discontinued product",
+     "rule_targeted": true,
+     "expected_rule": "sku",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "missing_address",
+     "label": "Missing delivery address",
+     "rule_targeted": true,
+     "expected_rule": "mandatory",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "missing_date",
+     "label": "Missing delivery date",
+     "rule_targeted": true,
+     "expected_rule": "mandatory",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "past_date",
+     "label": "Delivery date in the past",
+     "rule_targeted": true,
+     "expected_rule": "delivery",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "qty_below_min",
+     "label": "Quantity below minimum",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "qty_above_max",
+     "label": "Quantity above maximum",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "fractional_qty",
+     "label": "Fractional quantity",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "over_stock",
+     "label": "Quantity above available stock",
+     "rule_targeted": true,
+     "expected_rule": "stock",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "duplicate",
+     "label": "Duplicate order",
+     "rule_targeted": true,
+     "expected_rule": "duplicate",
+     "n": 20,
+     "blocked": 0,
+     "warned": 20,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "inactive_customer",
+     "label": "Customer account not active",
+     "rule_targeted": true,
+     "expected_rule": "customer_status",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "stale_price",
+     "label": "Price changed after the order was saved",
+     "rule_targeted": true,
+     "expected_rule": "pricing",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "wrong_product",
+     "label": "Wrong but valid product",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 6,
+     "passed": 14,
+     "detection": {
+      "k": 6,
+      "n": 20,
+      "pct": 30.0,
+      "ci95": [
+       14.5,
+       51.9
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 6,
+     "other_rules": {
+      "unusual_quantity": 6
+     }
+    },
+    {
+     "key": "qty_typo",
+     "label": "Plausible quantity typing slip",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 18,
+     "passed": 2,
+     "detection": {
+      "k": 18,
+      "n": 20,
+      "pct": 90.0,
+      "ci95": [
+       69.9,
+       97.2
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 18,
+     "other_rules": {
+      "unusual_quantity": 18
+     }
+    },
+    {
+     "key": "wrong_address",
+     "label": "Wrong saved address",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 1,
+     "passed": 19,
+     "detection": {
+      "k": 1,
+      "n": 20,
+      "pct": 5.0,
+      "ci95": [
+       0.9,
+       23.6
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 1,
+     "other_rules": {
+      "unusual_quantity": 1
+     }
+    }
+   ],
+   "rules": [
+    {
+     "rule": "mandatory",
+     "label": "Mandatory fields",
+     "severity": "fail",
+     "orders_fired": 40,
+     "on_target_type": 40,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "sku",
+     "label": "SKU and product active",
+     "severity": "fail",
+     "orders_fired": 40,
+     "on_target_type": 40,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "quantity",
+     "label": "Quantity limits",
+     "severity": "fail",
+     "orders_fired": 60,
+     "on_target_type": 60,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "stock",
+     "label": "Stock availability",
+     "severity": "fail",
+     "orders_fired": 60,
+     "on_target_type": 20,
+     "on_other_error_types": 40,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "customer_status",
+     "label": "Customer status",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "pricing",
+     "label": "Pricing",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "delivery",
+     "label": "Delivery date and address",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "duplicate",
+     "label": "Duplicate order",
+     "severity": "warn",
+     "orders_fired": 22,
+     "on_target_type": 20,
+     "on_other_error_types": 2,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "unusual_quantity",
+     "label": "Unusual quantity",
+     "severity": "warn",
+     "orders_fired": 89,
+     "on_target_type": 0,
+     "on_other_error_types": 58,
+     "on_clean_false_alarms": 31,
+     "false_alarm_rate_on_clean": {
+      "k": 31,
+      "n": 200,
+      "pct": 15.5,
+      "ci95": [
+       11.1,
+       21.2
+      ]
+     }
+    }
+   ],
+   "false_alarm_reasons": {
+    "unusual_quantity": 31
+   },
+   "validation_ms": {
+    "n": 500,
+    "mean": 29.84,
+    "sd_sample": 24.29,
+    "median": 22.88,
+    "p95": 78.92,
+    "min": 2.34,
+    "max": 121.43
+   },
+   "validation_ms_by_outcome": {
+    "pass": {
+     "n": 204,
+     "mean": 28.33,
+     "sd_sample": 23.5,
+     "median": 21.24,
+     "p95": 73.68,
+     "min": 3.07,
+     "max": 120.27
+    },
+    "warn": {
+     "n": 76,
+     "mean": 33.71,
+     "sd_sample": 24.9,
+     "median": 26.49,
+     "p95": 73.97,
+     "min": 2.34,
+     "max": 105.79
+    },
+    "fail": {
+     "n": 220,
+     "mean": 29.91,
+     "sd_sample": 24.75,
+     "median": 22.88,
+     "p95": 80.7,
+     "min": 2.68,
+     "max": 121.43
+    }
+   },
+   "validation_ms_mean_by_block_of_100": [
+    6.52,
+    14.57,
+    28.91,
+    39.36,
+    59.87
+   ],
+   "status_history_draft_to_last_event_ms": {
+    "n": 480,
+    "mean": 30.65,
+    "sd_sample": 24.76,
+    "median": 23.66,
+    "p95": 81.06,
+    "min": 3.14,
+    "max": 123.82
+   },
+   "status_history_orders_with_two_or_more_events": 480,
+   "mandatory_completion_reaching_approval": {
+    "k": 260,
+    "n": 260,
+    "pct": 100.0,
+    "ci95": [
+     98.5,
+     100.0
+    ]
+   },
+   "dataset": {
+    "customers": 20,
+    "regions": {
+     "Lagos Mainland": 113,
+     "Ikeja": 101,
+     "Abuja": 81,
+     "Lagos Island": 68,
+     "Lekki-Ajah": 65,
+     "Ibadan": 52,
+     "No address given": 20
+    },
+    "orders_per_customer_min": 16,
+    "orders_per_customer_max": 35,
+    "lines_mean": 2.37,
+    "units_mean": 130.9,
+    "value_mean": 1667243.73,
+    "value_median": 1047211.25,
+    "value_min": 8815.0,
+    "value_max": 21166320.0,
+    "value_total": 833621865.0
+   }
+  },
+  "3": {
+   "orders": 500,
+   "clean": 200,
+   "errors": 300,
+   "rule_targeted": 240,
+   "no_rule": 60,
+   "outcomes": {
+    "pass": 206,
+    "fail": 220,
+    "warn": 74
+   },
+   "outcomes_by_group": {
+    "clean": {
+     "pass": 171,
+     "warn": 29
+    },
+    "rule_targeted": {
+     "fail": 220,
+     "warn": 20
+    },
+    "no_rule": {
+     "warn": 25,
+     "pass": 35
+    }
+   },
+   "statuses_after_submit": {
+    "pending_approval": 259,
+    "validation_failed": 220,
+    "draft": 21
+   },
+   "confusion_all_errors": {
+    "tp": 265,
+    "fn": 35,
+    "fp": 29,
+    "tn": 171,
+    "n": 500,
+    "accuracy": {
+     "k": 436,
+     "n": 500,
+     "pct": 87.2,
+     "ci95": [
+      84.0,
+      89.8
+     ]
+    },
+    "precision": {
+     "k": 265,
+     "n": 294,
+     "pct": 90.1,
+     "ci95": [
+      86.2,
+      93.0
+     ]
+    },
+    "recall": {
+     "k": 265,
+     "n": 300,
+     "pct": 88.3,
+     "ci95": [
+      84.2,
+      91.5
+     ]
+    },
+    "specificity": {
+     "k": 171,
+     "n": 200,
+     "pct": 85.5,
+     "ci95": [
+      80.0,
+      89.7
+     ]
+    },
+    "false_alarm_rate": {
+     "k": 29,
+     "n": 200,
+     "pct": 14.5,
+     "ci95": [
+      10.3,
+      20.0
+     ]
+    },
+    "f1_pct": 89.2
+   },
+   "confusion_rule_targeted": {
+    "tp": 240,
+    "fn": 0,
+    "fp": 29,
+    "tn": 171,
+    "n": 440,
+    "accuracy": {
+     "k": 411,
+     "n": 440,
+     "pct": 93.4,
+     "ci95": [
+      90.7,
+      95.4
+     ]
+    },
+    "precision": {
+     "k": 240,
+     "n": 269,
+     "pct": 89.2,
+     "ci95": [
+      84.9,
+      92.4
+     ]
+    },
+    "recall": {
+     "k": 240,
+     "n": 240,
+     "pct": 100.0,
+     "ci95": [
+      98.4,
+      100.0
+     ]
+    },
+    "specificity": {
+     "k": 171,
+     "n": 200,
+     "pct": 85.5,
+     "ci95": [
+      80.0,
+      89.7
+     ]
+    },
+    "false_alarm_rate": {
+     "k": 29,
+     "n": 200,
+     "pct": 14.5,
+     "ci95": [
+      10.3,
+      20.0
+     ]
+    },
+    "f1_pct": 94.3
+   },
+   "no_rule_detection": {
+    "k": 25,
+    "n": 60,
+    "pct": 41.7,
+    "ci95": [
+     30.1,
+     54.3
+    ]
+   },
+   "by_type": [
+    {
+     "key": "clean",
+     "label": "Clean order (no error)",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 200,
+     "blocked": 0,
+     "warned": 29,
+     "passed": 171,
+     "detection": null,
+     "clean_pass": {
+      "k": 171,
+      "n": 200,
+      "pct": 85.5,
+      "ci95": [
+       80.0,
+       89.7
+      ]
+     },
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "bad_sku",
+     "label": "SKU not in catalogue",
+     "rule_targeted": true,
+     "expected_rule": "sku",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "inactive_product",
+     "label": "Discontinued product",
+     "rule_targeted": true,
+     "expected_rule": "sku",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "missing_address",
+     "label": "Missing delivery address",
+     "rule_targeted": true,
+     "expected_rule": "mandatory",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "missing_date",
+     "label": "Missing delivery date",
+     "rule_targeted": true,
+     "expected_rule": "mandatory",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "past_date",
+     "label": "Delivery date in the past",
+     "rule_targeted": true,
+     "expected_rule": "delivery",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "qty_below_min",
+     "label": "Quantity below minimum",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "qty_above_max",
+     "label": "Quantity above maximum",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "fractional_qty",
+     "label": "Fractional quantity",
+     "rule_targeted": true,
+     "expected_rule": "quantity",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "over_stock",
+     "label": "Quantity above available stock",
+     "rule_targeted": true,
+     "expected_rule": "stock",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "duplicate",
+     "label": "Duplicate order",
+     "rule_targeted": true,
+     "expected_rule": "duplicate",
+     "n": 20,
+     "blocked": 0,
+     "warned": 20,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "inactive_customer",
+     "label": "Customer account not active",
+     "rule_targeted": true,
+     "expected_rule": "customer_status",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "stale_price",
+     "label": "Price changed after the order was saved",
+     "rule_targeted": true,
+     "expected_rule": "pricing",
+     "n": 20,
+     "blocked": 20,
+     "warned": 0,
+     "passed": 0,
+     "detection": {
+      "k": 20,
+      "n": 20,
+      "pct": 100.0,
+      "ci95": [
+       83.9,
+       100.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": 20,
+     "flagged_by_other_rule_only": 0,
+     "other_rules": {}
+    },
+    {
+     "key": "wrong_product",
+     "label": "Wrong but valid product",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 3,
+     "passed": 17,
+     "detection": {
+      "k": 3,
+      "n": 20,
+      "pct": 15.0,
+      "ci95": [
+       5.2,
+       36.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 3,
+     "other_rules": {
+      "unusual_quantity": 3
+     }
+    },
+    {
+     "key": "qty_typo",
+     "label": "Plausible quantity typing slip",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 19,
+     "passed": 1,
+     "detection": {
+      "k": 19,
+      "n": 20,
+      "pct": 95.0,
+      "ci95": [
+       76.4,
+       99.1
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 19,
+     "other_rules": {
+      "unusual_quantity": 19
+     }
+    },
+    {
+     "key": "wrong_address",
+     "label": "Wrong saved address",
+     "rule_targeted": false,
+     "expected_rule": null,
+     "n": 20,
+     "blocked": 0,
+     "warned": 3,
+     "passed": 17,
+     "detection": {
+      "k": 3,
+      "n": 20,
+      "pct": 15.0,
+      "ci95": [
+       5.2,
+       36.0
+      ]
+     },
+     "clean_pass": null,
+     "caught_by_expected_rule": null,
+     "flagged_by_other_rule_only": 3,
+     "other_rules": {
+      "unusual_quantity": 3
+     }
+    }
+   ],
+   "rules": [
+    {
+     "rule": "mandatory",
+     "label": "Mandatory fields",
+     "severity": "fail",
+     "orders_fired": 40,
+     "on_target_type": 40,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "sku",
+     "label": "SKU and product active",
+     "severity": "fail",
+     "orders_fired": 40,
+     "on_target_type": 40,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "quantity",
+     "label": "Quantity limits",
+     "severity": "fail",
+     "orders_fired": 60,
+     "on_target_type": 60,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "stock",
+     "label": "Stock availability",
+     "severity": "fail",
+     "orders_fired": 60,
+     "on_target_type": 20,
+     "on_other_error_types": 40,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "customer_status",
+     "label": "Customer status",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "pricing",
+     "label": "Pricing",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "delivery",
+     "label": "Delivery date and address",
+     "severity": "fail",
+     "orders_fired": 20,
+     "on_target_type": 20,
+     "on_other_error_types": 0,
+     "on_clean_false_alarms": 0,
+     "false_alarm_rate_on_clean": {
+      "k": 0,
+      "n": 200,
+      "pct": 0.0,
+      "ci95": [
+       0.0,
+       1.9
+      ]
+     }
+    },
+    {
+     "rule": "duplicate",
+     "label": "Duplicate order",
+     "severity": "warn",
+     "orders_fired": 22,
+     "on_target_type": 20,
+     "on_other_error_types": 1,
+     "on_clean_false_alarms": 1,
+     "false_alarm_rate_on_clean": {
+      "k": 1,
+      "n": 200,
+      "pct": 0.5,
+      "ci95": [
+       0.1,
+       2.8
+      ]
+     }
+    },
+    {
+     "rule": "unusual_quantity",
+     "label": "Unusual quantity",
+     "severity": "warn",
+     "orders_fired": 100,
+     "on_target_type": 0,
+     "on_other_error_types": 72,
+     "on_clean_false_alarms": 28,
+     "false_alarm_rate_on_clean": {
+      "k": 28,
+      "n": 200,
+      "pct": 14.0,
+      "ci95": [
+       9.9,
+       19.5
+      ]
+     }
+    }
+   ],
+   "false_alarm_reasons": {
+    "unusual_quantity": 28,
+    "duplicate": 1
+   },
+   "validation_ms": {
+    "n": 500,
+    "mean": 2.33,
+    "sd_sample": 0.35,
+    "median": 2.34,
+    "p95": 2.84,
+    "min": 1.14,
+    "max": 3.43
+   },
+   "validation_ms_by_outcome": {
+    "pass": {
+     "n": 206,
+     "mean": 2.55,
+     "sd_sample": 0.23,
+     "median": 2.55,
+     "p95": 2.88,
+     "min": 2.0,
+     "max": 3.43
+    },
+    "warn": {
+     "n": 74,
+     "mean": 2.22,
+     "sd_sample": 0.51,
+     "median": 2.36,
+     "p95": 2.85,
+     "min": 1.14,
+     "max": 3.2
+    },
+    "fail": {
+     "n": 220,
+     "mean": 2.15,
+     "sd_sample": 0.25,
+     "median": 2.15,
+     "p95": 2.56,
+     "min": 1.69,
+     "max": 3.16
+    }
+   },
+   "validation_ms_mean_by_block_of_100": [
+    2.08,
+    2.2,
+    2.35,
+    2.45,
+    2.54
+   ],
+   "status_history_draft_to_last_event_ms": {
+    "n": 479,
+    "mean": 2.55,
+    "sd_sample": 0.29,
+    "median": 2.53,
+    "p95": 3.06,
+    "min": 1.88,
+    "max": 3.69
+   },
+   "status_history_orders_with_two_or_more_events": 479,
+   "mandatory_completion_reaching_approval": {
+    "k": 259,
+    "n": 259,
+    "pct": 100.0,
+    "ci95": [
+     98.5,
+     100.0
+    ]
+   },
+   "dataset": {
+    "customers": 20,
+    "regions": {
+     "Lagos Mainland": 117,
+     "Abuja": 85,
+     "Lekki-Ajah": 80,
+     "Ikeja": 74,
+     "Lagos Island": 73,
+     "Ibadan": 51,
+     "No address given": 20
+    },
+    "orders_per_customer_min": 15,
+    "orders_per_customer_max": 33,
+    "lines_mean": 2.23,
+    "units_mean": 126.3,
+    "value_mean": 1587818.86,
+    "value_median": 902462.5,
+    "value_min": 13115.0,
+    "value_max": 21952790.0,
+    "value_total": 793909430.0
+   }
+  }
+ },
+ "run_ids": {
+  "1": {
+   "run_id": 5,
+   "seed": 0.42
+  },
+  "2": {
+   "run_id": 6,
+   "seed": 0.43
+  },
+  "3": {
+   "run_id": 7,
+   "seed": 0.44
+  }
+ },
+ "replicate_range": {
+  "accuracy_all": {
+   "min": 86.8,
+   "max": 87.2,
+   "values": [
+    87.2,
+    86.8,
+    87.2
+   ]
+  },
+  "precision_all": {
+   "min": 89.5,
+   "max": 90.4,
+   "values": [
+    90.4,
+    89.5,
+    90.1
+   ]
+  },
+  "recall_all": {
+   "min": 88.0,
+   "max": 88.3,
+   "values": [
+    88.0,
+    88.3,
+    88.3
+   ]
+  },
+  "specificity_all": {
+   "min": 84.5,
+   "max": 86.0,
+   "values": [
+    86.0,
+    84.5,
+    85.5
+   ]
+  },
+  "f1_all": {
+   "min": 88.9,
+   "max": 89.2,
+   "values": [
+    89.2,
+    88.9,
+    89.2
+   ]
+  },
+  "false_alarm_rate": {
+   "min": 14.0,
+   "max": 15.5,
+   "values": [
+    14.0,
+    15.5,
+    14.5
+   ]
+  },
+  "accuracy_targeted": {
+   "min": 93.0,
+   "max": 93.6,
+   "values": [
+    93.6,
+    93.0,
+    93.4
+   ]
+  },
+  "recall_targeted": {
+   "min": 100.0,
+   "max": 100.0,
+   "values": [
+    100.0,
+    100.0,
+    100.0
+   ]
+  },
+  "precision_targeted": {
+   "min": 88.6,
+   "max": 89.6,
+   "values": [
+    89.6,
+    88.6,
+    89.2
+   ]
+  },
+  "f1_targeted": {
+   "min": 93.9,
+   "max": 94.5,
+   "values": [
+    94.5,
+    93.9,
+    94.3
+   ]
+  },
+  "no_rule_detection": {
+   "min": 40.0,
+   "max": 41.7,
+   "values": [
+    40.0,
+    41.7,
+    41.7
+   ]
+  },
+  "validation_ms_mean": {
+   "min": 2.33,
+   "max": 29.84,
+   "values": [
+    28.72,
+    29.84,
+    2.33
+   ]
+  },
+  "validation_ms_median": {
+   "min": 2.34,
+   "max": 22.88,
+   "values": [
+    22.16,
+    22.88,
+    2.34
+   ]
+  },
+  "validation_ms_p95": {
+   "min": 2.84,
+   "max": 78.92,
+   "values": [
+    74.72,
+    78.92,
+    2.84
+   ]
+  },
+  "mandatory_completion": {
+   "min": 100.0,
+   "max": 100.0,
+   "values": [
+    100.0,
+    100.0,
+    100.0
+   ]
+  }
+ },
+ "sensitivity": [
+  {
+   "run_id": 8,
+   "factor": 3.0,
+   "history_orders": 4,
+   "clean_flagged_by_unusual_quantity": {
+    "k": 27,
+    "n": 200,
+    "pct": 13.5,
+    "ci95": [
+     9.4,
+     18.9
+    ]
+   },
+   "clean_false_alarm_rate_all_rules": {
+    "k": 28,
+    "n": 200,
+    "pct": 14.0,
+    "ci95": [
+     9.9,
+     19.5
+    ]
+   },
+   "typo_detection": {
+    "k": 14,
+    "n": 20,
+    "pct": 70.0,
+    "ci95": [
+     48.1,
+     85.5
+    ]
+   },
+   "unusual_quantity_fires_total": 94,
+   "accuracy_all": {
+    "k": 436,
+    "n": 500,
+    "pct": 87.2,
+    "ci95": [
+     84.0,
+     89.8
+    ]
+   },
+   "recall_all": {
+    "k": 264,
+    "n": 300,
+    "pct": 88.0,
+    "ci95": [
+     83.8,
+     91.2
+    ]
+   },
+   "validation_ms_mean": 28.8,
+   "validation_ms_median": 22.45,
+   "validation_ms_mean_by_block_of_100": [
+    6.55,
+    13.76,
+    26.38,
+    38.15,
+    59.16
+   ]
+  },
+  {
+   "run_id": 9,
+   "factor": 4.0,
+   "history_orders": 4,
+   "clean_flagged_by_unusual_quantity": {
+    "k": 19,
+    "n": 200,
+    "pct": 9.5,
+    "ci95": [
+     6.2,
+     14.4
+    ]
+   },
+   "clean_false_alarm_rate_all_rules": {
+    "k": 20,
+    "n": 200,
+    "pct": 10.0,
+    "ci95": [
+     6.6,
+     14.9
+    ]
+   },
+   "typo_detection": {
+    "k": 12,
+    "n": 20,
+    "pct": 60.0,
+    "ci95": [
+     38.7,
+     78.1
+    ]
+   },
+   "unusual_quantity_fires_total": 72,
+   "accuracy_all": {
+    "k": 440,
+    "n": 500,
+    "pct": 88.0,
+    "ci95": [
+     84.9,
+     90.6
+    ]
+   },
+   "recall_all": {
+    "k": 260,
+    "n": 300,
+    "pct": 86.7,
+    "ci95": [
+     82.4,
+     90.1
+    ]
+   },
+   "validation_ms_mean": 28.88,
+   "validation_ms_median": 22.61,
+   "validation_ms_mean_by_block_of_100": [
+    6.56,
+    13.84,
+    26.52,
+    38.02,
+    59.47
+   ]
+  },
+  {
+   "run_id": 10,
+   "factor": 5.0,
+   "history_orders": 4,
+   "clean_flagged_by_unusual_quantity": {
+    "k": 16,
+    "n": 200,
+    "pct": 8.0,
+    "ci95": [
+     5.0,
+     12.6
+    ]
+   },
+   "clean_false_alarm_rate_all_rules": {
+    "k": 17,
+    "n": 200,
+    "pct": 8.5,
+    "ci95": [
+     5.4,
+     13.2
+    ]
+   },
+   "typo_detection": {
+    "k": 11,
+    "n": 20,
+    "pct": 55.0,
+    "ci95": [
+     34.2,
+     74.2
+    ]
+   },
+   "unusual_quantity_fires_total": 61,
+   "accuracy_all": {
+    "k": 441,
+    "n": 500,
+    "pct": 88.2,
+    "ci95": [
+     85.1,
+     90.7
+    ]
+   },
+   "recall_all": {
+    "k": 258,
+    "n": 300,
+    "pct": 86.0,
+    "ci95": [
+     81.6,
+     89.5
+    ]
+   },
+   "validation_ms_mean": 2.28,
+   "validation_ms_median": 2.28,
+   "validation_ms_mean_by_block_of_100": [
+    2.0,
+    2.07,
+    2.31,
+    2.43,
+    2.59
+   ]
+  },
+  {
+   "run_id": 11,
+   "factor": 3.0,
+   "history_orders": 10,
+   "clean_flagged_by_unusual_quantity": {
+    "k": 37,
+    "n": 200,
+    "pct": 18.5,
+    "ci95": [
+     13.7,
+     24.5
+    ]
+   },
+   "clean_false_alarm_rate_all_rules": {
+    "k": 38,
+    "n": 200,
+    "pct": 19.0,
+    "ci95": [
+     14.2,
+     25.0
+    ]
+   },
+   "typo_detection": {
+    "k": 16,
+    "n": 20,
+    "pct": 80.0,
+    "ci95": [
+     58.4,
+     91.9
+    ]
+   },
+   "unusual_quantity_fires_total": 113,
+   "accuracy_all": {
+    "k": 427,
+    "n": 500,
+    "pct": 85.4,
+    "ci95": [
+     82.0,
+     88.2
+    ]
+   },
+   "recall_all": {
+    "k": 265,
+    "n": 300,
+    "pct": 88.3,
+    "ci95": [
+     84.2,
+     91.5
+    ]
+   },
+   "validation_ms_mean": 48.05,
+   "validation_ms_median": 36.89,
+   "validation_ms_mean_by_block_of_100": [
+    16.33,
+    27.14,
+    45.83,
+    60.36,
+    90.59
+   ]
+  },
+  {
+   "run_id": 12,
+   "factor": 4.0,
+   "history_orders": 10,
+   "clean_flagged_by_unusual_quantity": {
+    "k": 22,
+    "n": 200,
+    "pct": 11.0,
+    "ci95": [
+     7.4,
+     16.1
+    ]
+   },
+   "clean_false_alarm_rate_all_rules": {
+    "k": 23,
+    "n": 200,
+    "pct": 11.5,
+    "ci95": [
+     7.8,
+     16.7
+    ]
+   },
+   "typo_detection": {
+    "k": 14,
+    "n": 20,
+    "pct": 70.0,
+    "ci95": [
+     48.1,
+     85.5
+    ]
+   },
+   "unusual_quantity_fires_total": 82,
+   "accuracy_all": {
+    "k": 440,
+    "n": 500,
+    "pct": 88.0,
+    "ci95": [
+     84.9,
+     90.6
+    ]
+   },
+   "recall_all": {
+    "k": 263,
+    "n": 300,
+    "pct": 87.7,
+    "ci95": [
+     83.5,
+     90.9
+    ]
+   },
+   "validation_ms_mean": 47.77,
+   "validation_ms_median": 36.68,
+   "validation_ms_mean_by_block_of_100": [
+    16.32,
+    27.27,
+    45.64,
+    58.91,
+    90.7
+   ]
+  },
+  {
+   "run_id": 13,
+   "factor": 5.0,
+   "history_orders": 10,
+   "clean_flagged_by_unusual_quantity": {
+    "k": 15,
+    "n": 200,
+    "pct": 7.5,
+    "ci95": [
+     4.6,
+     12.0
+    ]
+   },
+   "clean_false_alarm_rate_all_rules": {
+    "k": 16,
+    "n": 200,
+    "pct": 8.0,
+    "ci95": [
+     5.0,
+     12.6
+    ]
+   },
+   "typo_detection": {
+    "k": 12,
+    "n": 20,
+    "pct": 60.0,
+    "ci95": [
+     38.7,
+     78.1
+    ]
+   },
+   "unusual_quantity_fires_total": 60,
+   "accuracy_all": {
+    "k": 443,
+    "n": 500,
+    "pct": 88.6,
+    "ci95": [
+     85.5,
+     91.1
+    ]
+   },
+   "recall_all": {
+    "k": 259,
+    "n": 300,
+    "pct": 86.3,
+    "ci95": [
+     82.0,
+     89.8
+    ]
+   },
+   "validation_ms_mean": 47.79,
+   "validation_ms_median": 37.1,
+   "validation_ms_mean_by_block_of_100": [
+    16.39,
+    27.19,
+    45.7,
+    59.03,
+    90.66
+   ]
+  }
+ ]
+}
