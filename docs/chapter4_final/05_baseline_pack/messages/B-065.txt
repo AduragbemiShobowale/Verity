@@ -1,0 +1,19 @@
+From: Fatima Sani <fatima.sani@gwarinpa15.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:25
+Subject: Order from Gwarinpa Homes Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 72 x Iron rod, 12 mm (ROD-12) at ₦7,200
+  - 25 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+
+Deliver to: 25 Main Road, Abuja
+Delivery date: Thursday 05 November 2026
+
+Regards,
+Fatima Sani
+Gwarinpa Homes Ltd
+08031570935

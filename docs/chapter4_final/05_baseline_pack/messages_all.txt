@@ -1,0 +1,768 @@
+==== B-002  (E-mail) ====
+From: Chukwuemeka Kanu <chukwuemeka.kanu@kanu2.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:12
+Subject: Order from Kanu Brothers Building Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 23 x PVC pipe, 4 inch, 6 m (PVC-4) at ₦8,600
+  - 10 x Emulsion paint, cream, 20 L (PNT-20C) at ₦38,000
+
+Deliver to: 12 Main Road, Lagos Mainland
+Delivery date: Sunday 08 November 2026
+
+Regards,
+Chukwuemeka Kanu
+Kanu Brothers Building Supplies
+08030209458
+
+==== B-003  (WhatsApp) ====
+[02/11/2026, 08:13] Emeka Okafor (Yaba Tech Hub Builders): Good morning, pls send
+emulsion paint PNT-20C x2 @38,000
+aluminium roofing sheet ROOF-AL x44 @12,500
+floor tile 60x60 TIL-6060 x58 @14,500
+pvc pipe PVC-4 x21 @8,600
+to 28 Main Road, Lagos Mainland
+for Fri 06/11
+thanks
+
+==== B-005  (E-mail) ====
+From: Tolulope Ogunleye <tolulope.ogunleye@eko6.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:15
+Subject: Order from Eko Bridge Contractors
+
+Good morning,
+
+Please supply the following:
+
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+  - 35 x Floor tile 60x60, carton (TIL-6060) at ₦14,500
+
+Deliver to: Plot 106, Lagos Island
+Delivery date: Sunday 01 November 2026
+
+Regards,
+Tolulope Ogunleye
+Eko Bridge Contractors
+08030628374
+
+==== B-006  (WhatsApp) ====
+[02/11/2026, 08:16] Chukwuemeka Kanu (Kanu Brothers Building Supplies): Good morning, pls send
+aluminium roofing sheet ROOF-AL x66 @12,500
+to Plot 102, Lagos Mainland
+for Thu 05/11
+thanks
+
+==== B-008  (E-mail) ====
+From: Amina Bello <amina.bello@lekki4.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:18
+Subject: Order from Lekki Coastal Developers
+
+Good morning,
+
+Please supply the following:
+
+  - 23 x Iron rod, 12 mm (ROD-12) at ₦7,200
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+  - 80 x Floor tile 60x60, carton (TIL-6060) at ₦14,500
+
+Deliver to: Plot 104, Lekki-Ajah
+Delivery date: Wednesday 04 November 2026
+
+Regards,
+Amina Bello
+Lekki Coastal Developers
+08030418916
+
+==== B-009  (WhatsApp) ====
+[02/11/2026, 08:19] Segun Olatunji (Bodija Interiors): Good morning, pls send
+aluminium roofing sheet ROOF-AL x12 @12,500
+emulsion paint PNT-20C x3 @38,000
+electric cable WIRE-25 x13 @52,000
+to Plot 116, Ibadan
+for Sat 07/11
+thanks
+
+==== B-011  (E-mail) ====
+From: Chukwuemeka Kanu <chukwuemeka.kanu@kanu2.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:21
+Subject: Order from Kanu Brothers Building Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 20 x Floor tile 60x60, carton (TIL-6060) at ₦14,500
+  - 28 x Iron rod, 16 mm (ROD-16) at ₦11,800
+  - 50 x Aluminium roofing sheet, 0.55 mm (ROOF-AL) at ₦12,500
+
+Deliver to: Plot 102, Lagos Mainland
+Delivery date: Friday 06 November 2026
+
+Regards,
+Chukwuemeka Kanu
+Kanu Brothers Building Supplies
+08030209458
+
+==== B-012  (WhatsApp) ====
+[02/11/2026, 08:22] Amina Bello (Lekki Coastal Developers): Good morning, pls send
+electric cable WIRE-25 x8 @52,000
+to Plot 104, Lekki-Ajah
+for Tue 03/11
+thanks
+
+==== B-014  (E-mail) ====
+From: Oluwaseun Afolabi <oluwaseun.afolabi@ibadan3.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:24
+Subject: Order from Ibadan Prime Homes Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+  - 180 x Cement, 50 kg bag (CEM-50) at ₦9,500
+
+Deliver to: 13 Main Road, Ibadan
+Delivery date: Thursday 05 November 2026
+
+Regards,
+Oluwaseun Afolabi
+Ibadan Prime Homes Ltd
+08030314187
+
+==== B-015  (WhatsApp) ====
+[02/11/2026, 08:25] Garba Usman (Apapa Port Works Supplies): Good morning, pls send
+pvc pipe PVC-2 x2 @4,100
+iron rod ROD-12 x140 @7,200
+to Plot 120, Lagos Mainland
+for Tue 10/11
+thanks
+
+==== B-017  (E-mail) ====
+From: Folake Adeyemi <folake.adeyemi@adeyemi1.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:27
+Subject: Order from Adeyemi & Sons Construction Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 13 x Nails, 3 inch, 25 kg (NAIL-3) at ₦31,000
+
+Deliver to: 11 Main Road, Ikeja
+
+Regards,
+Folake Adeyemi
+Adeyemi & Sons Construction Ltd
+08030104729
+
+==== B-018  (WhatsApp) ====
+[02/11/2026, 08:28] Amina Bello (Lekki Coastal Developers): Good morning, pls send
+aluminium roofing sheet ROOF-AL x19 @12,500
+iron rod ROD-16 x46 @11,800
+emulsion paint PNT-20W x27 @38,000
+pvc pipe PVC-4 x1 @8,600
+to Plot 104, Lekki-Ajah
+for Sun 08/11
+thanks
+
+==== B-020  (E-mail) ====
+From: Babatunde Oladipo <babatunde.oladipo@olaade8.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:30
+Subject: Order from Ola-Ade Hardware & Tiles
+
+Good morning,
+
+Please supply the following:
+
+  - 29 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 76 x Iron rod, 12 mm (ROD-12) at ₦7,200
+  - 301 x Iron rod, 16 mm (ROD-16) at ₦11,800
+
+Deliver to: Plot 108, Ikeja
+Delivery date: Tuesday 10 November 2026
+
+Regards,
+Babatunde Oladipo
+Ola-Ade Hardware & Tiles
+08030837832
+
+==== B-021  (WhatsApp) ====
+[02/11/2026, 08:31] Oluwaseun Afolabi (Ibadan Prime Homes Ltd): Good morning, pls send
+aluminium roofing sheet ROOF-AL x23 @12,500
+to Plot 103, Ibadan
+for Wed 04/11
+thanks
+
+==== B-023  (E-mail) ====
+From: Garba Usman <garba.usman@apapa20.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:33
+Subject: Order from Apapa Port Works Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 36 x PVC pipe, 4 inch, 6 m (PVC-4) at ₦8,600
+
+Deliver to: 30 Main Road, Lagos Mainland
+Delivery date: Thursday 29 October 2026
+
+Regards,
+Garba Usman
+Apapa Port Works Supplies
+08032094580
+
+==== B-024  (WhatsApp) ====
+[02/11/2026, 08:34] Fatima Sani (Gwarinpa Homes Ltd): Good morning, pls send
+cement CEM-50 x104 @9,500
+to Plot 115, Abuja
+thanks
+
+==== B-026  (E-mail) ====
+From: Funmilayo Adeleke <funmilayo.adeleke@magodo19.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:36
+Subject: Order from Magodo Residential Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 43 x Iron rod, 12 mm (ROD-12) at ₦6,900
+  - 37 x PVC pipe, 4 inch, 6 m (PVC-4) at ₦8,600
+  - 12 x Electric cable, 2.5 mm, 100 m (WIRE-25) at ₦52,000
+
+Deliver to: 29 Main Road, Ikeja
+Delivery date: Sunday 08 November 2026
+
+Regards,
+Funmilayo Adeleke
+Magodo Residential Ltd
+08031989851
+
+==== B-027  (WhatsApp) ====
+[02/11/2026, 08:37] Fatima Sani (Gwarinpa Homes Ltd): Good morning, pls send
+iron rod ROD-16 x68 @11,800
+to 25 Main Road, Abuja
+for Tue 10/11
+thanks
+
+==== B-029  (E-mail) ====
+From: Ngozi Eze <ngozi.eze@greenfield7.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:39
+Subject: Order from Greenfield Estates Nigeria
+
+Good morning,
+
+Please supply the following:
+
+  - 17 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+
+Deliver to: Plot 107, Lekki-Ajah
+Delivery date: Sunday 08 November 2026
+
+Regards,
+Ngozi Eze
+Greenfield Estates Nigeria
+08030733103
+
+==== B-030  (WhatsApp) ====
+[02/11/2026, 08:40] Ibrahim Musa (Northgate Realty Abuja): Good morning, pls send
+electric cable WIRE-25 x11 @52,000
+cement CEM-50 x154 @9,500
+to 15 Main Road, Abuja
+for Sat 07/11
+thanks
+
+==== B-032  (E-mail) ====
+From: Garba Usman <garba.usman@apapa20.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:42
+Subject: Order from Apapa Port Works Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 21 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 1538 x Iron rod, 12 mm (ROD-12) at ₦7,200
+
+Deliver to: Plot 120, Lagos Mainland
+Delivery date: Thursday 05 November 2026
+
+Regards,
+Garba Usman
+Apapa Port Works Supplies
+08032094580
+
+==== B-033  (WhatsApp) ====
+[02/11/2026, 08:43] Chiamaka Obi (Victoria Island Fit-Out Ltd): Good morning, pls send
+pvc pipe PVC-4 x13 @8,600
+floor tile 60x60 TIL-6060 x1 @14,500
+to Plot 117, Lagos Island
+for Sun 08/11
+thanks
+
+==== B-035  (E-mail) ====
+From: Chukwuemeka Kanu <chukwuemeka.kanu@kanu2.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:45
+Subject: Order from Kanu Brothers Building Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 71 x Aluminium roofing sheet, 0.55 mm (ROOF-AL) at ₦12,500
+
+Deliver to: Plot 102, Lagos Mainland
+Delivery date: Friday 06 November 2026
+
+Regards,
+Chukwuemeka Kanu
+Kanu Brothers Building Supplies
+08030209458
+
+==== B-036  (WhatsApp) ====
+[02/11/2026, 08:46] Tolulope Ogunleye (Eko Bridge Contractors): Good morning, pls send
+floor tile 60x60 TIL-6060 x91 @14,500
+to Plot 106, Lagos Island
+for Mon 09/11
+thanks
+
+==== B-038  (E-mail) ====
+From: Blessing Okoro <blessing.okoro@ajah14.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:48
+Subject: Order from Ajah Sunrise Housing Co-op
+
+Good morning,
+
+Please supply the following:
+
+  - 1 x Emulsion paint, cream, 20 L (PNT-20C) at ₦38,000
+
+Deliver to: 24 Main Road, Lekki-Ajah
+Delivery date: Thursday 29 October 2026
+
+Regards,
+Blessing Okoro
+Ajah Sunrise Housing Co-op
+08031466206
+
+==== B-039  (WhatsApp) ====
+[02/11/2026, 08:49] Folake Adeyemi (Adeyemi & Sons Construction Ltd): Good morning, pls send
+emulsion paint PNT-20W x4 @38,000
+pvc pipe PVC-4 x23 @8,600
+sharp sand SAND-T x1 @185,000
+to 11 Main Road, Ikeja
+for Mon 09/11
+thanks
+
+==== B-041  (E-mail) ====
+From: Yusuf Adebanjo <yusuf.adebanjo@agege13.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:51
+Subject: Order from Agege Steel Works
+
+Good morning,
+
+Please supply the following:
+
+  - 3 x Emulsion paint, cream, 20 L (PNT-20C) at ₦38,000
+
+Deliver to: Plot 113, Ikeja
+Delivery date: Thursday 12 November 2026
+
+Regards,
+Yusuf Adebanjo
+Agege Steel Works
+08031361477
+
+==== B-042  (WhatsApp) ====
+[02/11/2026, 08:52] Ngozi Eze (Greenfield Estates Nigeria): Good morning, pls send
+aluminium roofing sheet ROOF-AL x20 @12,500
+iron rod ROD-16 x59 @11,800
+to 17 Main Road, Lekki-Ajah
+for Sun 08/11
+thanks
+
+==== B-044  (E-mail) ====
+From: Blessing Okoro <blessing.okoro@ajah14.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:54
+Subject: Order from Ajah Sunrise Housing Co-op
+
+Good morning,
+
+Please supply the following:
+
+  - 29 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 5 x Galvanised wire mesh (XX-901)
+
+Deliver to: Plot 114, Lekki-Ajah
+Delivery date: Sunday 08 November 2026
+
+Regards,
+Blessing Okoro
+Ajah Sunrise Housing Co-op
+08031466206
+
+==== B-045  (WhatsApp) ====
+[02/11/2026, 08:55] Segun Olatunji (Bodija Interiors): Good morning, pls send
+emulsion paint PNT-20C x8 @38,000
+iron rod ROD-12 x141 @7,200
+aluminium roofing sheet ROOF-AL x60 @12,500
+for Thu 05/11
+thanks
+
+==== B-047  (E-mail) ====
+From: Funmilayo Adeleke <funmilayo.adeleke@magodo19.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:57
+Subject: Order from Magodo Residential Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 11 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+  - 4 x Iron rod, 16 mm (ROD-16) at ₦11,800
+
+Deliver to: 29 Main Road, Ikeja
+Delivery date: Tuesday 10 November 2026
+
+Regards,
+Funmilayo Adeleke
+Magodo Residential Ltd
+08031989851
+
+==== B-048  (WhatsApp) ====
+[02/11/2026, 08:58] Emeka Okafor (Yaba Tech Hub Builders): Good morning, pls send
+floor tile 60x60 TIL-6060 x75 @14,500
+to 28 Main Road, Lagos Mainland
+for Wed 11/11
+thanks
+
+==== B-050  (E-mail) ====
+From: Segun Olatunji <segun.olatunji@bodija16.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:10
+Subject: Order from Bodija Interiors
+
+Good morning,
+
+Please supply the following:
+
+  - 54 x Iron rod, 16 mm (ROD-16) at ₦11,800
+  - 188 x Cement, 50 kg bag (CEM-50) at ₦9,500
+  - 102 x Iron rod, 12 mm (ROD-12) at ₦7,200
+
+Deliver to: 26 Main Road, Ibadan
+Delivery date: Saturday 07 November 2026
+
+Regards,
+Segun Olatunji
+Bodija Interiors
+08031675664
+
+==== B-051  (WhatsApp) ====
+[02/11/2026, 08:11] Chukwuemeka Kanu (Kanu Brothers Building Supplies): Good morning, pls send
+pvc pipe PVC-2 x2 @4,100
+to 12 Main Road, Lagos Mainland
+for Wed 11/11
+thanks
+
+==== B-053  (E-mail) ====
+From: Kemi Lawson <kemi.lawson@marina11.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:13
+Subject: Order from Marina Point Facilities
+
+Good morning,
+
+Please supply the following:
+
+  - 100 x Iron rod, 12 mm (ROD-12) at ₦7,200
+
+Deliver to: 21 Main Road, Lagos Island
+Delivery date: Tuesday 03 November 2026
+
+Regards,
+Kemi Lawson
+Marina Point Facilities
+08031152019
+
+==== B-054  (WhatsApp) ====
+[02/11/2026, 08:14] Blessing Okoro (Ajah Sunrise Housing Co-op): Good morning, pls send
+electric cable WIRE-25 x7 @52,000
+to 24 Main Road, Lekki-Ajah
+for Thu 05/11
+thanks
+
+==== B-056  (E-mail) ====
+From: Fatima Sani <fatima.sani@gwarinpa15.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:16
+Subject: Order from Gwarinpa Homes Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 14 x Electric cable, 2.5 mm, 100 m (WIRE-25) at ₦52,000
+
+Delivery date: Sunday 08 November 2026
+
+Regards,
+Fatima Sani
+Gwarinpa Homes Ltd
+08031570935
+
+==== B-057  (WhatsApp) ====
+[02/11/2026, 08:17] Amina Bello (Lekki Coastal Developers): Good morning, pls send
+iron rod ROD-16 x64 @11,800
+emulsion paint PNT-20W x1 @38,000
+electric cable WIRE-25 x12 @52,000
+to 14 Main Road, Lekki-Ajah
+for Mon 09/11
+thanks
+
+==== B-059  (E-mail) ====
+From: Emeka Okafor <emeka.okafor@yaba18.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:19
+Subject: Order from Yaba Tech Hub Builders
+
+Good morning,
+
+Please supply the following:
+
+  - 77 x Cement, 50 kg bag (CEM-50) at ₦9,500
+  - 27 x Iron rod, 16 mm (ROD-16) at ₦11,800
+
+Deliver to: 28 Main Road, Lagos Mainland
+Delivery date: Tuesday 03 November 2026
+
+Regards,
+Emeka Okafor
+Yaba Tech Hub Builders
+08031885122
+
+==== B-060  (WhatsApp) ====
+[02/11/2026, 08:20] Folake Adeyemi (Adeyemi & Sons Construction Ltd): Good morning, pls send
+electric cable WIRE-25 x15 @49,500
+iron rod ROD-16 x7 @11,800
+to 11 Main Road, Ikeja
+for Thu 05/11
+thanks
+
+==== B-062  (E-mail) ====
+From: Chiamaka Obi <chiamaka.obi@victoria17.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:22
+Subject: Order from Victoria Island Fit-Out Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 56 x PVC pipe, 4 inch, 6 m (PVC-4) at ₦8,600
+
+Deliver to: Plot 117, Lagos Island
+
+Regards,
+Chiamaka Obi
+Victoria Island Fit-Out Ltd
+08031780393
+
+==== B-063  (WhatsApp) ====
+[02/11/2026, 08:23] Amina Bello (Lekki Coastal Developers): Good morning, pls send
+emulsion paint PNT-20C x7 @38,000
+to 14 Main Road, Lekki-Ajah
+for Sat 07/11
+thanks
+
+==== B-065  (E-mail) ====
+From: Fatima Sani <fatima.sani@gwarinpa15.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:25
+Subject: Order from Gwarinpa Homes Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 72 x Iron rod, 12 mm (ROD-12) at ₦7,200
+  - 25 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+
+Deliver to: 25 Main Road, Abuja
+Delivery date: Thursday 05 November 2026
+
+Regards,
+Fatima Sani
+Gwarinpa Homes Ltd
+08031570935
+
+==== B-066  (WhatsApp) ====
+[02/11/2026, 08:26] Oluwaseun Afolabi (Ibadan Prime Homes Ltd): Good morning, pls send
+iron rod ROD-12 x11 @7,200
+nails NAIL-3 x4 @31,000
+floor tile 60x60 TIL-6060 x41 @14,500
+to Plot 103, Ibadan
+for Fri 06/11
+thanks
+
+==== B-068  (E-mail) ====
+From: Chukwuemeka Kanu <chukwuemeka.kanu@kanu2.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:28
+Subject: Order from Kanu Brothers Building Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 21 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 67 x Iron rod, 16 mm (ROD-16) at ₦11,800
+  - 250 x Cement, 50 kg bag (CEM-50) at ₦9,500
+
+Deliver to: 12 Main Road, Lagos Mainland
+Delivery date: Friday 06 November 2026
+
+Regards,
+Chukwuemeka Kanu
+Kanu Brothers Building Supplies
+08030209458
+
+==== B-069  (WhatsApp) ====
+[02/11/2026, 08:29] Blessing Okoro (Ajah Sunrise Housing Co-op): Good morning, pls send
+aluminium roofing sheet ROOF-AL x59 @12,500
+iron rod ROD-16 x44 @11,800
+emulsion paint PNT-20W x14 @38,000
+pvc pipe PVC-2 x9 @4,100
+to Plot 114, Lekki-Ajah
+for Sat 07/11
+thanks
+
+==== B-071  (E-mail) ====
+From: Folake Adeyemi <folake.adeyemi@adeyemi1.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:31
+Subject: Order from Adeyemi & Sons Construction Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 12 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 7 x Electric cable, 2.5 mm, 100 m (WIRE-25) at ₦52,000
+  - 1 x PVC pipe, 4 inch, 6 m (PVC-4) at ₦8,600
+
+Deliver to: 11 Main Road, Ikeja
+Delivery date: Thursday 12 November 2026
+
+Regards,
+Folake Adeyemi
+Adeyemi & Sons Construction Ltd
+08030104729
+
+==== B-072  (WhatsApp) ====
+[02/11/2026, 08:32] Garba Usman (Apapa Port Works Supplies): Good morning, pls send
+cement CEM-50 x124 @9,500
+to Plot 120, Lagos Mainland
+for Thu 12/11
+thanks
+
+==== B-074  (E-mail) ====
+From: Funmilayo Adeleke <funmilayo.adeleke@magodo19.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:34
+Subject: Order from Magodo Residential Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 22 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+
+Deliver to: 29 Main Road, Ikeja
+Delivery date: Monday 09 November 2026
+
+Regards,
+Funmilayo Adeleke
+Magodo Residential Ltd
+08031989851
+
+==== B-075  (WhatsApp) ====
+[02/11/2026, 08:35] Emeka Okafor (Yaba Tech Hub Builders): Good morning, pls send
+floor tile 60x60 TIL-6060 x27 @14,500
+iron rod ROD-16 x9 @11,800
+to Plot 118, Lagos Mainland
+for Fri 30/10
+thanks
+
+==== B-077  (E-mail) ====
+From: Segun Olatunji <segun.olatunji@bodija16.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:37
+Subject: Order from Bodija Interiors
+
+Good morning,
+
+Please supply the following:
+
+  - 8 x Emulsion paint, cream, 20 L (PNT-20C) at ₦38,000
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+
+Deliver to: Plot 116, Ibadan
+Delivery date: Saturday 07 November 2026
+
+Regards,
+Segun Olatunji
+Bodija Interiors
+08031675664
+
+==== B-078  (WhatsApp) ====
+[02/11/2026, 08:38] Emeka Okafor (Yaba Tech Hub Builders): Good morning, pls send
+iron rod ROD-16 x24 @11,800
+emulsion paint PNT-20W x22 @38,000
+pvc pipe PVC-2 x3 @4,100
+to 28 Main Road, Lagos Mainland
+for Sun 08/11
+thanks
+
+==== B-080  (E-mail) ====
+From: Tolulope Ogunleye <tolulope.ogunleye@eko6.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:40
+Subject: Order from Eko Bridge Contractors
+
+Good morning,
+
+Please supply the following:
+
+  - 31 x Cement, 50 kg bag (CEM-50) at ₦9,500
+  - 376 x Floor tile 60x60, carton (TIL-6060) at ₦14,500
+
+Deliver to: Plot 106, Lagos Island
+Delivery date: Thursday 12 November 2026
+
+Regards,
+Tolulope Ogunleye
+Eko Bridge Contractors
+08030628374

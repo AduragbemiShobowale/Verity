@@ -1,0 +1,13 @@
+participant_slot,first_condition,first_set,second_condition,second_set
+P01,Manual,1,Verity,2
+P02,Verity,2,Manual,1
+P03,Manual,2,Verity,1
+P04,Verity,1,Manual,2
+P05,Manual,1,Verity,2
+P06,Verity,2,Manual,1
+P07,Manual,2,Verity,1
+P08,Verity,1,Manual,2
+P09,Manual,1,Verity,2
+P10,Verity,2,Manual,1
+P11,Manual,2,Verity,1
+P12,Verity,1,Manual,2

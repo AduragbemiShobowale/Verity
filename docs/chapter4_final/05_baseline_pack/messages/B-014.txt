@@ -1,0 +1,19 @@
+From: Oluwaseun Afolabi <oluwaseun.afolabi@ibadan3.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:24
+Subject: Order from Ibadan Prime Homes Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+  - 180 x Cement, 50 kg bag (CEM-50) at ₦9,500
+
+Deliver to: 13 Main Road, Ibadan
+Delivery date: Thursday 05 November 2026
+
+Regards,
+Oluwaseun Afolabi
+Ibadan Prime Homes Ltd
+08030314187
