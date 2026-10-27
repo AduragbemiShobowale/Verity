@@ -93,10 +93,10 @@ def fig_outcomes():
             x += w
         rows.append([names[g], n, d.get('pass', 0), d.get('warn', 0), d.get('fail', 0)])
     H = top + 3 * (bh + gap) + 20
-    page('fig4_1_outcomes', W, H, 'What happened to each group of orders, replicate 1',
+    page('fig4_2_outcomes', W, H, 'What happened to each group of orders, replicate 1',
          'Share of 500 simulated orders passed, warned or blocked at submission',
          ''.join(body), legend([(GOOD, 'Passed'), (WARN, 'Warned, sent to a person'), (CRIT, 'Blocked, customer must fix')], 32, 104))
-    data('fig4_1_outcomes', ['group', 'orders', 'passed', 'warned', 'blocked'], rows)
+    data('fig4_2_outcomes', ['group', 'orders', 'passed', 'warned', 'blocked'], rows)
 
 
 # ---------------------------------------------------------------- Figure 4.2 detection by type with Wilson intervals
@@ -118,10 +118,10 @@ def fig_detection():
                     f'<circle cx="{left + plot * d["pct"] / 100}" cy="{y}" r="7" fill="{col}" stroke="{SURF}" stroke-width="2"/>'
                     f'<text x="{left + plot + 12}" y="{y + 5}" font-size="13" fill="{INK2}">{d["k"]}/{d["n"]}</text>')
         rows.append([t['label'], 'Yes' if t['rule_targeted'] else 'No', d['k'], d['n'], d['pct'], lo, hi])
-    page('fig4_2_detection', W, H, 'Detection rate by planted error type, replicate 1',
+    page('fig4_3_detection', W, H, 'Detection rate by planted error type, replicate 1',
          'Share of the 20 orders of each type that were warned or blocked, with 95 percent Wilson intervals',
          ''.join(body), legend([(BLUE, 'A rule targets this error'), (ORANGE, 'No rule targets this error')], 32, 104))
-    data('fig4_2_detection', ['error_type', 'has_rule', 'flagged', 'orders', 'detection_pct', 'ci95_low', 'ci95_high'], rows)
+    data('fig4_3_detection', ['error_type', 'has_rule', 'flagged', 'orders', 'detection_pct', 'ci95_low', 'ci95_high'], rows)
 
 
 # ---------------------------------------------------------------- Figure 4.3 measures with intervals and replicate range
@@ -158,9 +158,9 @@ def fig_measures():
     H = top + len(lines) * rh + 50
     leg = legend([(BLUE, 'All errors, replicate 1'), (ORANGE, 'Rule-targeted errors, replicate 1')], 32, 104) + \
         f'<circle cx="690" cy="100" r="5" fill="{SURF}" stroke="{INK2}" stroke-width="1.5"/><text x="702" y="105" font-size="14" fill="{INK2}">Replicates 2 and 3</text>'
-    page('fig4_3_measures', W, H, 'Validation measures with 95 percent Wilson intervals',
+    page('fig4_4_measures', W, H, 'Validation measures with 95 percent Wilson intervals',
          'Replicate 1 point estimate and interval, with replicates 2 and 3 shown for comparison', ''.join(body), leg)
-    data('fig4_3_measures', ['measure', 'error_set', 'replicate1_pct', 'ci95_low', 'ci95_high', 'replicate1', 'replicate2', 'replicate3'], rows)
+    data('fig4_4_measures', ['measure', 'error_set', 'replicate1_pct', 'ci95_low', 'ci95_high', 'replicate1', 'replicate2', 'replicate3'], rows)
 
 
 # ---------------------------------------------------------------- Figure 4.4 validation time across the run
@@ -191,9 +191,9 @@ def fig_timing():
         body.append(f'<text x="{sx(4) + 14}" y="{sy(vals[-1]) + 5 + nudge[name]}" font-size="14" fill="{INK}">{name}, {vals[-1]} ms</text>')
         rows.append([name] + vals)
     H = top + ph + 70
-    page('fig4_4_timing', W, H, 'Validation time per order across each run',
+    page('fig4_7_timing_blocks', W, H, 'Validation time per order across each run',
          'Mean clock time of submit_order inside the database for each block of 100 orders', ''.join(body))
-    data('fig4_4_timing', ['replicate'] + labels, rows)
+    data('fig4_7_timing_blocks', ['replicate'] + labels, rows)
 
 
 # ---------------------------------------------------------------- Figure 4.5 sensitivity
@@ -223,14 +223,103 @@ def fig_sensitivity():
         rows.append([s['factor'], s['history_orders'], s['clean_false_alarm_rate_all_rules']['k'], s['clean_false_alarm_rate_all_rules']['pct'],
                      *s['clean_false_alarm_rate_all_rules']['ci95'], s['typo_detection']['k'], s['typo_detection']['pct'], *s['typo_detection']['ci95']])
     H = top + ph + 50
-    page('fig4_5_sensitivity', W, H, 'Effect of the unusual-quantity threshold, replicate 1 replayed',
+    page('fig4_8_sensitivity', W, H, 'Effect of the unusual-quantity threshold, replicate 1 replayed',
          'Percent of 200 clean orders flagged, and of 20 quantity slips flagged, for each threshold and history length', ''.join(body),
          legend([(BLUE, '4 earlier orders per customer'), (ORANGE, '10 earlier orders per customer')], 32, 104))
-    data('fig4_5_sensitivity', ['factor', 'history_orders', 'clean_flagged', 'false_alarm_pct', 'fa_ci95_low', 'fa_ci95_high',
+    data('fig4_8_sensitivity', ['factor', 'history_orders', 'clean_flagged', 'false_alarm_pct', 'fa_ci95_low', 'fa_ci95_high',
                                 'typos_flagged', 'typo_detection_pct', 'typo_ci95_low', 'typo_ci95_high'], rows)
 
 
+
+# ---------------------------------------------------------------- Figure 4.1 orders by region
+def fig_regions():
+    regs = R1['dataset']['regions']
+    W, left, right, top, bh, gap = 1200, 220, 110, 120, 34, 14
+    plot = W - left - right
+    mx = max(regs.values())
+    body, rows = [], []
+    for i, (name, n) in enumerate(regs.items()):
+        y = top + i * (bh + gap)
+        col = GREY if name == 'No address given' else BLUE
+        w = plot * n / mx
+        body.append(f'<text x="{left - 14}" y="{y + bh / 2 + 5}" font-size="15" fill="{INK}" text-anchor="end">{escape(name)}</text>'
+                    + hbar(left, y, w, bh, col) +
+                    f'<text x="{left + w + 10}" y="{y + bh / 2 + 5}" font-size="14" fill="{INK2}">{n} ({round(100 * n / 500, 1)}%)</text>')
+        rows.append([name, n])
+    H = top + len(regs) * (bh + gap) + 20
+    page('fig4_1_regions', W, H, 'Simulated orders by delivery region, replicate 1',
+         '500 orders from 20 fictional customer companies; orders with a missing address have no region', ''.join(body))
+    data('fig4_1_regions', ['region', 'orders'], rows)
+
+
+# ---------------------------------------------------------------- Figure 4.5 rule activity
+def fig_rules():
+    rules = sorted(R1['rules'], key=lambda r: -r['orders_fired'])
+    W, left, right, top, bh, gap = 1200, 250, 170, 130, 34, 14
+    plot = W - left - right
+    mx = max(r['orders_fired'] for r in rules)
+    body, rows = [], []
+    for i, r in enumerate(rules):
+        y = top + i * (bh + gap)
+        x = left
+        parts = [(r['on_target_type'], BLUE), (r['on_other_error_types'], GREY), (r['on_clean_false_alarms'], ORANGE)]
+        parts = [p for p in parts if p[0]]
+        for j, (v, col) in enumerate(parts):
+            w = plot * v / mx
+            last = j == len(parts) - 1
+            body.append(hbar(x, y, w, bh, col) if last else f'<rect x="{x}" y="{y}" width="{max(w - 2, 0)}" height="{bh}" fill="{col}"/>')
+            x += w
+        sev = 'warning' if r['severity'] == 'warn' else 'blocking'
+        body.append(f'<text x="{left - 14}" y="{y + bh / 2 - 1}" font-size="15" fill="{INK}" text-anchor="end">{escape(r["label"])}</text>'
+                    f'<text x="{left - 14}" y="{y + bh / 2 + 15}" font-size="12" fill="{MUTED}" text-anchor="end">{sev}</text>'
+                    f'<text x="{x + 10}" y="{y + bh / 2 + 5}" font-size="14" fill="{INK2}">{r["orders_fired"]}'
+                    + (f' ({r["on_clean_false_alarms"]} on clean orders)' if r['on_clean_false_alarms'] else '') + '</text>')
+        rows.append([r['label'], sev, r['orders_fired'], r['on_target_type'], r['on_other_error_types'], r['on_clean_false_alarms']])
+    H = top + len(rules) * (bh + gap) + 20
+    page('fig4_5_rules', W, H, 'How often each validation rule fired, replicate 1',
+         'Orders on which each rule raised a block or warning, by the kind of order', ''.join(body),
+         legend([(BLUE, 'Its target error type'), (GREY, 'Another error type'), (ORANGE, 'Clean order (false alarm)')], 32, 104))
+    data('fig4_5_rules', ['rule', 'severity', 'orders_fired', 'on_target_type', 'on_other_error_types', 'on_clean_orders'], rows)
+
+
+# ---------------------------------------------------------------- Figure 4.6 distribution of validation time
+def fig_hist():
+    ms = [float(r['validation_ms']) for r in json.loads((HERE.parent / '03_simulation' / 'raw' / 'run5_replicate1.json').read_text())]
+    width = 10
+    nb = int(max(ms) // width) + 1
+    counts = [sum(b * width <= v < (b + 1) * width for v in ms) for b in range(nb)]
+    W, left, right, top, ph = 1200, 90, 40, 130, 360
+    plot = W - left - right
+    ymax = (max(counts) // 20 + 1) * 20
+    bw = plot / nb
+    sy = lambda v: top + ph - ph * v / ymax
+    body, rows = [], []
+    for t in range(0, ymax + 1, 20):
+        body.append(f'<line x1="{left}" y1="{sy(t)}" x2="{left + plot}" y2="{sy(t)}" stroke="{GRID}"/>'
+                    f'<text x="{left - 10}" y="{sy(t) + 5}" font-size="13" fill="{MUTED}" text-anchor="end">{t}</text>')
+    for b, c in enumerate(counts):
+        x = left + b * bw
+        if c:
+            body.append(f'<rect x="{x + 1}" y="{sy(c)}" width="{bw - 2}" height="{top + ph - sy(c)}" fill="{BLUE}" rx="2"/>')
+        if b % 2 == 0:
+            body.append(f'<text x="{x}" y="{top + ph + 20}" font-size="13" fill="{MUTED}" text-anchor="middle">{b * width}</text>')
+        rows.append([b * width, (b + 1) * width, c])
+    tm = R1['validation_ms']
+    for v, lab in ((tm['median'], f'median {tm["median"]} ms'), (tm['p95'], f'95th percentile {tm["p95"]} ms')):
+        x = left + plot * v / (nb * width)
+        body.append(f'<line x1="{x}" y1="{top - 6}" x2="{x}" y2="{top + ph}" stroke="{INK2}" stroke-dasharray="5 4"/>'
+                    f'<text x="{x + 6}" y="{top + 8}" font-size="13" fill="{INK2}">{lab}</text>')
+    body.append(f'<text x="{left + plot / 2}" y="{top + ph + 46}" font-size="14" fill="{INK2}" text-anchor="middle">Validation time per order, ms, in bands of 10 ms</text>')
+    H = top + ph + 64
+    page('fig4_6_validation_time', W, H, 'Distribution of validation time per order, replicate 1',
+         f'Clock time of submit_order inside the database for all 500 orders, mean {tm["mean"]} ms', ''.join(body))
+    data('fig4_6_validation_time', ['from_ms', 'to_ms', 'orders'], rows)
+
+
+fig_regions()
 fig_outcomes()
+fig_rules()
+fig_hist()
 fig_detection()
 fig_measures()
 fig_timing()

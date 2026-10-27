@@ -99,15 +99,15 @@ cd ../08_chapter && python3 build_chapter.py && python3 check_style.py
 | metrics_final.json | All computed measures for the three replicates and the sensitivity runs. |
 | Verity_Simulation_Data_Final.xlsx | The run 4 workbook unchanged, plus R1 to R3 Orders and Summary sheets with live formulas, a Replicate range sheet and a Sensitivity sheet. |
 | workbook_final.py | Builds that workbook. |
-| charts_final.py, render_final.mjs | Build Figures 4.1 to 4.5 and render them to PNG. |
-| figures/fig4_n_*.png / .svg / .html | Figures 4.1 to 4.5. |
+| charts_final.py, render_final.mjs | Build Figures 4.1 to 4.8 and render them to PNG. |
+| figures/fig4_n_*.png / .svg / .html | Figures 4.1 to 4.8: regions, outcomes, detection, measures, rule activity, time distribution, time across the run, sensitivity. |
 | figures/fig4_n_*_data.csv | The data behind each figure. |
 | build_traceability.py | Writes and checks TRACEABILITY.csv. |
 
 ### 08_chapter (Stage 2)
 | File | Description |
 |---|---|
-| Chapter_Four.docx | The chapter: 19 tables and 5 figures, each with a Source line, and an APA 7 reference list. |
+| Chapter_Four.docx | The chapter, in the layout of the run 4 chapter: 22 tables and 8 figures, each with a Source line, page numbers, and an APA 7 reference list. |
 | chapter_tables.xlsx | Every chapter table as an editable sheet. |
 | build_chapter.py | Builds the chapter and its tables from the files above. |
 | check_style.py | Checks the running text against the writing rules. Last run: 0 hard findings. |

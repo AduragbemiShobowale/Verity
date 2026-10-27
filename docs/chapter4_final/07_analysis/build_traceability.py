@@ -94,7 +94,7 @@ add('4.5', R1['status_history_orders_with_two_or_more_events'], 'orders with mor
 for rep in ('1', '3'):
     b = m['replicates'][rep]['validation_ms_mean_by_block_of_100']
     add('4.5', f'{b[0]:.2f} and {b[-1]:.2f}', f'mean ms of first and last 100 orders, replicate {rep}',
-        f'metrics_final.json replicates.{rep}.validation_ms_mean_by_block_of_100; R{rep} Summary section F block row; figures/fig4_4_timing_data.csv')
+        f'metrics_final.json replicates.{rep}.validation_ms_mean_by_block_of_100; R{rep} Summary section F block row; figures/fig4_7_timing_blocks_data.csv')
 rr = m['replicate_range']
 spread = max(round(v['max'] - v['min'], 1) for k, v in rr.items() if not k.startswith('validation_ms'))
 add('4.5', spread, 'largest replicate spread of a non-timing measure, percentage points (no-rule detection)', 'metrics_final.json replicate_range; Replicate range sheet')

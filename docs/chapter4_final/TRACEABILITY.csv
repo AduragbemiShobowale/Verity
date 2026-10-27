@@ -68,8 +68,8 @@ chapter_section,number_cited,meaning,source_file_field_cell_or_query
 4.5,124.31,"validation time max, ms, replicate 1",R1 Summary!B76; metrics_final.json replicates.1.validation_ms
 4.5,29.78,"mean ms draft event to last event, status history",metrics_final.json replicates.1.status_history_draft_to_last_event_ms
 4.5,478,orders with more than one status event,metrics_final.json replicates.1.status_history_orders_with_two_or_more_events
-4.5,6.90 and 58.76,"mean ms of first and last 100 orders, replicate 1",metrics_final.json replicates.1.validation_ms_mean_by_block_of_100; R1 Summary section F block row; figures/fig4_4_timing_data.csv
-4.5,2.08 and 2.54,"mean ms of first and last 100 orders, replicate 3",metrics_final.json replicates.3.validation_ms_mean_by_block_of_100; R3 Summary section F block row; figures/fig4_4_timing_data.csv
+4.5,6.90 and 58.76,"mean ms of first and last 100 orders, replicate 1",metrics_final.json replicates.1.validation_ms_mean_by_block_of_100; R1 Summary section F block row; figures/fig4_7_timing_blocks_data.csv
+4.5,2.08 and 2.54,"mean ms of first and last 100 orders, replicate 3",metrics_final.json replicates.3.validation_ms_mean_by_block_of_100; R3 Summary section F block row; figures/fig4_7_timing_blocks_data.csv
 4.5,1.7,"largest replicate spread of a non-timing measure, percentage points (no-rule detection)",metrics_final.json replicate_range; Replicate range sheet
 4.6 and 4.8,86.8 to 87.2,primary accuracy across replicates,metrics_final.json replicate_range.accuracy_all; Replicate range sheet columns E and F
 4.6 and 4.8,93.0 to 93.6,secondary accuracy across replicates,metrics_final.json replicate_range.accuracy_targeted; Replicate range sheet columns E and F
