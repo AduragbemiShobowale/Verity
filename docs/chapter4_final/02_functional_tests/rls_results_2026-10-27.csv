@@ -1,0 +1,9 @@
+role_account,customers,products,orders,invoices,payments,delivery_codes,audit_log,settings,simulation_orders,write_attempt,rows_changed_by_write
+admin@verity.example,3,12,3,3,3,0,85,21,500,,
+ops@verity.example,3,12,3,3,3,0,0,21,500,,
+finance@verity.example,3,12,3,3,3,0,0,21,0,,
+warehouse@verity.example,3,12,3,0,0,0,0,21,0,,
+dispatch@verity.example,3,0,3,0,0,0,0,21,0,,
+driver1@verity.example,0,0,0,0,0,0,0,21,0,,
+buyer@adebayo.example,1,0,2,2,2,0,0,21,0,update products set price = 1 where sku = 'CEM-50',0
+orders@okafor.example,1,0,1,1,1,0,0,21,0,update settings set value = 'false' where key = 'auto_approve_enabled',0

@@ -1,0 +1,50 @@
+{
+ "rows": [
+  [
+   "Item code",
+   "Description",
+   "Qty",
+   "Unit price"
+  ],
+  [
+   "CEM-50",
+   "Cement 50kg",
+   "30",
+   "9000"
+  ],
+  [
+   "ROD-12",
+   "Iron rod 12mm",
+   "15",
+   "7200"
+  ],
+  [
+   "XYZ-404",
+   "Galvanised wire mesh",
+   "4",
+   "15000"
+  ]
+ ],
+ "out": {
+  "items": [
+   {
+    "product_id": "e533967d-a63c-4c73-b062-7a28272c5c48",
+    "qty": 30
+   },
+   {
+    "product_id": "47036d6e-d54f-4486-9e15-71b60e281185",
+    "qty": 15
+   }
+  ],
+  "unmatched": [
+   {
+    "row": 4,
+    "sku": "XYZ-404",
+    "name": "Galvanised wire mesh",
+    "qty": "4",
+    "problem": "not in the catalogue"
+   }
+  ],
+  "notes": []
+ }
+}

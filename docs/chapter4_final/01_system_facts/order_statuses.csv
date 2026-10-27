@@ -1,0 +1,18 @@
+position,status,meaning
+1,draft,Customer is filling the form
+2,submitted,Sent; validation runs instantly
+3,validation_failed,A blocking rule failed; customer fixes and resubmits
+4,pending_approval,Passed validation (may carry warnings); waits for Ops Desk
+5,rejected,"Ops Desk refused, with reason"
+6,awaiting_payment,"Stock reserved, invoice issued, payment window running"
+7,payment_verification,Proof uploaded; Finance checking
+8,payment_rejected,Proof not accepted; customer may re-upload
+9,paid,Payment confirmed; released to warehouse
+10,picking,Warehouse collecting items
+11,shortage_hold,Less stock found than ordered; customer chooses
+12,packed,Packed; delivery code generated
+13,assigned,Driver and vehicle assigned
+14,out_for_delivery,Driver confirmed pickup
+15,delivery_failed,Attempt failed; Dispatch reschedules
+16,delivered,Correct delivery code entered (or logged Ops override)
+17,cancelled,"Cancelled by customer, Ops Desk or expired payment window"
