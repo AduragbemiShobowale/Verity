@@ -1,0 +1,7 @@
+feature,implemented,where,how_tested,test_case,test_result
+CSV import of order lines,yes,"src/pages/customer/NewOrder.jsx onFile, readXlsxFile, parseCsv, applyRows; src/lib/upload.js parseCsv, rowsToOrder, matchProduct; server side save_draft(p.unmatched) and the sku rule in _validate","Real parser run in node on sample_import_old_price.csv, then save_draft and submit_order as buyer@adebayo.example in a rolled-back block",18,Pass
+Excel (.xlsx) import of order lines,yes,src/pages/customer/NewOrder.jsx readXlsxFile then the same rowsToOrder path,Shares the code path tested in case 18 after the sheet is read,18,Pass (shared path)
+Price column in an uploaded sheet,ignored,"src/lib/upload.js rowsToOrder reads SKU, name and quantity only; save_draft takes unit_price from products.price",Case 16b,16b,Fail against the stale-price expectation
+CSV export of orders,no,"none found in src or supabase (grep for text/csv and .csv)",Code search,19,Fail
+CSV export of the delivery log,yes,"src/pages/dispatch/DispatchPages.jsx DeliveryLog csv(), rows from the delivery_log(p_from, p_to) database function",App CSV code run on rows returned for dispatch@verity.example,20,Pass
+Webhooks on status change,no,"none; supabase/functions holds only admin-users, pg_net is not installed, no webhook table or trigger",Code and extension search,21,Fail

@@ -1,0 +1,10 @@
+rule,severity,orders_fired,on_target_type,on_other_error_types,on_clean_orders
+Unusual quantity,warning,94,0,67,27
+Quantity limits,blocking,60,60,0,0
+Stock availability,blocking,60,20,40,0
+Mandatory fields,blocking,40,40,0,0
+SKU and product active,blocking,40,40,0,0
+Duplicate order,warning,22,20,1,1
+Customer status,blocking,20,20,0,0
+Pricing,blocking,20,20,0,0
+Delivery date and address,blocking,20,20,0,0

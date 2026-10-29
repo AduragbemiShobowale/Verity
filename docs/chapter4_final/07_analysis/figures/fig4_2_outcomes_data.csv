@@ -1,0 +1,4 @@
+group,orders,passed,warned,blocked
+Clean orders,200,172,28,0
+Errors with a rule,240,0,20,220
+Errors without a rule,60,36,24,0

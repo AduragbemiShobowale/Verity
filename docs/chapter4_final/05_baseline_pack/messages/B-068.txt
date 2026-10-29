@@ -1,0 +1,20 @@
+From: Chukwuemeka Kanu <chukwuemeka.kanu@kanu2.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:28
+Subject: Order from Kanu Brothers Building Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 21 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 67 x Iron rod, 16 mm (ROD-16) at ₦11,800
+  - 250 x Cement, 50 kg bag (CEM-50) at ₦9,500
+
+Deliver to: 12 Main Road, Lagos Mainland
+Delivery date: Friday 06 November 2026
+
+Regards,
+Chukwuemeka Kanu
+Kanu Brothers Building Supplies
+08030209458

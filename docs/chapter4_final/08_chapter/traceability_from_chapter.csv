@@ -1,0 +1,21 @@
+number_cited,meaning,source_file_and_field_or_cell
+17,order statuses,01_system_facts/system_facts.json status_count
+36,permitted transitions,01_system_facts/system_facts.json transition_count
+26,functional test cases,02_functional_tests/functional_tests.csv row count
+23,functional tests passed,02_functional_tests/functional_tests.csv result = Pass
+500 x 3,orders per replicate,"03_simulation/raw/run5,6,7 row counts; metrics_final.json replicates.n.orders"
+"₦797,247,520.00",total order value replicate 1,metrics_final.json replicates.1.dataset.value_total
+13,run 4 harness artefacts,01_system_facts/system_facts.json run4_harness_defect
+28,"clean orders warned, replicate 1",metrics_final.json replicates.1.outcomes_by_group.clean.warn; workbook R1 Summary D5
+14/14,typo flags naming the typo line,metrics_final.json replicates.1.no_rule_flag_on_planted_line
+87.2,"primary accuracy, replicate 1",metrics_final.json replicates.1.confusion_all_errors.accuracy; workbook R1 Summary B
+90.4,"primary precision, replicate 1",metrics_final.json replicates.1.confusion_all_errors.precision; workbook R1 Summary B
+88.0,"primary recall, replicate 1",metrics_final.json replicates.1.confusion_all_errors.recall; workbook R1 Summary B
+86.0,"primary specificity, replicate 1",metrics_final.json replicates.1.confusion_all_errors.specificity; workbook R1 Summary B
+14.0,"primary false alarm rate, replicate 1",metrics_final.json replicates.1.confusion_all_errors.false_alarm_rate; workbook R1 Summary B
+93.6,"secondary accuracy, replicate 1",metrics_final.json replicates.1.confusion_rule_targeted.accuracy; workbook R1 Summary C
+27,"unusual-quantity false alarms, replicate 1",metrics_final.json replicates.1.rules unusual_quantity; workbook R1 Summary E
+28.72,"mean validation ms, replicate 1",metrics_final.json replicates.1.validation_ms.mean; workbook R1 Summary F
+1.7,largest replicate spread of a non-timing measure,"metrics_final.json replicate_range, max minus min"
+86.8 to 87.2,primary accuracy range,metrics_final.json replicate_range.accuracy_all; workbook Replicate range E4:F4
+258/258,"mandatory completion, replicate 1",metrics_final.json replicates.1.mandatory_completion_reaching_approval; workbook R1 Summary G

@@ -1,0 +1,10 @@
+rule_code,rule,check,severity,maps_to_seven_checks,run4_orders_fired,run4_exercised
+mandatory,Mandatory fields,"Items, delivery address and delivery date present",blocking,Mandatory fields,33,yes
+sku,SKU / product active,Every line is a catalogue product that is active; unmatched upload lines also reported here,blocking,SKU,45,yes
+quantity,Quantity limits,Whole number within product minimum and maximum,blocking,Quantity,79,yes
+stock,Stock availability,Quantity not above on hand minus reserved,blocking,Stock,56,yes
+customer_status,Customer status,Customer account is active,blocking,Customer details,0,no
+pricing,Pricing,Line price equals current price list within tolerance 0.01,blocking,Pricing,0,no
+delivery,Delivery date and address,"Date not in past; address is customer's own, active, in an allowed region",blocking,Customer details,19,yes
+duplicate,Duplicate order,Same items and quantities from same customer within 24 hours,warning,Duplicate orders,22,yes
+unusual_quantity,Unusual quantity,Quantity above 3 x customer's average for the product (needs at least 3 earlier orders),warning,(none; additional check),93,yes

@@ -1,0 +1,53 @@
+{
+ "source": "Live Supabase project nsbrupcpwgjnhsysvbes, queried 2026-10-26 (pg_enum order_status, order_transitions, pg_get_functiondef(_validate), simulation_orders run 4, stock_movements)",
+ "db_version": "PostgreSQL 17.11",
+ "status_count": 17,
+ "transition_count": 36,
+ "rule_count": 9,
+ "severity_pairs_from_validate_source": [
+  "customer_status:fail",
+  "delivery:fail",
+  "duplicate:warn",
+  "mandatory:fail",
+  "pricing:fail",
+  "quantity:fail",
+  "sku:fail",
+  "stock:fail",
+  "unusual_quantity:warn",
+  "all:pass (summary row when nothing fires)"
+ ],
+ "run4_rule_coverage": {
+  "sku": 45,
+  "stock": 56,
+  "delivery": 19,
+  "quantity": 79,
+  "duplicate": 22,
+  "mandatory": 33,
+  "unusual_quantity": 93
+ },
+ "run4_rules_not_exercised": [
+  "pricing",
+  "customer_status"
+ ],
+ "run4_at": "2026-10-16T14:46:28.63241+00:00",
+ "stock_movements_after_run4": 0,
+ "settings_at_query": {
+  "tax_rate": 7.5,
+  "unusual_qty_factor": 3,
+  "duplicate_window_hours": 24,
+  "price_tolerance": 0.01,
+  "auto_approve_enabled": true,
+  "auto_approve_max_total": 500000,
+  "payment_window_hours": 48,
+  "low_stock_warn_qty": 10
+ },
+ "extensions": [
+  "plpgsql",
+  "pg_stat_statements",
+  "uuid-ossp",
+  "pgcrypto",
+  "supabase_vault",
+  "pg_cron"
+ ],
+ "run4_harness_defect": "In run 4 the wrong_product branch selected the substitute product with WHERE sku = (array[...])[1+floor(random()*6)], so random() was evaluated per row and sometimes matched no product. 13 of 35 wrong_product orders were therefore submitted with an empty line and blocked as 'Quantity must be a whole number'. Those 13 blocks are harness artefacts, not detections. Verified by: select seq, items, messages from simulation_orders where run_id=4 and planted_error='wrong_product' and outcome='fail' (items = [], message 'line - Quantity must be a whole number'). Fixed in run_simulation_final."
+}

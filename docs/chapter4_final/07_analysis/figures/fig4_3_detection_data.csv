@@ -1,0 +1,16 @@
+error_type,has_rule,flagged,orders,detection_pct,ci95_low,ci95_high
+Customer account not active,Yes,20,20,100.0,83.9,100.0
+Delivery date in the past,Yes,20,20,100.0,83.9,100.0
+Discontinued product,Yes,20,20,100.0,83.9,100.0
+Duplicate order,Yes,20,20,100.0,83.9,100.0
+Fractional quantity,Yes,20,20,100.0,83.9,100.0
+Missing delivery address,Yes,20,20,100.0,83.9,100.0
+Missing delivery date,Yes,20,20,100.0,83.9,100.0
+Price changed after the order was saved,Yes,20,20,100.0,83.9,100.0
+Quantity above available stock,Yes,20,20,100.0,83.9,100.0
+Quantity above maximum,Yes,20,20,100.0,83.9,100.0
+Quantity below minimum,Yes,20,20,100.0,83.9,100.0
+SKU not in catalogue,Yes,20,20,100.0,83.9,100.0
+Plausible quantity typing slip,No,14,20,70.0,48.1,85.5
+Wrong but valid product,No,5,20,25.0,11.2,46.9
+Wrong saved address,No,5,20,25.0,11.2,46.9

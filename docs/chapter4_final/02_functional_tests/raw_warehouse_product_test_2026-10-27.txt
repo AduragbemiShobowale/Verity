@@ -1,0 +1,7 @@
+Query (rolled back by raising the result as an exception, run 2026-10-27):
+do $$ ... perform _as('warehouse@verity.example'); perform warehouse_add_product('TEST-BLK9','Hollow block, 9 inch','piece',40,'GRN-TEST-1',20);
+      ... update products set active = true where id = pid;  (expected refusal)
+      ... perform _as('dispatch@verity.example'); perform warehouse_add_product('TEST-BLK6',...);  (expected refusal)
+      raise exception 'RESULT %', log; end $$;
+Returned:
+ERROR:  P0001: RESULT [{"case": "13a", "price": 0.00, "saved": true, "active": false, "on_hand": 40, "admin_notified": 1, "catalogue_visible_to_customer": 0}, {"case": "13b", "error": "new row for relation \"products\" violates check constraint \"products_active_needs_price\"", "result": "refused"}, {"case": "14", "error": "You do not have permission to do this.", "result": "refused"}]

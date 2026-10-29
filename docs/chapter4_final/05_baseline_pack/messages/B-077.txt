@@ -1,0 +1,19 @@
+From: Segun Olatunji <segun.olatunji@bodija16.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:37
+Subject: Order from Bodija Interiors
+
+Good morning,
+
+Please supply the following:
+
+  - 8 x Emulsion paint, cream, 20 L (PNT-20C) at ₦38,000
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+
+Deliver to: Plot 116, Ibadan
+Delivery date: Saturday 07 November 2026
+
+Regards,
+Segun Olatunji
+Bodija Interiors
+08031675664
