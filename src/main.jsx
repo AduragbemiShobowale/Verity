@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './context/AuthContext'
 import { LiveProvider } from './components/Live'
 import App from './App'
+import IdleSignOut from './components/IdleSignOut'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <LiveProvider>
           <App />
+          <IdleSignOut />
           <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
         </LiveProvider>
       </AuthProvider>

@@ -5,6 +5,7 @@ import { supabase, rpc } from '../../lib/supabase'
 import { useAuth } from '../../context/AuthContext'
 import { BrandMark } from '../../components/Layout'
 import AuthScene from '../../components/AuthScene'
+import { markActive, takeSignOutReason } from '../../components/IdleSignOut'
 
 export function AuthFrame({ children, wide }) {
   return (
@@ -34,6 +35,7 @@ export function AuthFrame({ children, wide }) {
 
 
 export function Login() {
+  const [notice] = useState(() => takeSignOutReason())
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [busy, setBusy] = useState(false)
@@ -44,6 +46,7 @@ export function Login() {
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password })
     setBusy(false)
     if (error) return setErr(error.message === 'Invalid login credentials' ? 'Wrong e-mail or password.' : error.message)
+    markActive()
     rpc('touch_login').catch(() => {})
   }
   return (
@@ -52,6 +55,7 @@ export function Login() {
         <h1>Sign in</h1>
         <p className="muted">Customers and staff use the same sign-in.</p>
       </div>
+      {notice && <div className="notice info">{notice}</div>}
       <form className="stack" onSubmit={submit}>
         <label className="field">E-mail<input type="email" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} required /></label>
         <label className="field">Password<input type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} required /></label>
