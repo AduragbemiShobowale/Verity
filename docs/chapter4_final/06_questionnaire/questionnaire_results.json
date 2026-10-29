@@ -1,0 +1,2157 @@
+{
+ "source": "data.xlsx",
+ "rows": 200,
+ "valid": 200,
+ "validity_rule": "consent Yes, demonstration watched, all ten SUS items answered",
+ "by_group": {
+  "All": 200,
+  "Staff": 120,
+  "Customer": 80
+ },
+ "timestamps": [
+  "2026-10-17 08:18:42.831000",
+  "2026-10-26 22:49:09.708000"
+ ],
+ "reliability": {
+  "SUS": 0.928,
+  "PU": 0.704,
+  "PEU": 0.725,
+  "FC": -0.275,
+  "D": 0.833,
+  "E": 0.865
+ },
+ "sus": {
+  "All": {
+   "n": 200,
+   "mean": 48.86,
+   "sd_sample": 25.21,
+   "median": 47.5,
+   "ci95": [
+    45.35,
+    52.38
+   ],
+   "t_vs_68": -10.737,
+   "df": 199,
+   "p_two_sided": 0.0,
+   "adjective_bangor_2009": "Poor",
+   "acceptability_bangor_2008": "Not acceptable",
+   "grade_sauro_lewis_2016": "F",
+   "share_above_68": {
+    "k": 45,
+    "n": 200,
+    "ci95": [
+     17.3,
+     28.8
+    ]
+   }
+  },
+  "Staff": {
+   "n": 120,
+   "mean": 49.5,
+   "sd_sample": 25.37,
+   "median": 50.0,
+   "ci95": [
+    44.91,
+    54.09
+   ],
+   "t_vs_68": -7.988,
+   "df": 119,
+   "p_two_sided": 0.0,
+   "adjective_bangor_2009": "Poor",
+   "acceptability_bangor_2008": "Not acceptable",
+   "grade_sauro_lewis_2016": "F",
+   "share_above_68": {
+    "k": 28,
+    "n": 120,
+    "ci95": [
+     16.7,
+     31.7
+    ]
+   }
+  },
+  "Customer": {
+   "n": 80,
+   "mean": 47.91,
+   "sd_sample": 25.09,
+   "median": 45.0,
+   "ci95": [
+    42.32,
+    53.49
+   ],
+   "t_vs_68": -7.162,
+   "df": 79,
+   "p_two_sided": 0.0,
+   "adjective_bangor_2009": "Poor",
+   "acceptability_bangor_2008": "Not acceptable",
+   "grade_sauro_lewis_2016": "F",
+   "share_above_68": {
+    "k": 17,
+    "n": 80,
+    "ci95": [
+     13.7,
+     31.4
+    ]
+   }
+  }
+ },
+ "sus_staff_vs_customer_welch": {
+  "difference": 1.59,
+  "t": 0.438,
+  "df": 170.8,
+  "p_two_sided": 0.6618
+ },
+ "items": {
+  "PU1": {
+   "wording": "Using Verity would reduce errors in orders.",
+   "All": {
+    "n": 200,
+    "mean": 2.92,
+    "sd_sample": 1.26,
+    "median": 3.0,
+    "ci95": [
+     2.74,
+     3.1
+    ],
+    "agree_4_or_5": 70,
+    "agree_pct": 35.0,
+    "agree_ci95": [
+     28.7,
+     41.8
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.97,
+    "sd_sample": 1.2,
+    "median": 3.0,
+    "ci95": [
+     2.75,
+     3.18
+    ],
+    "agree_4_or_5": 41,
+    "agree_pct": 34.2,
+    "agree_ci95": [
+     26.3,
+     43.0
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.85,
+    "sd_sample": 1.34,
+    "median": 3.0,
+    "ci95": [
+     2.55,
+     3.15
+    ],
+    "agree_4_or_5": 29,
+    "agree_pct": 36.2,
+    "agree_ci95": [
+     26.6,
+     47.2
+    ]
+   }
+  },
+  "PU2": {
+   "wording": "Verity would reduce the time spent correcting orders.",
+   "All": {
+    "n": 200,
+    "mean": 2.98,
+    "sd_sample": 1.24,
+    "median": 3.0,
+    "ci95": [
+     2.8,
+     3.15
+    ],
+    "agree_4_or_5": 72,
+    "agree_pct": 36.0,
+    "agree_ci95": [
+     29.7,
+     42.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.0,
+    "sd_sample": 1.21,
+    "median": 3.0,
+    "ci95": [
+     2.78,
+     3.22
+    ],
+    "agree_4_or_5": 41,
+    "agree_pct": 34.2,
+    "agree_ci95": [
+     26.3,
+     43.0
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.94,
+    "sd_sample": 1.3,
+    "median": 3.0,
+    "ci95": [
+     2.65,
+     3.23
+    ],
+    "agree_4_or_5": 31,
+    "agree_pct": 38.8,
+    "agree_ci95": [
+     28.8,
+     49.7
+    ]
+   }
+  },
+  "PU3": {
+   "wording": "Verity would be useful in my work or in my dealings with suppliers.",
+   "All": {
+    "n": 200,
+    "mean": 2.79,
+    "sd_sample": 1.29,
+    "median": 3.0,
+    "ci95": [
+     2.62,
+     2.97
+    ],
+    "agree_4_or_5": 64,
+    "agree_pct": 32.0,
+    "agree_ci95": [
+     25.9,
+     38.8
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.86,
+    "sd_sample": 1.3,
+    "median": 3.0,
+    "ci95": [
+     2.62,
+     3.09
+    ],
+    "agree_4_or_5": 44,
+    "agree_pct": 36.7,
+    "agree_ci95": [
+     28.6,
+     45.6
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.7,
+    "sd_sample": 1.28,
+    "median": 3.0,
+    "ci95": [
+     2.42,
+     2.98
+    ],
+    "agree_4_or_5": 20,
+    "agree_pct": 25.0,
+    "agree_ci95": [
+     16.8,
+     35.5
+    ]
+   }
+  },
+  "PEU1": {
+   "wording": "Learning to use Verity would be easy for me.",
+   "All": {
+    "n": 200,
+    "mean": 2.87,
+    "sd_sample": 1.26,
+    "median": 3.0,
+    "ci95": [
+     2.69,
+     3.04
+    ],
+    "agree_4_or_5": 60,
+    "agree_pct": 30.0,
+    "agree_ci95": [
+     24.1,
+     36.7
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.85,
+    "sd_sample": 1.31,
+    "median": 3.0,
+    "ci95": [
+     2.61,
+     3.09
+    ],
+    "agree_4_or_5": 37,
+    "agree_pct": 30.8,
+    "agree_ci95": [
+     23.3,
+     39.6
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.89,
+    "sd_sample": 1.2,
+    "median": 3.0,
+    "ci95": [
+     2.62,
+     3.15
+    ],
+    "agree_4_or_5": 23,
+    "agree_pct": 28.8,
+    "agree_ci95": [
+     20.0,
+     39.5
+    ]
+   }
+  },
+  "PEU2": {
+   "wording": "Ordering through Verity would be at least as easy as sending an order by e-mail or WhatsApp.",
+   "All": {
+    "n": 200,
+    "mean": 2.94,
+    "sd_sample": 1.34,
+    "median": 3.0,
+    "ci95": [
+     2.75,
+     3.12
+    ],
+    "agree_4_or_5": 68,
+    "agree_pct": 34.0,
+    "agree_ci95": [
+     27.8,
+     40.8
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.9,
+    "sd_sample": 1.37,
+    "median": 3.0,
+    "ci95": [
+     2.65,
+     3.15
+    ],
+    "agree_4_or_5": 42,
+    "agree_pct": 35.0,
+    "agree_ci95": [
+     27.1,
+     43.9
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.99,
+    "sd_sample": 1.3,
+    "median": 3.0,
+    "ci95": [
+     2.7,
+     3.28
+    ],
+    "agree_4_or_5": 26,
+    "agree_pct": 32.5,
+    "agree_ci95": [
+     23.2,
+     43.4
+    ]
+   }
+  },
+  "PEU3": {
+   "wording": "It would be easy for me to get Verity to do what I want.",
+   "All": {
+    "n": 200,
+    "mean": 2.96,
+    "sd_sample": 1.25,
+    "median": 3.0,
+    "ci95": [
+     2.78,
+     3.13
+    ],
+    "agree_4_or_5": 62,
+    "agree_pct": 31.0,
+    "agree_ci95": [
+     25.0,
+     37.7
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.98,
+    "sd_sample": 1.27,
+    "median": 3.0,
+    "ci95": [
+     2.75,
+     3.2
+    ],
+    "agree_4_or_5": 38,
+    "agree_pct": 31.7,
+    "agree_ci95": [
+     24.0,
+     40.4
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.92,
+    "sd_sample": 1.24,
+    "median": 3.0,
+    "ci95": [
+     2.65,
+     3.2
+    ],
+    "agree_4_or_5": 24,
+    "agree_pct": 30.0,
+    "agree_ci95": [
+     21.1,
+     40.8
+    ]
+   }
+  },
+  "BI1": {
+   "wording": "I would use Verity if it were available to me.",
+   "All": {
+    "n": 200,
+    "mean": 3.0,
+    "sd_sample": 1.35,
+    "median": 3.0,
+    "ci95": [
+     2.81,
+     3.18
+    ],
+    "agree_4_or_5": 77,
+    "agree_pct": 38.5,
+    "agree_ci95": [
+     32.0,
+     45.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.09,
+    "sd_sample": 1.37,
+    "median": 3.0,
+    "ci95": [
+     2.84,
+     3.34
+    ],
+    "agree_4_or_5": 52,
+    "agree_pct": 43.3,
+    "agree_ci95": [
+     34.8,
+     52.3
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.85,
+    "sd_sample": 1.33,
+    "median": 3.0,
+    "ci95": [
+     2.55,
+     3.15
+    ],
+    "agree_4_or_5": 25,
+    "agree_pct": 31.2,
+    "agree_ci95": [
+     22.2,
+     42.1
+    ]
+   }
+  },
+  "FC1": {
+   "wording": "I have the phone or computer I would need to use Verity.",
+   "All": {
+    "n": 200,
+    "mean": 3.31,
+    "sd_sample": 1.31,
+    "median": 3.0,
+    "ci95": [
+     3.13,
+     3.49
+    ],
+    "agree_4_or_5": 95,
+    "agree_pct": 47.5,
+    "agree_ci95": [
+     40.7,
+     54.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.23,
+    "sd_sample": 1.34,
+    "median": 3.0,
+    "ci95": [
+     2.99,
+     3.48
+    ],
+    "agree_4_or_5": 56,
+    "agree_pct": 46.7,
+    "agree_ci95": [
+     38.0,
+     55.6
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.42,
+    "sd_sample": 1.27,
+    "median": 3.0,
+    "ci95": [
+     3.14,
+     3.71
+    ],
+    "agree_4_or_5": 39,
+    "agree_pct": 48.8,
+    "agree_ci95": [
+     38.1,
+     59.5
+    ]
+   }
+  },
+  "FC2": {
+   "wording": "I have the internet access I would need to use Verity reliably.",
+   "All": {
+    "n": 200,
+    "mean": 3.08,
+    "sd_sample": 1.39,
+    "median": 3.0,
+    "ci95": [
+     2.89,
+     3.27
+    ],
+    "agree_4_or_5": 81,
+    "agree_pct": 40.5,
+    "agree_ci95": [
+     33.9,
+     47.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.03,
+    "sd_sample": 1.4,
+    "median": 3.0,
+    "ci95": [
+     2.78,
+     3.29
+    ],
+    "agree_4_or_5": 47,
+    "agree_pct": 39.2,
+    "agree_ci95": [
+     30.9,
+     48.1
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.15,
+    "sd_sample": 1.39,
+    "median": 3.0,
+    "ci95": [
+     2.84,
+     3.46
+    ],
+    "agree_4_or_5": 34,
+    "agree_pct": 42.5,
+    "agree_ci95": [
+     32.3,
+     53.4
+    ]
+   }
+  },
+  "VOL1": {
+   "wording": "Using Verity would be my own choice and not something my employer or main supplier requires.",
+   "All": {
+    "n": 200,
+    "mean": 2.87,
+    "sd_sample": 1.42,
+    "median": 3.0,
+    "ci95": [
+     2.67,
+     3.06
+    ],
+    "agree_4_or_5": 67,
+    "agree_pct": 33.5,
+    "agree_ci95": [
+     27.3,
+     40.3
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.84,
+    "sd_sample": 1.41,
+    "median": 3.0,
+    "ci95": [
+     2.59,
+     3.1
+    ],
+    "agree_4_or_5": 40,
+    "agree_pct": 33.3,
+    "agree_ci95": [
+     25.5,
+     42.2
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.9,
+    "sd_sample": 1.44,
+    "median": 3.0,
+    "ci95": [
+     2.58,
+     3.22
+    ],
+    "agree_4_or_5": 27,
+    "agree_pct": 33.8,
+    "agree_ci95": [
+     24.3,
+     44.6
+    ]
+   }
+  },
+  "D1": {
+   "wording": "Order errors cause delivery delays",
+   "All": {
+    "n": 200,
+    "mean": 3.12,
+    "sd_sample": 1.22,
+    "median": 3.0,
+    "ci95": [
+     2.95,
+     3.3
+    ],
+    "agree_4_or_5": 78,
+    "agree_pct": 39.0,
+    "agree_ci95": [
+     32.5,
+     45.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.2,
+    "sd_sample": 1.21,
+    "median": 3.0,
+    "ci95": [
+     2.98,
+     3.42
+    ],
+    "agree_4_or_5": 49,
+    "agree_pct": 40.8,
+    "agree_ci95": [
+     32.5,
+     49.8
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.01,
+    "sd_sample": 1.24,
+    "median": 3.0,
+    "ci95": [
+     2.74,
+     3.29
+    ],
+    "agree_4_or_5": 29,
+    "agree_pct": 36.2,
+    "agree_ci95": [
+     26.6,
+     47.2
+    ]
+   }
+  },
+  "D2": {
+   "wording": "Order errors add cost",
+   "All": {
+    "n": 200,
+    "mean": 3.19,
+    "sd_sample": 1.29,
+    "median": 3.0,
+    "ci95": [
+     3.01,
+     3.37
+    ],
+    "agree_4_or_5": 81,
+    "agree_pct": 40.5,
+    "agree_ci95": [
+     33.9,
+     47.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.16,
+    "sd_sample": 1.29,
+    "median": 3.0,
+    "ci95": [
+     2.93,
+     3.39
+    ],
+    "agree_4_or_5": 46,
+    "agree_pct": 38.3,
+    "agree_ci95": [
+     30.1,
+     47.3
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.24,
+    "sd_sample": 1.3,
+    "median": 3.0,
+    "ci95": [
+     2.95,
+     3.53
+    ],
+    "agree_4_or_5": 35,
+    "agree_pct": 43.8,
+    "agree_ci95": [
+     33.4,
+     54.7
+    ]
+   }
+  },
+  "D3": {
+   "wording": "Order errors lead to customer complaints",
+   "All": {
+    "n": 200,
+    "mean": 3.03,
+    "sd_sample": 1.36,
+    "median": 3.0,
+    "ci95": [
+     2.84,
+     3.22
+    ],
+    "agree_4_or_5": 79,
+    "agree_pct": 39.5,
+    "agree_ci95": [
+     33.0,
+     46.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.17,
+    "sd_sample": 1.3,
+    "median": 3.0,
+    "ci95": [
+     2.93,
+     3.4
+    ],
+    "agree_4_or_5": 50,
+    "agree_pct": 41.7,
+    "agree_ci95": [
+     33.2,
+     50.6
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.83,
+    "sd_sample": 1.43,
+    "median": 3.0,
+    "ci95": [
+     2.51,
+     3.14
+    ],
+    "agree_4_or_5": 29,
+    "agree_pct": 36.2,
+    "agree_ci95": [
+     26.6,
+     47.2
+    ]
+   }
+  },
+  "D4": {
+   "wording": "Order errors make stock records wrong",
+   "All": {
+    "n": 200,
+    "mean": 3.12,
+    "sd_sample": 1.32,
+    "median": 3.0,
+    "ci95": [
+     2.93,
+     3.3
+    ],
+    "agree_4_or_5": 85,
+    "agree_pct": 42.5,
+    "agree_ci95": [
+     35.9,
+     49.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.17,
+    "sd_sample": 1.33,
+    "median": 3.0,
+    "ci95": [
+     2.93,
+     3.42
+    ],
+    "agree_4_or_5": 53,
+    "agree_pct": 44.2,
+    "agree_ci95": [
+     35.6,
+     53.1
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.02,
+    "sd_sample": 1.31,
+    "median": 3.0,
+    "ci95": [
+     2.73,
+     3.32
+    ],
+    "agree_4_or_5": 32,
+    "agree_pct": 40.0,
+    "agree_ci95": [
+     30.0,
+     51.0
+    ]
+   }
+  },
+  "D5": {
+   "wording": "Order errors take a lot of time to rework",
+   "All": {
+    "n": 200,
+    "mean": 3.06,
+    "sd_sample": 1.26,
+    "median": 3.0,
+    "ci95": [
+     2.88,
+     3.23
+    ],
+    "agree_4_or_5": 80,
+    "agree_pct": 40.0,
+    "agree_ci95": [
+     33.5,
+     46.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.03,
+    "sd_sample": 1.25,
+    "median": 3.0,
+    "ci95": [
+     2.81,
+     3.26
+    ],
+    "agree_4_or_5": 45,
+    "agree_pct": 37.5,
+    "agree_ci95": [
+     29.4,
+     46.4
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.09,
+    "sd_sample": 1.28,
+    "median": 3.0,
+    "ci95": [
+     2.8,
+     3.37
+    ],
+    "agree_4_or_5": 35,
+    "agree_pct": 43.8,
+    "agree_ci95": [
+     33.4,
+     54.7
+    ]
+   }
+  },
+  "D6": {
+   "wording": "Order errors lead to payment disputes",
+   "All": {
+    "n": 200,
+    "mean": 3.08,
+    "sd_sample": 1.29,
+    "median": 3.0,
+    "ci95": [
+     2.9,
+     3.25
+    ],
+    "agree_4_or_5": 78,
+    "agree_pct": 39.0,
+    "agree_ci95": [
+     32.5,
+     45.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.16,
+    "sd_sample": 1.33,
+    "median": 3.0,
+    "ci95": [
+     2.92,
+     3.4
+    ],
+    "agree_4_or_5": 48,
+    "agree_pct": 40.0,
+    "agree_ci95": [
+     31.7,
+     48.9
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.95,
+    "sd_sample": 1.21,
+    "median": 3.0,
+    "ci95": [
+     2.68,
+     3.22
+    ],
+    "agree_4_or_5": 30,
+    "agree_pct": 37.5,
+    "agree_ci95": [
+     27.7,
+     48.5
+    ]
+   }
+  },
+  "E1": {
+   "wording": "Product code checked against the catalogue",
+   "All": {
+    "n": 200,
+    "mean": 3.06,
+    "sd_sample": 1.26,
+    "median": 3.0,
+    "ci95": [
+     2.88,
+     3.23
+    ],
+    "agree_4_or_5": 80,
+    "agree_pct": 40.0,
+    "agree_ci95": [
+     33.5,
+     46.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.05,
+    "sd_sample": 1.26,
+    "median": 3.0,
+    "ci95": [
+     2.82,
+     3.28
+    ],
+    "agree_4_or_5": 48,
+    "agree_pct": 40.0,
+    "agree_ci95": [
+     31.7,
+     48.9
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.06,
+    "sd_sample": 1.29,
+    "median": 3.0,
+    "ci95": [
+     2.78,
+     3.35
+    ],
+    "agree_4_or_5": 32,
+    "agree_pct": 40.0,
+    "agree_ci95": [
+     30.0,
+     51.0
+    ]
+   }
+  },
+  "E2": {
+   "wording": "Quantity within allowed limits",
+   "All": {
+    "n": 200,
+    "mean": 2.94,
+    "sd_sample": 1.32,
+    "median": 3.0,
+    "ci95": [
+     2.76,
+     3.13
+    ],
+    "agree_4_or_5": 74,
+    "agree_pct": 37.0,
+    "agree_ci95": [
+     30.6,
+     43.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.9,
+    "sd_sample": 1.38,
+    "median": 3.0,
+    "ci95": [
+     2.65,
+     3.15
+    ],
+    "agree_4_or_5": 44,
+    "agree_pct": 36.7,
+    "agree_ci95": [
+     28.6,
+     45.6
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.01,
+    "sd_sample": 1.22,
+    "median": 3.0,
+    "ci95": [
+     2.74,
+     3.28
+    ],
+    "agree_4_or_5": 30,
+    "agree_pct": 37.5,
+    "agree_ci95": [
+     27.7,
+     48.5
+    ]
+   }
+  },
+  "E3": {
+   "wording": "Customer account checked, for example approved and not on hold",
+   "All": {
+    "n": 200,
+    "mean": 2.96,
+    "sd_sample": 1.26,
+    "median": 3.0,
+    "ci95": [
+     2.78,
+     3.14
+    ],
+    "agree_4_or_5": 73,
+    "agree_pct": 36.5,
+    "agree_ci95": [
+     30.1,
+     43.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.02,
+    "sd_sample": 1.27,
+    "median": 3.0,
+    "ci95": [
+     2.79,
+     3.25
+    ],
+    "agree_4_or_5": 45,
+    "agree_pct": 37.5,
+    "agree_ci95": [
+     29.4,
+     46.4
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.88,
+    "sd_sample": 1.24,
+    "median": 3.0,
+    "ci95": [
+     2.6,
+     3.15
+    ],
+    "agree_4_or_5": 28,
+    "agree_pct": 35.0,
+    "agree_ci95": [
+     25.5,
+     45.9
+    ]
+   }
+  },
+  "E4": {
+   "wording": "Price checked against the price list",
+   "All": {
+    "n": 200,
+    "mean": 2.92,
+    "sd_sample": 1.24,
+    "median": 3.0,
+    "ci95": [
+     2.74,
+     3.09
+    ],
+    "agree_4_or_5": 67,
+    "agree_pct": 33.5,
+    "agree_ci95": [
+     27.3,
+     40.3
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.83,
+    "sd_sample": 1.29,
+    "median": 3.0,
+    "ci95": [
+     2.6,
+     3.07
+    ],
+    "agree_4_or_5": 40,
+    "agree_pct": 33.3,
+    "agree_ci95": [
+     25.5,
+     42.2
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.04,
+    "sd_sample": 1.17,
+    "median": 3.0,
+    "ci95": [
+     2.78,
+     3.3
+    ],
+    "agree_4_or_5": 27,
+    "agree_pct": 33.8,
+    "agree_ci95": [
+     24.3,
+     44.6
+    ]
+   }
+  },
+  "E5": {
+   "wording": "Warning for a duplicate order",
+   "All": {
+    "n": 200,
+    "mean": 2.91,
+    "sd_sample": 1.27,
+    "median": 3.0,
+    "ci95": [
+     2.73,
+     3.09
+    ],
+    "agree_4_or_5": 71,
+    "agree_pct": 35.5,
+    "agree_ci95": [
+     29.2,
+     42.3
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.91,
+    "sd_sample": 1.27,
+    "median": 3.0,
+    "ci95": [
+     2.68,
+     3.14
+    ],
+    "agree_4_or_5": 43,
+    "agree_pct": 35.8,
+    "agree_ci95": [
+     27.8,
+     44.7
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.91,
+    "sd_sample": 1.27,
+    "median": 3.0,
+    "ci95": [
+     2.63,
+     3.2
+    ],
+    "agree_4_or_5": 28,
+    "agree_pct": 35.0,
+    "agree_ci95": [
+     25.5,
+     45.9
+    ]
+   }
+  },
+  "E6": {
+   "wording": "Stock checked when the order is placed",
+   "All": {
+    "n": 200,
+    "mean": 2.94,
+    "sd_sample": 1.27,
+    "median": 3.0,
+    "ci95": [
+     2.76,
+     3.11
+    ],
+    "agree_4_or_5": 73,
+    "agree_pct": 36.5,
+    "agree_ci95": [
+     30.1,
+     43.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.97,
+    "sd_sample": 1.3,
+    "median": 3.0,
+    "ci95": [
+     2.73,
+     3.2
+    ],
+    "agree_4_or_5": 46,
+    "agree_pct": 38.3,
+    "agree_ci95": [
+     30.1,
+     47.3
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.89,
+    "sd_sample": 1.23,
+    "median": 3.0,
+    "ci95": [
+     2.61,
+     3.16
+    ],
+    "agree_4_or_5": 27,
+    "agree_pct": 33.8,
+    "agree_ci95": [
+     24.3,
+     44.6
+    ]
+   }
+  },
+  "E7": {
+   "wording": "Required fields cannot be left empty",
+   "All": {
+    "n": 200,
+    "mean": 3.03,
+    "sd_sample": 1.23,
+    "median": 3.0,
+    "ci95": [
+     2.86,
+     3.2
+    ],
+    "agree_4_or_5": 75,
+    "agree_pct": 37.5,
+    "agree_ci95": [
+     31.1,
+     44.4
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.14,
+    "sd_sample": 1.24,
+    "median": 3.0,
+    "ci95": [
+     2.92,
+     3.37
+    ],
+    "agree_4_or_5": 51,
+    "agree_pct": 42.5,
+    "agree_ci95": [
+     34.0,
+     51.4
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.86,
+    "sd_sample": 1.2,
+    "median": 3.0,
+    "ci95": [
+     2.6,
+     3.13
+    ],
+    "agree_4_or_5": 24,
+    "agree_pct": 30.0,
+    "agree_ci95": [
+     21.1,
+     40.8
+    ]
+   }
+  },
+  "E8": {
+   "wording": "Delivery date and address checked",
+   "All": {
+    "n": 200,
+    "mean": 2.95,
+    "sd_sample": 1.29,
+    "median": 3.0,
+    "ci95": [
+     2.77,
+     3.13
+    ],
+    "agree_4_or_5": 67,
+    "agree_pct": 33.5,
+    "agree_ci95": [
+     27.3,
+     40.3
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.91,
+    "sd_sample": 1.33,
+    "median": 3.0,
+    "ci95": [
+     2.67,
+     3.15
+    ],
+    "agree_4_or_5": 40,
+    "agree_pct": 33.3,
+    "agree_ci95": [
+     25.5,
+     42.2
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.01,
+    "sd_sample": 1.23,
+    "median": 3.0,
+    "ci95": [
+     2.74,
+     3.29
+    ],
+    "agree_4_or_5": 27,
+    "agree_pct": 33.8,
+    "agree_ci95": [
+     24.3,
+     44.6
+    ]
+   }
+  },
+  "E9": {
+   "wording": "Warning when a quantity is far above the customer's usual",
+   "All": {
+    "n": 200,
+    "mean": 3.02,
+    "sd_sample": 1.32,
+    "median": 3.0,
+    "ci95": [
+     2.84,
+     3.2
+    ],
+    "agree_4_or_5": 78,
+    "agree_pct": 39.0,
+    "agree_ci95": [
+     32.5,
+     45.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.98,
+    "sd_sample": 1.33,
+    "median": 3.0,
+    "ci95": [
+     2.74,
+     3.21
+    ],
+    "agree_4_or_5": 46,
+    "agree_pct": 38.3,
+    "agree_ci95": [
+     30.1,
+     47.3
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.09,
+    "sd_sample": 1.32,
+    "median": 3.0,
+    "ci95": [
+     2.79,
+     3.38
+    ],
+    "agree_4_or_5": 32,
+    "agree_pct": 40.0,
+    "agree_ci95": [
+     30.0,
+     51.0
+    ]
+   }
+  },
+  "E10": {
+   "wording": "Order status visible in real time",
+   "All": {
+    "n": 200,
+    "mean": 3.02,
+    "sd_sample": 1.27,
+    "median": 3.0,
+    "ci95": [
+     2.84,
+     3.19
+    ],
+    "agree_4_or_5": 76,
+    "agree_pct": 38.0,
+    "agree_ci95": [
+     31.6,
+     44.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 3.01,
+    "sd_sample": 1.34,
+    "median": 3.0,
+    "ci95": [
+     2.77,
+     3.25
+    ],
+    "agree_4_or_5": 48,
+    "agree_pct": 40.0,
+    "agree_ci95": [
+     31.7,
+     48.9
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.02,
+    "sd_sample": 1.18,
+    "median": 3.0,
+    "ci95": [
+     2.76,
+     3.29
+    ],
+    "agree_4_or_5": 28,
+    "agree_pct": 35.0,
+    "agree_ci95": [
+     25.5,
+     45.9
+    ]
+   }
+  },
+  "E11": {
+   "wording": "Payment proof checked before goods are released",
+   "All": {
+    "n": 200,
+    "mean": 2.94,
+    "sd_sample": 1.33,
+    "median": 3.0,
+    "ci95": [
+     2.75,
+     3.12
+    ],
+    "agree_4_or_5": 72,
+    "agree_pct": 36.0,
+    "agree_ci95": [
+     29.7,
+     42.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.98,
+    "sd_sample": 1.26,
+    "median": 3.0,
+    "ci95": [
+     2.75,
+     3.2
+    ],
+    "agree_4_or_5": 44,
+    "agree_pct": 36.7,
+    "agree_ci95": [
+     28.6,
+     45.6
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.88,
+    "sd_sample": 1.43,
+    "median": 3.0,
+    "ci95": [
+     2.56,
+     3.19
+    ],
+    "agree_4_or_5": 28,
+    "agree_pct": 35.0,
+    "agree_ci95": [
+     25.5,
+     45.9
+    ]
+   }
+  },
+  "E12": {
+   "wording": "Delivery confirmed by a code that only the customer sees",
+   "All": {
+    "n": 200,
+    "mean": 2.94,
+    "sd_sample": 1.25,
+    "median": 3.0,
+    "ci95": [
+     2.76,
+     3.11
+    ],
+    "agree_4_or_5": 72,
+    "agree_pct": 36.0,
+    "agree_ci95": [
+     29.7,
+     42.9
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.88,
+    "sd_sample": 1.28,
+    "median": 3.0,
+    "ci95": [
+     2.65,
+     3.12
+    ],
+    "agree_4_or_5": 39,
+    "agree_pct": 32.5,
+    "agree_ci95": [
+     24.8,
+     41.3
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 3.01,
+    "sd_sample": 1.21,
+    "median": 3.0,
+    "ci95": [
+     2.74,
+     3.28
+    ],
+    "agree_4_or_5": 33,
+    "agree_pct": 41.2,
+    "agree_ci95": [
+     31.1,
+     52.2
+    ]
+   }
+  }
+ },
+ "scale_means": {
+  "PU": {
+   "All": {
+    "n": 200,
+    "mean": 2.9,
+    "sd_sample": 1.0,
+    "median": 3.0,
+    "ci95": [
+     2.76,
+     3.04
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.94,
+    "sd_sample": 0.95,
+    "median": 3.0,
+    "ci95": [
+     2.77,
+     3.11
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.83,
+    "sd_sample": 1.08,
+    "median": 2.83,
+    "ci95": [
+     2.59,
+     3.07
+    ]
+   }
+  },
+  "PEU": {
+   "All": {
+    "n": 200,
+    "mean": 2.92,
+    "sd_sample": 1.03,
+    "median": 3.0,
+    "ci95": [
+     2.77,
+     3.06
+    ]
+   },
+   "Staff": {
+    "n": 120,
+    "mean": 2.91,
+    "sd_sample": 1.08,
+    "median": 3.0,
+    "ci95": [
+     2.71,
+     3.1
+    ]
+   },
+   "Customer": {
+    "n": 80,
+    "mean": 2.93,
+    "sd_sample": 0.96,
+    "median": 3.0,
+    "ci95": [
+     2.72,
+     3.15
+    ]
+   }
+  }
+ },
+ "corr_sus_bi1": 0.175,
+ "corr_pu_bi1": 0.409,
+ "corr_peu_bi1": 0.149,
+ "categorical": {
+  "A1. Main role": {
+   "All": {
+    "Other": 49,
+    "Purchasing": 42,
+    "Management": 34,
+    "Warehouse": 22,
+    "Dispatch or delivery": 19,
+    "Finance or accounts": 19,
+    "Order or sales desk": 15
+   },
+   "Staff": {
+    "Purchasing": 22,
+    "Warehouse": 22,
+    "Dispatch or delivery": 19,
+    "Finance or accounts": 19,
+    "Order or sales desk": 15,
+    "Other": 15,
+    "Management": 8
+   },
+   "Customer": {
+    "Other": 34,
+    "Management": 26,
+    "Purchasing": 20
+   }
+  },
+  "A2. Years in this kind of work": {
+   "All": {
+    "1 to 3": 66,
+    "Over 7": 52,
+    "4 to 7": 41,
+    "Under 1": 41
+   },
+   "Staff": {
+    "1 to 3": 45,
+    "Over 7": 27,
+    "Under 1": 26,
+    "4 to 7": 22
+   },
+   "Customer": {
+    "Over 7": 25,
+    "1 to 3": 21,
+    "4 to 7": 19,
+    "Under 1": 15
+   }
+  },
+  "A3. Type of business": {
+   "All": {
+    "Other": 47,
+    "Wholesale or distribution": 47,
+    "Freight or haulage": 38,
+    "Building materials or construction supply": 37,
+    "Manufacturing": 31
+   },
+   "Staff": {
+    "Wholesale or distribution": 32,
+    "Freight or haulage": 25,
+    "Other": 23,
+    "Manufacturing": 22,
+    "Building materials or construction supply": 18
+   },
+   "Customer": {
+    "Other": 24,
+    "Building materials or construction supply": 19,
+    "Wholesale or distribution": 15,
+    "Freight or haulage": 13,
+    "Manufacturing": 9
+   }
+  },
+  "A4. Number of staff in the business": {
+   "All": {
+    "Under 10": 61,
+    "10 to 49": 57,
+    "50 to 249": 43,
+    "250 or more": 39
+   },
+   "Staff": {
+    "10 to 49": 37,
+    "Under 10": 33,
+    "250 or more": 28,
+    "50 to 249": 22
+   },
+   "Customer": {
+    "Under 10": 28,
+    "50 to 249": 21,
+    "10 to 49": 20,
+    "250 or more": 11
+   }
+  },
+  "A5. Orders handled/placed on a typical day": {
+   "All": {
+    "Under 20": 60,
+    "51 to 100": 51,
+    "20 to 50": 47,
+    "Over 100": 42
+   },
+   "Staff": {
+    "Under 20": 38,
+    "Over 100": 29,
+    "20 to 50": 27,
+    "51 to 100": 26
+   },
+   "Customer": {
+    "51 to 100": 25,
+    "Under 20": 22,
+    "20 to 50": 20,
+    "Over 100": 13
+   }
+  },
+  "A6. Main operating location": {
+   "All": {
+    "Outside Nigeria": 45,
+    "Another Nigerian state": 43,
+    "Ibadan": 42,
+    "Abuja": 39,
+    "Lagos": 31
+   },
+   "Staff": {
+    "Outside Nigeria": 31,
+    "Another Nigerian state": 27,
+    "Abuja": 23,
+    "Ibadan": 20,
+    "Lagos": 19
+   },
+   "Customer": {
+    "Ibadan": 22,
+    "Abuja": 16,
+    "Another Nigerian state": 16,
+    "Outside Nigeria": 14,
+    "Lagos": 12
+   }
+  },
+  "B2. Main channel (raw)": {
+   "All": {
+    "Phone call": 38,
+    "Spreadsheet": 36,
+    "WhatsApp": 35,
+    "Online portal": 32,
+    "Paper form": 30,
+    "E-mail": 29
+   },
+   "Staff": {
+    "Phone call": 24,
+    "Spreadsheet": 23,
+    "WhatsApp": 20,
+    "Online portal": 20,
+    "Paper form": 19,
+    "E-mail": 14
+   },
+   "Customer": {
+    "WhatsApp": 15,
+    "E-mail": 15,
+    "Phone call": 14,
+    "Spreadsheet": 13,
+    "Online portal": 12,
+    "Paper form": 11
+   }
+  },
+  "B2. Main channel (validated)": {
+   "All": {
+    "blank": 118,
+    "Online portal": 19,
+    "Phone call": 19,
+    "Spreadsheet": 16,
+    "WhatsApp": 14,
+    "Paper form": 7,
+    "E-mail": 7
+   },
+   "Staff": {
+    "blank": 61,
+    "Phone call": 13,
+    "Online portal": 13,
+    "Spreadsheet": 11,
+    "WhatsApp": 11,
+    "E-mail": 6,
+    "Paper form": 5
+   },
+   "Customer": {
+    "blank": 57,
+    "Online portal": 6,
+    "Phone call": 6,
+    "Spreadsheet": 5,
+    "WhatsApp": 3,
+    "Paper form": 2,
+    "E-mail": 1
+   }
+  },
+  "B3. How order enters records": {
+   "All": {
+    "Entered directly by the customer": 55,
+    "Retyped by hand": 54,
+    "Copied and pasted": 47,
+    "Imported automatically": 44
+   },
+   "Staff": {
+    "Copied and pasted": 33,
+    "Retyped by hand": 32,
+    "Imported automatically": 29,
+    "Entered directly by the customer": 26
+   },
+   "Customer": {
+    "Entered directly by the customer": 29,
+    "Retyped by hand": 22,
+    "Imported automatically": 15,
+    "Copied and pasted": 14
+   }
+  },
+  "B5. Can customers see stock before ordering?": {
+   "All": {
+    "Not sure": 56,
+    "Always": 52,
+    "Sometimes": 51,
+    "Never": 41
+   },
+   "Staff": {
+    "Not sure": 31,
+    "Always": 31,
+    "Sometimes": 31,
+    "Never": 27
+   },
+   "Customer": {
+    "Not sure": 25,
+    "Always": 21,
+    "Sometimes": 20,
+    "Never": 14
+   }
+  },
+  "B6. Record of who changed/approved order": {
+   "All": {
+    "No record": 55,
+    "A partial record": 55,
+    "A complete record": 47,
+    "Not sure": 43
+   },
+   "Staff": {
+    "A partial record": 43,
+    "No record": 32,
+    "A complete record": 23,
+    "Not sure": 22
+   },
+   "Customer": {
+    "A complete record": 24,
+    "No record": 23,
+    "Not sure": 21,
+    "A partial record": 12
+   }
+  },
+  "B7. When stock shortages found": {
+   "All": {
+    "At picking": 54,
+    "Before the order is confirmed": 52,
+    "At dispatch": 49,
+    "After delivery": 45
+   },
+   "Staff": {
+    "At picking": 35,
+    "At dispatch": 31,
+    "After delivery": 28,
+    "Before the order is confirmed": 26
+   },
+   "Customer": {
+    "Before the order is confirmed": 26,
+    "At picking": 19,
+    "At dispatch": 18,
+    "After delivery": 17
+   }
+  },
+  "F1. Willingness to enter orders online": {
+   "All": {
+    "No": 80,
+    "Unsure": 67,
+    "Yes": 53
+   },
+   "Staff": {
+    "No": 44,
+    "Unsure": 39,
+    "Yes": 37
+   },
+   "Customer": {
+    "No": 36,
+    "Unsure": 28,
+    "Yes": 16
+   }
+  },
+  "F2. Biggest order-handling problem": {
+   "All": {
+    "Mobile access and low data use are important": 26,
+    "Corrections take time when the original order cannot be traced": 24,
+    "Delivery dates can be unclear when an order changes": 23,
+    "Price and product codes need to be checked manually": 21,
+    "Staff need a simple way to track order status": 20,
+    "Order details sometimes have to be retyped between channels": 19,
+    "Duplicate orders can be difficult to identify": 18,
+    "Customers need clearer confirmation after submitting an order": 18,
+    "Updates are not always shared with everyone handling the order": 16,
+    "Stock availability is not always visible before an order is submitted": 15
+   },
+   "Staff": {
+    "Mobile access and low data use are important": 18,
+    "Corrections take time when the original order cannot be traced": 15,
+    "Delivery dates can be unclear when an order changes": 15,
+    "Order details sometimes have to be retyped between channels": 13,
+    "Duplicate orders can be difficult to identify": 12,
+    "Customers need clearer confirmation after submitting an order": 11,
+    "Price and product codes need to be checked manually": 10,
+    "Updates are not always shared with everyone handling the order": 9,
+    "Staff need a simple way to track order status": 9,
+    "Stock availability is not always visible before an order is submitted": 8
+   },
+   "Customer": {
+    "Price and product codes need to be checked manually": 11,
+    "Staff need a simple way to track order status": 11,
+    "Corrections take time when the original order cannot be traced": 9,
+    "Mobile access and low data use are important": 8,
+    "Delivery dates can be unclear when an order changes": 8,
+    "Stock availability is not always visible before an order is submitted": 7,
+    "Customers need clearer confirmation after submitting an order": 7,
+    "Updates are not always shared with everyone handling the order": 7,
+    "Duplicate orders can be difficult to identify": 6,
+    "Order details sometimes have to be retyped between channels": 6
+   }
+  },
+  "F3. Additional feature requested": {
+   "All": {
+    "Keep a history of changes and approvals": 29,
+    "Allow users to see correction history": 27,
+    "Include duplicate-order alerts": 22,
+    "Make delivery details mandatory where needed": 21,
+    "Add live stock visibility and low-stock warnings": 20,
+    "Keep the interface simple for occasional users": 20,
+    "Send confirmation when an order is received": 19,
+    "Make the form work well on mobile devices": 17,
+    "Validate product codes and quantities automatically": 14,
+    "Provide an order-status timeline": 11
+   },
+   "Staff": {
+    "Keep a history of changes and approvals": 17,
+    "Make delivery details mandatory where needed": 15,
+    "Allow users to see correction history": 14,
+    "Keep the interface simple for occasional users": 14,
+    "Send confirmation when an order is received": 14,
+    "Add live stock visibility and low-stock warnings": 13,
+    "Include duplicate-order alerts": 10,
+    "Make the form work well on mobile devices": 10,
+    "Validate product codes and quantities automatically": 8,
+    "Provide an order-status timeline": 5
+   },
+   "Customer": {
+    "Allow users to see correction history": 13,
+    "Include duplicate-order alerts": 12,
+    "Keep a history of changes and approvals": 12,
+    "Add live stock visibility and low-stock warnings": 7,
+    "Make the form work well on mobile devices": 7,
+    "Make delivery details mandatory where needed": 6,
+    "Validate product codes and quantities automatically": 6,
+    "Keep the interface simple for occasional users": 6,
+    "Provide an order-status timeline": 6,
+    "Send confirmation when an order is received": 5
+   }
+  },
+  "C1. How often order errors occur": {
+   "All": {
+    "4": 60,
+    "3": 46,
+    "5": 41,
+    "2": 27,
+    "1": 26
+   },
+   "Staff": {
+    "4": 38,
+    "3": 31,
+    "5": 21,
+    "2": 16,
+    "1": 14
+   },
+   "Customer": {
+    "4": 22,
+    "5": 20,
+    "3": 15,
+    "1": 12,
+    "2": 11
+   }
+  },
+  "C2. Estimated share of orders with error": {
+   "All": {
+    "4": 66,
+    "3": 38,
+    "5": 37,
+    "2": 33,
+    "1": 26
+   },
+   "Staff": {
+    "4": 40,
+    "5": 23,
+    "3": 22,
+    "2": 21,
+    "1": 14
+   },
+   "Customer": {
+    "4": 26,
+    "3": 16,
+    "5": 14,
+    "2": 12,
+    "1": 12
+   }
+  },
+  "C3. Error types met (select all)": {
+   "All": {
+    "4": 71,
+    "3": 52,
+    "5": 39,
+    "2": 24,
+    "1": 14
+   },
+   "Staff": {
+    "4": 43,
+    "3": 33,
+    "5": 24,
+    "2": 15,
+    "1": 5
+   },
+   "Customer": {
+    "4": 28,
+    "3": 19,
+    "5": 15,
+    "1": 9,
+    "2": 9
+   }
+  },
+  "C4. Where errors usually found": {
+   "All": {
+    "4": 68,
+    "5": 49,
+    "3": 44,
+    "2": 27,
+    "1": 12
+   },
+   "Staff": {
+    "4": 38,
+    "5": 30,
+    "3": 23,
+    "2": 18,
+    "1": 11
+   },
+   "Customer": {
+    "4": 30,
+    "3": 21,
+    "5": 19,
+    "2": 9,
+    "1": 1
+   }
+  },
+  "C5. Time to correct one error": {
+   "All": {
+    "4": 65,
+    "5": 49,
+    "3": 36,
+    "1": 27,
+    "2": 23
+   },
+   "Staff": {
+    "4": 43,
+    "5": 29,
+    "3": 21,
+    "1": 15,
+    "2": 12
+   },
+   "Customer": {
+    "4": 22,
+    "5": 20,
+    "3": 15,
+    "1": 12,
+    "2": 11
+   }
+  },
+  "B1. Channels used (select all)": {
+   "All": {
+    "Phone call": 109,
+    "Online portal": 104,
+    "WhatsApp": 83,
+    "Spreadsheet": 80,
+    "E-mail": 79,
+    "Paper form": 77
+   },
+   "Staff": {
+    "Phone call": 66,
+    "WhatsApp": 60,
+    "Online portal": 60,
+    "Paper form": 48,
+    "Spreadsheet": 48,
+    "E-mail": 45
+   },
+   "Customer": {
+    "Online portal": 44,
+    "Phone call": 43,
+    "E-mail": 34,
+    "Spreadsheet": 32,
+    "Paper form": 29,
+    "WhatsApp": 23
+   }
+  },
+  "B4. Checks before processing (select all)": {
+   "All": {
+    "The person who typed it rereads it": 118,
+    "A colleague checks it": 109,
+    "Other": 89,
+    "The system checks it automatically": 87,
+    "No check": 10
+   },
+   "Staff": {
+    "The person who typed it rereads it": 74,
+    "A colleague checks it": 69,
+    "The system checks it automatically": 52,
+    "Other": 47,
+    "No check": 7
+   },
+   "Customer": {
+    "The person who typed it rereads it": 44,
+    "Other": 42,
+    "A colleague checks it": 40,
+    "The system checks it automatically": 35,
+    "No check": 3
+   }
+  }
+ },
+ "main_channel_consistency": {
+  "raw_main_channel_among_channels_used": 82,
+  "n": 200
+ },
+ "f1_willingness_yes": {
+  "All": {
+   "k": 53,
+   "n": 200,
+   "ci95": [
+    20.9,
+    33.0
+   ]
+  },
+  "Staff": {
+   "k": 37,
+   "n": 120,
+   "ci95": [
+    23.3,
+    39.6
+   ]
+  },
+  "Customer": {
+   "k": 16,
+   "n": 80,
+   "ci95": [
+    12.7,
+    30.0
+   ]
+  }
+ }
+}
