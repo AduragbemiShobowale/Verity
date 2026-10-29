@@ -1,0 +1,11 @@
+item,wording,agree,n,agree_pct,ci95_low,ci95_high
+PU1,Using Verity would reduce errors in orders.,70,200,35.0,28.7,41.8
+PU2,Verity would reduce the time spent correcting orders.,72,200,36.0,29.7,42.9
+PU3,Verity would be useful in my work or in my dealings with suppliers.,64,200,32.0,25.9,38.8
+PEU1,Learning to use Verity would be easy for me.,60,200,30.0,24.1,36.7
+PEU2,Ordering through Verity would be at least as easy as sending an order by e-mail or WhatsApp.,68,200,34.0,27.8,40.8
+PEU3,It would be easy for me to get Verity to do what I want.,62,200,31.0,25.0,37.7
+BI1,I would use Verity if it were available to me.,77,200,38.5,32.0,45.4
+FC1,I have the phone or computer I would need to use Verity.,95,200,47.5,40.7,54.4
+FC2,I have the internet access I would need to use Verity reliably.,81,200,40.5,33.9,47.4
+VOL1,Using Verity would be my own choice and not something my employer or main supplier requires.,67,200,33.5,27.3,40.3

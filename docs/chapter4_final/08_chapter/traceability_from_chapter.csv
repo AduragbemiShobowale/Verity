@@ -1,4 +1,10 @@
 number_cited,meaning,source_file_and_field_or_cell
+200,valid questionnaire responses,06_questionnaire/questionnaire_results.json valid
+101,respondents whose orders are retyped or copied,"questionnaire_results.json categorical B3, Retyped by hand plus Copied and pasted"
+82,consistent main-channel answers,questionnaire_results.json main_channel_consistency
+0.928,SUS alpha,questionnaire_results.json reliability.SUS
+48.86,SUS mean all respondents,questionnaire_results.json sus.All.mean; questionnaire_tables.xlsx sheet SUS
+0.41,correlation PU mean with BI1,questionnaire_results.json corr_pu_bi1
 17,order statuses,01_system_facts/system_facts.json status_count
 36,permitted transitions,01_system_facts/system_facts.json transition_count
 26,functional test cases,02_functional_tests/functional_tests.csv row count
