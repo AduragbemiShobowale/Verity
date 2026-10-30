@@ -21,6 +21,7 @@ R = M['replicates']
 R1 = R['1']
 RUN4 = json.loads((ROOT.parent / 'chapter4' / 'metrics.json').read_text())
 FACTS = json.loads((ROOT / '01_system_facts' / 'system_facts.json').read_text())
+MB = json.loads((ROOT / '05_baseline_pack' / 'session_data' / 'manual_vs_simulation_results.json').read_text())
 FT = list(csv.DictReader(open(ROOT / '02_functional_tests' / 'functional_tests.csv', encoding='utf-8')))
 RLS = list(csv.DictReader(open(ROOT / '02_functional_tests' / 'rls_results_2026-10-27.csv')))
 STAT = list(csv.DictReader(open(ROOT / '01_system_facts' / 'order_statuses.csv')))
@@ -199,8 +200,8 @@ for txt in ('CHAPTER FOUR', 'RESULTS AND DISCUSSION'):
     tp.runs[0].bold = True
     tp.runs[0].font.size = Pt(14)
 note_box('Note for the group. This chapter combines the questionnaire results, supplied by the client team, with the technical '
-         'evaluation of the system and the simulation. The comparison with manual entry is scheduled, and the error-reduction and speed '
-         'criteria are reported as Scheduled until it is complete. '
+         'evaluation of the system and the simulation. The comparison with manual entry was run on a small scale and is reported as '
+         'indicative. The speed criterion is reported as Scheduled. '
          'Delete this note before submission.')
 H2('4.1 Introduction')
 P('This chapter reports the evaluation of Verity, the intelligent order processing system developed in this project. It has two '
@@ -208,9 +209,9 @@ P('This chapter reports the evaluation of Verity, the intelligent order processi
   'distribution businesses and to business customers, before and after a demonstration of Verity. Sections 4.3 to 4.5 report the '
   'technical evaluation, namely the implemented system with its testing, and a controlled simulation in which orders with known '
   'planted errors were submitted to the live validation engine.')
-P('At the time of writing the comparison with manual order entry was scheduled but not yet complete. The two success criteria '
-  'that rest on it, the reduction in manual entry errors and the gain in processing speed, are therefore given the status '
-  'Scheduled, and the evidence the system itself provides on both is reported in their place. All other figures in this '
+P('The comparison with manual order entry was run on a small scale, with two participants and 40 orders, and its results are '
+  'reported as indicative. The time a person spends entering an order in Verity was not measured, so the speed criterion is given '
+  'the status Scheduled. All other figures in this '
   'chapter come from files and database queries produced during the evaluation, and each is listed with its source in the '
   'traceability table that accompanies the chapter.')
 
@@ -585,10 +586,56 @@ P(f'Mandatory-field completion was measured on the orders that reached approval.
   f'the mandatory-fields rule blocks any order without them, and the simulation confirms that no such order got through.')
 trace(f"{mand['k']}/{mand['n']}", 'mandatory completion, replicate 1', 'metrics_final.json replicates.1.mandatory_completion_reaching_approval; workbook R1 Summary G')
 
+H3('4.5.9 Comparison with manual entry')
+mr, vr = MB['manual_error_rate'], MB['verity_error_rate']
+P(f'Two participants who had not seen the answer key each handled 20 of the order messages of the comparison pack by hand on 30 '
+  f'October 2026, as orders are handled today. Each checked the message against the reference sheets of the pack and typed the '
+  f'order into an entry sheet without correcting it, noting the time at the start and at the end. The {MB["orders"]} orders were taken from '
+  f'replicate 1 of the simulation, so the outcome of Verity on each of them was already known. In Verity the customer enters the '
+  f'order against the live catalogue and no member of staff retypes it, so an error reaches the record only when the system does '
+  f'not flag it. The comparison used the definitions fixed before any data were collected. By hand an error reached the record '
+  f'when a planted error was not flagged or when any field was typed differently from the message. Table 4.29 gives the results.')
+cmp_rows = [
+    ['Orders with an error reaching the record', f'{mr["k"]} of {mr["n"]}, {pc(mr["pct"])} percent', ci(mr), f'{vr["k"]} of {vr["n"]}, {pc(vr["pct"])} percent', ci(vr)],
+    ['Planted errors flagged', f'{MB["manual_planted_errors_caught"]["k"]} of {MB["manual_planted_errors_caught"]["n"]}', ci(MB['manual_planted_errors_caught']),
+     f'{MB["verity_planted_errors_flagged"]["k"]} of {MB["verity_planted_errors_flagged"]["n"]}', ci(MB['verity_planted_errors_flagged'])],
+    ['Rule-targeted errors flagged', f'{MB["manual_caught_rule_targeted"]["k"]} of {MB["manual_caught_rule_targeted"]["n"]}', ci(MB['manual_caught_rule_targeted']),
+     f'{MB["verity_flagged_rule_targeted"]["k"]} of {MB["verity_flagged_rule_targeted"]["n"]}', ci(MB['verity_flagged_rule_targeted'])],
+    ['Errors with no rule flagged', f'{MB["manual_caught_no_rule"]["k"]} of {MB["manual_caught_no_rule"]["n"]}', ci(MB['manual_caught_no_rule']),
+     f'{MB["verity_flagged_no_rule"]["k"]} of {MB["verity_flagged_no_rule"]["n"]}', ci(MB['verity_flagged_no_rule'])],
+    ['Orders with a field typed differently from the message', f'{MB["manual_orders_with_typing_error"]["k"]} of {MB["manual_orders_with_typing_error"]["n"]}', ci(MB['manual_orders_with_typing_error']), 'not applicable', ''],
+    ['Clean orders wrongly flagged', f'{MB["manual_false_flags_on_clean"]["k"]} of {MB["manual_false_flags_on_clean"]["n"]}', ci(MB['manual_false_flags_on_clean']),
+     f'{MB["verity_false_flags_on_clean"]["k"]} of {MB["verity_false_flags_on_clean"]["n"]}', ci(MB['verity_false_flags_on_clean'])],
+    ['Time per order, median and mean', f'{MB["manual_seconds"]["median"]:.0f} s and {MB["manual_seconds"]["mean"]:.0f} s', '', 'not measured for a person', ''],
+]
+table('Manual entry and Verity on the same 40 orders', ['Measure', 'Manual entry', '95% CI', 'Verity', '95% CI'], cmp_rows,
+      'Entry sheets of participants P01 and P02, answer key of the comparison pack and replicate 1 of the simulation, scored with score_manual_vs_simulation.py.',
+      widths=[5.2, 3.2, 2.4, 3.2, 2.4], size=8.5)
+P(f'An error reached the record in {pc(mr["pct"])} percent of the orders handled by hand and in {pc(vr["pct"])} percent of the same '
+  f'orders through Verity, a reduction of {pc(MB["error_reduction_pct"])} percent, and the two 95 percent intervals do not overlap. '
+  f'The manual errors had two sources. The participants flagged {MB["manual_planted_errors_caught"]["k"]} of the '
+  f'{MB["manual_planted_errors_caught"]["n"]} planted errors, and {MB["manual_orders_with_typing_error"]["k"]} of the {MB["orders"]} '
+  f'orders were typed with at least one field that differed from the message, most often the address or an order line. The slips '
+  f'included a delivery date of 5 November typed for 3 November and a quantity of 60 typed for 1. All {vr["k"]} errors that would '
+  f'have passed Verity were errors that no rule targets, and {MB["verity_errors_passed_by_type"]["wrong_address"]} of them were '
+  f'wrong addresses. One counted '
+  f'manual slip, an address written with Rd for Road, would not misdirect a delivery. Without it the manual rate is '
+  f'{pc(MB["manual_rate_excluding_abbreviation_only"]["pct"])} percent and the reduction {pc(MB["error_reduction_excluding_abbreviation_only_pct"])} percent.')
+P(f'By hand the participants took a median of {MB["manual_seconds"]["median"]:.0f} seconds per order, and orders they flagged took '
+  f'a median of {MB["manual_seconds_flagged_median"]:.0f} seconds. The time a person spends entering an order in Verity was not '
+  f'measured, so this baseline cannot yet be turned into a saving of time. With {MB["orders"]} orders and two participants the '
+  f'comparison is indicative only. Its Verity side rests on the simulation rather than on people entering the orders, so it assumes '
+  f'that a customer entering an order in Verity makes the planted mistakes and no others.')
+for v, m_, w in [(f"{mr['k']}/{mr['n']}", 'manual orders with an error reaching the record', 'manual_vs_simulation_results.json manual_error_rate'),
+                 (f"{vr['k']}/{vr['n']}", 'Verity orders with an error reaching the record', 'manual_vs_simulation_results.json verity_error_rate'),
+                 (pc(MB['error_reduction_pct']), 'error reduction, percent', 'manual_vs_simulation_results.json error_reduction_pct'),
+                 (f"{MB['manual_seconds']['median']:.0f}", 'manual median seconds per order', 'manual_vs_simulation_results.json manual_seconds.median')]:
+    trace(v, m_, w)
+
 # =====================================================================================================================
 H2('4.6 Evaluation against the success criteria and discussion')
 H3('4.6.1 Evaluation against the objectives')
-P('Table 4.29 sets each objective of Section 1.3, in its Chapter One wording, against its success criterion and the result of '
+P('Table 4.30 sets each objective of Section 1.3, in its Chapter One wording, against its success criterion and the result of '
   'this evaluation.')
 OBJ = [
     'To design and develop a web-based order processing system that replaces manual order entry done through Excel sheets and through e-mail and WhatsApp messages.',
@@ -605,12 +652,12 @@ obj_rows = [
      f'Primary {pc(A["accuracy"]["pct"])} percent, all errors. Secondary {pc(T["accuracy"]["pct"])} percent, rule-targeted errors. Replicates {RR["accuracy_all"]["min"]} to {RR["accuracy_all"]["max"]} and {RR["accuracy_targeted"]["min"]} to {RR["accuracy_targeted"]["max"]}',
      f'{ci(A["accuracy"])} and {ci(T["accuracy"])}', 'Partly met'],
     [f'3. {OBJ[2]}', 'At least 60 percent fewer manual entry errors',
-     f'Every rule-targeted error was stopped in all three replicates. {RR["no_rule_detection"]["min"]} to {RR["no_rule_detection"]["max"]} percent of errors with no rule were flagged. Reduction against manual entry not yet measured',
-     'not applicable', 'Scheduled'],
+     f'An error reached the record in {MB["manual_error_rate"]["k"]} of 40 orders by hand and {MB["verity_error_rate"]["k"]} of the same 40 through Verity, a reduction of {pc(MB["error_reduction_pct"])} percent. Two participants, indicative',
+     f'{ci(MB["manual_error_rate"])} and {ci(MB["verity_error_rate"])}', 'Met, indicative'],
     ['3. As above', '100 percent completion of mandatory fields',
      f'{mand["k"]} of {mand["n"]} orders reaching approval, 100 percent in all three replicates', ci(mand), 'Met'],
     [f'4. {OBJ[3]}', '30 to 50 percent faster processing',
-     f'Median validation time {RR["validation_ms_median"]["min"]} to {RR["validation_ms_median"]["max"]} ms per order across the replicates. Gain against manual handling not yet measured',
+     f'Manual handling took a median of {MB["manual_seconds"]["median"]:.0f} s per order. Verity validates in {RR["validation_ms_median"]["min"]} to {RR["validation_ms_median"]["max"]} ms, but the time a person spends entering an order in Verity was not measured',
      'not applicable', 'Scheduled'],
     [f'5. {OBJ[4]}', 'Test run of 500 simulated orders', '500 orders in each of three replicates, 1,500 in all', 'not applicable', 'Met'],
     ['5. As above', 'Usability and acceptance shown by the questionnaire',
@@ -628,11 +675,13 @@ P(f'Objective 1 is rated Met because orders can be entered and taken through the
   f'every replicate and the whole interval lay above the target. Both measures share the same false alarms, so the gap between '
   f'them comes from the {A["fn"]} errors without a rule that were missed, '
   f'{40 - BT["wrong_product"]["detection"]["k"] - BT["wrong_address"]["detection"]["k"]} of them wrong products or wrong addresses.')
-P('Objective 3 is Partly met. Its mandatory-fields criterion is Met, and the simulation shows that the system stops every error a '
-  'rule is written for before approval. Whether this amounts to 60 percent fewer errors than manual entry depends on the scheduled '
-  'comparison, so that criterion is given the status Scheduled. The speed criterion of Objective 4 is also Scheduled. The system '
-  'validates an order in milliseconds, but the criterion concerns end-to-end handling against manual entry, which the same '
-  'comparison will measure. Below about 80 paired orders its results will be indicative only. The simulated test run required by Objective 5 is Met, but its usability and '
+P(f'Objective 3 is Met on indicative evidence. Its mandatory-fields criterion is Met, and in the comparison with manual entry an '
+  f'error reached the record in {pc(MB["verity_error_rate"]["pct"])} percent of orders through Verity against '
+  f'{pc(MB["manual_error_rate"]["pct"])} percent by hand, a reduction of {pc(MB["error_reduction_pct"])} percent against a target of '
+  f'60 percent. The comparison covered {MB["orders"]} orders handled by two participants, below the 80 paired orders planned, so it '
+  f'is indicative only. The speed criterion of Objective 4 is Scheduled. Manual handling took a median of '
+  f'{MB["manual_seconds"]["median"]:.0f} seconds per order, but the time a person spends entering the same order in Verity was not '
+  f'measured, so no saving can yet be stated. The simulated test run required by Objective 5 is Met, but its usability and '
   'acceptance part is Not met. The mean usability score was significantly below the benchmark of 68, and no acceptance item was '
   'agreed by a majority of respondents.')
 H3('4.6.2 Answers to the research questions')
@@ -650,13 +699,15 @@ RQ = [
      f'{pc(A["accuracy"]["pct"])} percent, below the 90 percent target, and most of the errors that passed were of a kind no rule '
      f'can detect.'),
     ('By how much does the system reduce manual data-entry errors compared with manual entry.',
-     f'The simulation shows what the system removes. Every error that a rule targets was stopped before approval in all three '
-     f'replicates, and no order reached approval with a mandatory field missing. Errors that lie inside the allowed values, such as '
-     f'a wrong but valid product, were mostly not caught. The size of the reduction against manual entry will be measured in the '
-     f'scheduled comparison.'),
+     f'In the comparison of Section 4.5.9 an error reached the record in {pc(MB["manual_error_rate"]["pct"])} percent of orders '
+     f'handled by hand and in {pc(MB["verity_error_rate"]["pct"])} percent of the same orders through Verity, a reduction of '
+     f'{pc(MB["error_reduction_pct"])} percent. The reduction comes from two sources. Verity stops every error a rule targets, which '
+     f'the participants mostly missed, and it removes retyping, which caused slips in nearly half of the manual orders. Errors that '
+     f'lie inside the allowed values, such as a wrong but valid product, pass both. With two participants the answer is indicative.'),
     ('By how much does the system improve order processing speed.',
      f'Validation itself takes milliseconds per order, but the question concerns end-to-end processing time against manual '
-     f'handling. That gain will be measured in the scheduled comparison with manual entry.'),
+     f'handling. By hand the participants took a median of {MB["manual_seconds"]["median"]:.0f} seconds per order. The time a '
+     f'person spends entering the same order in Verity was not measured, so the gain cannot yet be stated.'),
     ('How usable and acceptable do intended users find the system.',
      f'Intended users found Verity of poor usability on the evidence of the demonstration. The mean System Usability Scale score '
      f'was {Q["sus"]["All"]["mean"]:.2f}, significantly below the benchmark of 68, and staff and customers did not differ. Acceptance '
@@ -685,9 +736,10 @@ P('Section 2.4.3 adopted the information systems success model of DeLone and McL
   f'no order reached approval with a mandatory field missing. It is weaker in two respects. Of the 200 clean orders, {A["fp"]} '
   'received a warning that turned out to be unnecessary, and warnings of this kind cost staff time and can teach users to ignore '
   'them. The engine also missed most errors that lie inside the allowed values. On system quality, validation responded within '
-  'a fraction of a second, although its response time grew with the number of orders in two of the replicates. The net benefits '
-  'remain to be measured, so the second gap identified in Section 2.6, the lack of a comparison between validated digital entry '
-  'and manual entry, is not yet closed. The questionnaire adds evidence on use and user satisfaction, and both are weak. A usability '
+  'a fraction of a second, although its response time grew with the number of orders in two of the replicates. The small comparison '
+  'with manual entry gives first evidence of net benefits, since far fewer errors reached the record through Verity than by hand, '
+  'and it begins to close the second gap identified in Section 2.6, the lack of a comparison between validated digital entry and '
+  'manual entry. The gain in speed remains to be measured. The questionnaire adds evidence on use and user satisfaction, and both are weak. A usability '
   f'score of {Q["sus"]["All"]["mean"]:.2f} and an intention to use of {pc(Q["items"]["BI1"]["All"]["agree_pct"])} percent mean that, in '
   'the terms of the model, the system quality shown in the simulation would not by itself lead to net benefits.')
 P('The questionnaire results also bear on the acceptance theories of Section 2.4. In line with Davis (1989), intention was linked '
@@ -728,8 +780,9 @@ lims = [
     'The sensitivity analysis was run on replicate 1 alone, and each slip detection rate rests on 20 orders.',
     'The delivery-log export was tested by running its code outside the browser, because the live site could not be reached from '
     'the test environment.',
-    'The comparison with manual order entry had not been completed at the time of writing, so the reduction in errors and the gain '
-    'in processing speed against manual handling are not yet measured.',
+    'The comparison with manual entry covered 40 orders handled by two participants, so its results are indicative only. Its '
+    'Verity side rests on the simulation outcome for the same orders rather than on people entering them in Verity, and the time a '
+    'person spends entering an order in Verity was not measured, so no gain in speed is reported.',
     'The questionnaire respondents judged Verity from a demonstration video rather than by using it themselves, so their usability '
     'scores describe an impression of the system rather than experience of it. The questionnaire was administered by the client '
     'team to the people it could reach, which is not a random sample, and 45 respondents worked mainly outside Nigeria.',
@@ -750,8 +803,10 @@ P(f'Verity was built as a working order processing system with a controlled orde
   f'Nearly all false alarms came from the unusual-quantity warning, which also caught most quantity slips. Every order that reached '
   f'approval had its mandatory fields. In the questionnaire, {Q["valid"]} respondents gave Verity a mean usability score of '
   f'{Q["sus"]["All"]["mean"]:.2f}, significantly below the benchmark of 68, and {pc(Q["items"]["BI1"]["All"]["agree_pct"])} percent '
-  f'said they would use it, so the usability and acceptance part of Objective 5 is Not met. The comparison with manual entry '
-  f'is scheduled, and the criteria on error reduction and speed are reported as Scheduled until it is complete.')
+  f'said they would use it, so the usability and acceptance part of Objective 5 is Not met. In a small comparison with manual '
+  f'entry, an error reached the record in {pc(MB["verity_error_rate"]["pct"])} percent of orders through Verity against '
+  f'{pc(MB["manual_error_rate"]["pct"])} percent by hand, an indicative reduction of {pc(MB["error_reduction_pct"])} percent, while '
+  f'the gain in speed remains to be measured.')
 
 # =====================================================================================================================
 H2('References')

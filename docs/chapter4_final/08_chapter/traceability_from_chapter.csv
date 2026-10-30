@@ -27,3 +27,7 @@ number_cited,meaning,source_file_and_field_or_cell
 1.7,largest replicate spread of a non-timing measure,"metrics_final.json replicate_range, max minus min"
 86.8 to 87.2,primary accuracy range,metrics_final.json replicate_range.accuracy_all; workbook Replicate range E4:F4
 258/258,"mandatory completion, replicate 1",metrics_final.json replicates.1.mandatory_completion_reaching_approval; workbook R1 Summary G
+29/40,manual orders with an error reaching the record,manual_vs_simulation_results.json manual_error_rate
+6/40,Verity orders with an error reaching the record,manual_vs_simulation_results.json verity_error_rate
+79.3,"error reduction, percent",manual_vs_simulation_results.json error_reduction_pct
+180,manual median seconds per order,manual_vs_simulation_results.json manual_seconds.median
