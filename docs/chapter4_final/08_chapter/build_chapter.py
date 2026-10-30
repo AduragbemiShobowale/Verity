@@ -25,7 +25,6 @@ FT = list(csv.DictReader(open(ROOT / '02_functional_tests' / 'functional_tests.c
 RLS = list(csv.DictReader(open(ROOT / '02_functional_tests' / 'rls_results_2026-10-27.csv')))
 STAT = list(csv.DictReader(open(ROOT / '01_system_facts' / 'order_statuses.csv')))
 RULES = list(csv.DictReader(open(ROOT / '01_system_facts' / 'validation_rules_and_run4_coverage.csv')))
-PENDING = '[DATA PENDING]'
 WORDING = '[EXACT CHAPTER ONE WORDING NEEDED]'
 
 doc = Document()
@@ -200,7 +199,8 @@ for txt in ('CHAPTER FOUR', 'RESULTS AND DISCUSSION'):
     tp.runs[0].bold = True
     tp.runs[0].font.size = Pt(14)
 note_box('Note for the group. This chapter combines the questionnaire results, supplied by the client team, with the technical '
-         'evaluation of the system and the simulation. Results that depend on the manual-entry comparison are marked [DATA PENDING]. '
+         'evaluation of the system and the simulation. The comparison with manual entry is scheduled, and the error-reduction and speed '
+         'criteria are reported as Scheduled until it is complete. '
          'Delete this note before submission.')
 H2('4.1 Introduction')
 P('This chapter reports the evaluation of Verity, the intelligent order processing system developed in this project. It has two '
@@ -208,8 +208,9 @@ P('This chapter reports the evaluation of Verity, the intelligent order processi
   'distribution businesses and to business customers, before and after a demonstration of Verity. Sections 4.3 to 4.5 report the '
   'technical evaluation, namely the implemented system with its testing, and a controlled simulation in which orders with known '
   'planted errors were submitted to the live validation engine.')
-P('At the time of writing the comparison with manual order entry had not been run. Every result that depends on it is therefore '
-  'marked [DATA PENDING] and every success criterion that rests on it is given the status Pending. All other figures in this '
+P('At the time of writing the comparison with manual order entry was scheduled but not yet complete. The two success criteria '
+  'that rest on it, the reduction in manual entry errors and the gain in processing speed, are therefore given the status '
+  'Scheduled, and the evidence the system itself provides on both is reported in their place. All other figures in this '
   'chapter come from files and database queries produced during the evaluation, and each is listed with its source in the '
   'traceability table that accompanies the chapter.')
 
@@ -603,10 +604,14 @@ obj_rows = [
     [f'2. {OBJ[1]}', 'At least 90 percent validation accuracy',
      f'Primary {pc(A["accuracy"]["pct"])} percent, all errors. Secondary {pc(T["accuracy"]["pct"])} percent, rule-targeted errors. Replicates {RR["accuracy_all"]["min"]} to {RR["accuracy_all"]["max"]} and {RR["accuracy_targeted"]["min"]} to {RR["accuracy_targeted"]["max"]}',
      f'{ci(A["accuracy"])} and {ci(T["accuracy"])}', 'Partly met'],
-    [f'3. {OBJ[2]}', 'At least 60 percent fewer manual entry errors', PENDING, PENDING, 'Pending'],
+    [f'3. {OBJ[2]}', 'At least 60 percent fewer manual entry errors',
+     f'Every rule-targeted error was stopped in all three replicates. {RR["no_rule_detection"]["min"]} to {RR["no_rule_detection"]["max"]} percent of errors with no rule were flagged. Reduction against manual entry not yet measured',
+     'not applicable', 'Scheduled'],
     ['3. As above', '100 percent completion of mandatory fields',
      f'{mand["k"]} of {mand["n"]} orders reaching approval, 100 percent in all three replicates', ci(mand), 'Met'],
-    [f'4. {OBJ[3]}', '30 to 50 percent faster processing', PENDING, PENDING, 'Pending'],
+    [f'4. {OBJ[3]}', '30 to 50 percent faster processing',
+     f'Median validation time {RR["validation_ms_median"]["min"]} to {RR["validation_ms_median"]["max"]} ms per order across the replicates. Gain against manual handling not yet measured',
+     'not applicable', 'Scheduled'],
     [f'5. {OBJ[4]}', 'Test run of 500 simulated orders', '500 orders in each of three replicates, 1,500 in all', 'not applicable', 'Met'],
     ['5. As above', 'Usability and acceptance shown by the questionnaire',
      f'System Usability Scale mean {Q["sus"]["All"]["mean"]:.2f}, significantly below 68. {pc(Q["items"]["BI1"]["All"]["agree_pct"])} percent would use Verity',
@@ -623,9 +628,11 @@ P(f'Objective 1 is rated Met because orders can be entered and taken through the
   f'every replicate and the whole interval lay above the target. Both measures share the same false alarms, so the gap between '
   f'them comes from the {A["fn"]} errors without a rule that were missed, '
   f'{40 - BT["wrong_product"]["detection"]["k"] - BT["wrong_address"]["detection"]["k"]} of them wrong products or wrong addresses.')
-P('The mandatory-fields part of Objective 3 is Met. The error-reduction part of Objective 3 and the speed criterion of Objective 4 '
-  'remain Pending until the manual baseline is run and scored with analyze_baseline.py, and below about 80 paired orders that '
-  'comparison of errors will be indicative only. The simulated test run required by Objective 5 is Met, but its usability and '
+P('Objective 3 is Partly met. Its mandatory-fields criterion is Met, and the simulation shows that the system stops every error a '
+  'rule is written for before approval. Whether this amounts to 60 percent fewer errors than manual entry depends on the scheduled '
+  'comparison, so that criterion is given the status Scheduled. The speed criterion of Objective 4 is also Scheduled. The system '
+  'validates an order in milliseconds, but the criterion concerns end-to-end handling against manual entry, which the same '
+  'comparison will measure. Below about 80 paired orders its results will be indicative only. The simulated test run required by Objective 5 is Met, but its usability and '
   'acceptance part is Not met. The mean usability score was significantly below the benchmark of 68, and no acceptance item was '
   'agreed by a majority of respondents.')
 H3('4.6.2 Answers to the research questions')
@@ -643,11 +650,13 @@ RQ = [
      f'{pc(A["accuracy"]["pct"])} percent, below the 90 percent target, and most of the errors that passed were of a kind no rule '
      f'can detect.'),
     ('By how much does the system reduce manual data-entry errors compared with manual entry.',
-     f'This comparison needs the manual baseline and is {PENDING}. The simulation shows that no order reached approval with a '
-     f'mandatory field missing.'),
+     f'The simulation shows what the system removes. Every error that a rule targets was stopped before approval in all three '
+     f'replicates, and no order reached approval with a mandatory field missing. Errors that lie inside the allowed values, such as '
+     f'a wrong but valid product, were mostly not caught. The size of the reduction against manual entry will be measured in the '
+     f'scheduled comparison.'),
     ('By how much does the system improve order processing speed.',
      f'Validation itself takes milliseconds per order, but the question concerns end-to-end processing time against manual '
-     f'handling, and that answer is {PENDING}.'),
+     f'handling. That gain will be measured in the scheduled comparison with manual entry.'),
     ('How usable and acceptable do intended users find the system.',
      f'Intended users found Verity of poor usability on the evidence of the demonstration. The mean System Usability Scale score '
      f'was {Q["sus"]["All"]["mean"]:.2f}, significantly below the benchmark of 68, and staff and customers did not differ. Acceptance '
@@ -719,8 +728,8 @@ lims = [
     'The sensitivity analysis was run on replicate 1 alone, and each slip detection rate rests on 20 orders.',
     'The delivery-log export was tested by running its code outside the browser, because the live site could not be reached from '
     'the test environment.',
-    'The comparison with manual order entry had not been carried out, so the objectives on error reduction and speed could not '
-    'be assessed.',
+    'The comparison with manual order entry had not been completed at the time of writing, so the reduction in errors and the gain '
+    'in processing speed against manual handling are not yet measured.',
     'The questionnaire respondents judged Verity from a demonstration video rather than by using it themselves, so their usability '
     'scores describe an impression of the system rather than experience of it. The questionnaire was administered by the client '
     'team to the people it could reach, which is not a random sample, and 45 respondents worked mainly outside Nigeria.',
@@ -742,7 +751,7 @@ P(f'Verity was built as a working order processing system with a controlled orde
   f'approval had its mandatory fields. In the questionnaire, {Q["valid"]} respondents gave Verity a mean usability score of '
   f'{Q["sus"]["All"]["mean"]:.2f}, significantly below the benchmark of 68, and {pc(Q["items"]["BI1"]["All"]["agree_pct"])} percent '
   f'said they would use it, so the usability and acceptance part of Objective 5 is Not met. The comparison with manual entry '
-  f'remains to be carried out, and the objectives on error reduction and speed are Pending until it is.')
+  f'is scheduled, and the criteria on error reduction and speed are reported as Scheduled until it is complete.')
 
 # =====================================================================================================================
 H2('References')
