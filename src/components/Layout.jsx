@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { Component, useState, useEffect } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useLive } from './Live'
@@ -116,6 +116,22 @@ function NavCount({ fn }) {
   return n > 0 ? <span className="count">{n}</span> : null
 }
 
+// Keeps a crash in one page from blanking the whole screen. Resets when the route changes.
+class PageErrorBoundary extends Component {
+  state = { error: null }
+  static getDerivedStateFromError(error) { return { error } }
+  componentDidUpdate(prev) { if (prev.path !== this.props.path && this.state.error) this.setState({ error: null }) }
+  render() {
+    if (!this.state.error) return this.props.children
+    return (
+      <div className="notice warn">
+        <strong>This page could not be shown.</strong> Try reloading. If it keeps happening, tell the administrator.
+        <div className="muted small mono">{String(this.state.error.message || this.state.error)}</div>
+      </div>
+    )
+  }
+}
+
 export const BrandMark = () => (
   <span className="brand-mark">
     <svg width="16" height="16" viewBox="0 0 32 32"><path d="M7 8l9 17 9-17" fill="none" stroke="#f2c14e" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -158,7 +174,7 @@ export default function Layout() {
           <Bell />
         </header>
         <main className="page">
-          <Outlet />
+          <PageErrorBoundary path={loc.pathname}><Outlet /></PageErrorBoundary>
         </main>
       </div>
       {open && <div className="side-scrim" onClick={() => setOpen(false)} />}

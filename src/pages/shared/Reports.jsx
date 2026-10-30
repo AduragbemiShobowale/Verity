@@ -30,12 +30,13 @@ export default function Reports() {
   const { role } = useAuth()
   const [run, busy] = useAction()
   const { data, reload } = useLoad(async () => {
-    const [stats, sims] = await Promise.all([rpc('performance_stats'), q(supabase.from('simulation_runs').select('*').order('id', { ascending: false }).limit(5))])
+    const [stats, sims] = await Promise.all([rpc('performance_stats'), q(supabase.from('simulation_runs').select('*').not('summary->by_category', 'is', null).order('id', { ascending: false }).limit(5))])
     return { stats, sims }
   })
   if (!data) return <Loading />
   const s = data.stats
-  const sim = data.sims.find((x) => !x.summary.superseded)
+  // Only runs whose summary holds per-category counts. The final replicate runs keep their results in simulation_final_orders instead.
+  const sim = data.sims.find((x) => x.summary?.by_category && !x.summary.superseded)
   const cats = sim ? Object.entries(sim.summary.by_category).sort((a, b) => (UNTARGETED.includes(a[0]) - UNTARGETED.includes(b[0])) || b[1].n - a[1].n) : []
   return (
     <>
