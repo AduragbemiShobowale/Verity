@@ -336,3 +336,11 @@ a:hover > .kpi { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(16,24,2
   .scene *, .scene, .auth-card, .page-head.hero { animation: none !important; }
   .scene .truck { offset-distance: 60%; }
 }
+
+/* In-page loading: a small Verity mark that pulses in the role colour. The full-screen splash styles live in index.html. */
+.v-inline { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.v-mini { position: relative; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: var(--accent); }
+.v-mini::after { content: ''; position: absolute; inset: 0; border-radius: 8px; border: 2px solid var(--accent); animation: v-ring 1.6s cubic-bezier(.2,.6,.3,1) infinite; }
+.v-mini svg { width: 18px; height: 18px; overflow: visible; }
+.v-mini path { fill: none; stroke: #f2c14e; stroke-width: 4.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: v-draw 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .v-mini::after { animation: none; } .v-mini path { animation: none; stroke-dashoffset: 0; } }

@@ -1,0 +1,17 @@
+From: Folake Adeyemi <folake.adeyemi@adeyemi1.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:27
+Subject: Order from Adeyemi & Sons Construction Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 13 x Nails, 3 inch, 25 kg (NAIL-3) at ₦31,000
+
+Deliver to: 11 Main Road, Ikeja
+
+Regards,
+Folake Adeyemi
+Adeyemi & Sons Construction Ltd
+08030104729

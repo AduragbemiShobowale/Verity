@@ -1,0 +1,20 @@
+From: Chukwuemeka Kanu <chukwuemeka.kanu@kanu2.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:21
+Subject: Order from Kanu Brothers Building Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 20 x Floor tile 60x60, carton (TIL-6060) at ₦14,500
+  - 28 x Iron rod, 16 mm (ROD-16) at ₦11,800
+  - 50 x Aluminium roofing sheet, 0.55 mm (ROOF-AL) at ₦12,500
+
+Deliver to: Plot 102, Lagos Mainland
+Delivery date: Friday 06 November 2026
+
+Regards,
+Chukwuemeka Kanu
+Kanu Brothers Building Supplies
+08030209458

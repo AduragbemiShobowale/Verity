@@ -1,0 +1,18 @@
+From: Yusuf Adebanjo <yusuf.adebanjo@agege13.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:51
+Subject: Order from Agege Steel Works
+
+Good morning,
+
+Please supply the following:
+
+  - 3 x Emulsion paint, cream, 20 L (PNT-20C) at ₦38,000
+
+Deliver to: Plot 113, Ikeja
+Delivery date: Thursday 12 November 2026
+
+Regards,
+Yusuf Adebanjo
+Agege Steel Works
+08031361477

@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
 import Layout from './components/Layout'
+import { BrandSplash } from './components/ui'
 import { Login, Register, Forgot, SetPassword, VerifyEmail, AuthFrame } from './pages/auth/AuthPages'
 import { RegistrationForm, AccountStatus } from './pages/auth/Onboarding'
 import NewOrder from './pages/customer/NewOrder'
@@ -50,7 +51,7 @@ function Account() {
 export default function App() {
   const { session, account, profile, customer, role, loading, recovery, signOut } = useAuth()
 
-  if (loading) return <div className="empty" style={{ paddingTop: 120 }}>Loading…</div>
+  if (loading) return <BrandSplash />
 
   if (!session) {
     return (

@@ -1,0 +1,20 @@
+From: Funmilayo Adeleke <funmilayo.adeleke@magodo19.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:57
+Subject: Order from Magodo Residential Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 11 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+  - 4 x Iron rod, 16 mm (ROD-16) at ₦11,800
+
+Deliver to: 29 Main Road, Ikeja
+Delivery date: Tuesday 10 November 2026
+
+Regards,
+Funmilayo Adeleke
+Magodo Residential Ltd
+08031989851

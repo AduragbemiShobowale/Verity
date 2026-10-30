@@ -1,0 +1,19 @@
+From: Chukwuemeka Kanu <chukwuemeka.kanu@kanu2.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:12
+Subject: Order from Kanu Brothers Building Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 23 x PVC pipe, 4 inch, 6 m (PVC-4) at ₦8,600
+  - 10 x Emulsion paint, cream, 20 L (PNT-20C) at ₦38,000
+
+Deliver to: 12 Main Road, Lagos Mainland
+Delivery date: Sunday 08 November 2026
+
+Regards,
+Chukwuemeka Kanu
+Kanu Brothers Building Supplies
+08030209458

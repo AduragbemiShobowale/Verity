@@ -1,0 +1,18 @@
+From: Ngozi Eze <ngozi.eze@greenfield7.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:39
+Subject: Order from Greenfield Estates Nigeria
+
+Good morning,
+
+Please supply the following:
+
+  - 17 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+
+Deliver to: Plot 107, Lekki-Ajah
+Delivery date: Sunday 08 November 2026
+
+Regards,
+Ngozi Eze
+Greenfield Estates Nigeria
+08030733103
