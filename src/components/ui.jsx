@@ -79,9 +79,26 @@ export function PageHead({ title, sub, children, hero }) {
   )
 }
 
+// Full-screen splash, the same markup and styles as the one in index.html, so the hand-over is seamless.
+export function BrandSplash() {
+  return (
+    <div className="v-splash" role="status" aria-label="Loading Verity">
+      <div className="v-tile"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 9l8 15 8-15" /></svg></div>
+      <div className="v-word">Verity</div>
+      <div className="v-tag">Intelligent order processing for logistics teams</div>
+      <div className="v-bar" />
+    </div>
+  )
+}
+
 export function Loading({ error }) {
   if (error) return <div className="notice bad">{error}</div>
-  return <div className="empty">Loading…</div>
+  return (
+    <div className="empty v-inline" role="status">
+      <span className="v-mini"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 9l8 15 8-15" /></svg></span>
+      <span>Loading…</span>
+    </div>
+  )
 }
 
 export function Modal({ title, onClose, children, footer, wide }) {

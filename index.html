@@ -4,11 +4,73 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0f3d3e" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>Verity Orders</title>
+    <meta name="description" content="Intelligent order processing for logistics teams. Every order checked instantly for stock, prices, quantities, duplicates and address." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Link previews (WhatsApp, iMessage, Slack, LinkedIn, X). The image URL must be absolute. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Verity" />
+    <meta property="og:title" content="Verity Orders" />
+    <meta property="og:description" content="Orders that arrive right the first time. Intelligent order processing for logistics teams." />
+    <meta property="og:url" content="https://verity-kohl-tau.vercel.app/" />
+    <meta property="og:image" content="https://verity-kohl-tau.vercel.app/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://verity-kohl-tau.vercel.app/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Verity logo with the words Orders that arrive right the first time" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Verity Orders" />
+    <meta name="twitter:description" content="Orders that arrive right the first time. Intelligent order processing for logistics teams." />
+    <meta name="twitter:image" content="https://verity-kohl-tau.vercel.app/og-image.jpg" />
+
+    <!-- Splash shown while the app loads. Also used by the app itself (BrandSplash) so there is no flash between the two. -->
+    <style>
+      .v-splash { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+        background: radial-gradient(120% 90% at 50% 40%, #155254 0%, #0f3d3e 45%, #092627 100%); color: #fff;
+        font: 600 15px/1.4 Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; overflow: hidden; }
+      .v-splash::before { content: ''; position: absolute; width: 640px; height: 640px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(242,193,78,.16), rgba(242,193,78,0) 62%); animation: v-breathe 3.2s ease-in-out infinite; }
+      .v-tile { position: relative; width: 96px; height: 96px; border-radius: 26px; display: grid; place-items: center;
+        background: linear-gradient(145deg, #17595a, #0c3233); box-shadow: 0 18px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.12);
+        animation: v-float 3.2s ease-in-out infinite; }
+      .v-tile::before, .v-tile::after { content: ''; position: absolute; inset: 0; border-radius: 26px; border: 2px solid rgba(242,193,78,.55);
+        animation: v-ring 2.4s cubic-bezier(.2,.6,.3,1) infinite; }
+      .v-tile::after { animation-delay: 1.2s; }
+      .v-tile svg { width: 56px; height: 56px; overflow: visible; filter: drop-shadow(0 0 10px rgba(242,193,78,.55)); }
+      .v-tile path { fill: none; stroke: #f2c14e; stroke-width: 4.2; stroke-linecap: round; stroke-linejoin: round;
+        stroke-dasharray: 40; stroke-dashoffset: 40; animation: v-draw 2.4s ease-in-out infinite; }
+      .v-word { position: relative; font-size: 30px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+        background: linear-gradient(100deg, #cfe3df 20%, #fff7df 40%, #f2c14e 50%, #fff7df 60%, #cfe3df 80%); background-size: 250% 100%;
+        -webkit-background-clip: text; background-clip: text; color: transparent; animation: v-shine 2.6s linear infinite; }
+      .v-tag { position: relative; margin-top: -12px; font-size: 13px; font-weight: 500; color: #9fbab4; letter-spacing: .02em; text-align: center; padding: 0 16px; }
+      .v-bar { position: relative; width: 140px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.12); overflow: hidden; }
+      .v-bar::after { content: ''; position: absolute; top: 0; bottom: 0; width: 40%; border-radius: 3px;
+        background: linear-gradient(90deg, rgba(242,193,78,0), #f2c14e, rgba(242,193,78,0)); animation: v-slide 1.3s ease-in-out infinite; }
+      @keyframes v-draw { 0% { stroke-dashoffset: 40; } 45%, 70% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -40; } }
+      @keyframes v-ring { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.75); opacity: 0; } }
+      @keyframes v-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+      @keyframes v-breathe { 0%, 100% { transform: scale(.92); opacity: .7; } 50% { transform: scale(1.06); opacity: 1; } }
+      @keyframes v-shine { from { background-position: 125% 0; } to { background-position: -125% 0; } }
+      @keyframes v-slide { from { left: -40%; } to { left: 100%; } }
+      @media (prefers-reduced-motion: reduce) {
+        .v-splash *, .v-splash::before, .v-tile::before, .v-tile::after { animation: none !important; }
+        .v-tile path { stroke-dashoffset: 0; }
+        .v-word { color: #fff; background: none; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="v-splash" role="status" aria-label="Loading Verity">
+        <div class="v-tile"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 9l8 15 8-15" /></svg></div>
+        <div class="v-word">Verity</div>
+        <div class="v-tag">Intelligent order processing for logistics teams</div>
+        <div class="v-bar"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
