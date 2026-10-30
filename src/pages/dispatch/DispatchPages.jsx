@@ -10,21 +10,24 @@ export function DispatchBoard() {
   const [unassign, setUnassign] = useState(null)
   const { data, reload } = useLoad(async () => {
     const today = new Date(); today.setHours(0, 0, 0, 0)
-    const [ready, board, drivers, vehicles] = await Promise.all([
+    const [ready, board, drivers, vehicles, attention] = await Promise.all([
       q(supabase.from('orders').select('id,order_no,status,requested_date,updated_at,customers(name),addresses(line,regions(name)),order_items(qty_picked)').in('status', ['packed', 'delivery_failed']).order('requested_date')),
       q(supabase.from('deliveries').select('*, orders(id,order_no,status,customers(name),addresses(regions(name))), driver:profiles!deliveries_driver_id_fkey(full_name), vehicles(plate)')
         .or(`current.eq.true,assigned_at.gte.${today.toISOString()}`).order('assigned_at', { ascending: false }).limit(200)),
       q(supabase.from('profiles').select('id,full_name,phone,status,drivers(active)').eq('role', 'driver').eq('status', 'active')),
       q(supabase.from('vehicles').select('*').eq('active', true).order('plate')),
+      q(supabase.rpc('attention_summary')),
     ])
+    const codeProblems = new Set(attention.code_problems)
     const deliveredToday = board.filter((d) => d.outcome === 'delivered' || d.outcome === 'override').filter((d) => new Date(d.delivered_at) >= today).length
-    return { ready, board, drivers: drivers.filter((d) => d.drivers?.active !== false), vehicles, deliveredToday }
+    return { ready, board, drivers: drivers.filter((d) => d.drivers?.active !== false), vehicles, deliveredToday, codeProblems }
   })
   if (!data) return <Loading />
   const groups = {}
   data.ready.forEach((o) => { const r = o.addresses?.regions?.name || 'No region'; (groups[r] = groups[r] || []).push(o) })
   const active = data.board.filter((d) => d.current && ['assigned', 'out_for_delivery'].includes(d.orders?.status))
   const failed = data.ready.filter((o) => o.status === 'delivery_failed')
+  const locked = active.filter((d) => data.codeProblems.has(d.order_id))
   const toggle = (id) => setPicked(picked.includes(id) ? picked.filter((x) => x !== id) : [...picked, id])
   return (
     <>
@@ -35,6 +38,13 @@ export function DispatchBoard() {
         <Kpi label="Delivered today" value={data.deliveredToday} />
         <Kpi label="Failed – reschedule" value={failed.length} alert={failed.length > 0} />
       </div>
+      {locked.length > 0 && (
+        <div className="notice warn">
+          <strong>Delivery code locked or expired on {locked.length} order{locked.length > 1 ? 's' : ''}:</strong>{' '}
+          {locked.map((d, i) => <span key={d.id}>{i > 0 && ', '}<Link to={'/order/' + d.order_id}>{d.orders?.order_no}</Link> ({d.driver?.full_name})</span>)}.
+          {' '}The driver cannot complete these until Ops re-issues the code.
+        </div>
+      )}
       <div className="grid-main">
         <Card title="Ready for dispatch" action={<button className="btn primary" disabled={!picked.length} onClick={() => setAssign(true)}>Assign {picked.length || ''} selected</button>} pad={false}>
           {data.ready.length === 0 ? <Empty>Nothing packed yet.</Empty> : Object.entries(groups).map(([region, rows]) => (
@@ -88,7 +98,7 @@ function AssignModal({ ids, drivers, vehicles, board, onClose, onDone }) {
   return (
     <Modal title={`Assign ${ids.length} order${ids.length > 1 ? 's' : ''}`} onClose={onClose} footer={<>
       <button className="btn" onClick={onClose}>Cancel</button>
-      <button className="btn primary" disabled={!driver || busy} onClick={() => run(async () => { await rpc('assign_delivery', { p_orders: ids, p_driver: driver, p_vehicle: vehicle ? Number(vehicle) : null }); onDone() }, 'Assigned. The driver has been notified.')}>Assign</button>
+      <button className="btn primary" disabled={!driver || !vehicle || busy} onClick={() => run(async () => { await rpc('assign_delivery', { p_orders: ids, p_driver: driver, p_vehicle: Number(vehicle) }); onDone() }, 'Assigned. The driver has been notified.')}>Assign</button>
     </>}>
       <label className="field">Driver
         <select value={driver} onChange={(e) => setDriver(e.target.value)}>
@@ -98,11 +108,13 @@ function AssignModal({ ids, drivers, vehicles, board, onClose, onDone }) {
       </label>
       <label className="field">Vehicle
         <select value={vehicle} onChange={(e) => setVehicle(e.target.value)}>
-          <option value="">None</option>
+          <option value="">Choose…</option>
           {vehicles.map((v) => <option key={v.id} value={v.id}>{v.plate} – {v.description}</option>)}
         </select>
       </label>
       {drivers.length === 0 && <div className="notice warn">No active drivers. The administrator adds driver accounts.</div>}
+      {vehicles.length === 0 && <div className="notice warn">No active vehicles. Add one under Drivers & vehicles.</div>}
+      {driver && !vehicle && vehicles.length > 0 && <div className="muted small">Choose a vehicle as well as a driver.</div>}
     </Modal>
   )
 }

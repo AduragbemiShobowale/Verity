@@ -204,16 +204,16 @@ export function OpsRefunds() {
 export function Alerts() {
   const nav = useNavigate()
   const { data } = useLoad(async () => {
-    const [stuck, cancelReq, failed, escalations, locked, low] = await Promise.all([
+    const [stuck, cancelReq, failed, attention, low] = await Promise.all([
       stuckOrders(),
-      q(supabase.from('orders').select('id,order_no,status,updated_at,cancel_requested_reason,customers(name)').not('cancel_requested_reason', 'is', null)),
+      q(supabase.from('orders').select('id,order_no,status,updated_at,cancel_requested_reason,customers(name)').not('cancel_requested_reason', 'is', null).neq('status', 'cancelled')),
       q(supabase.from('orders').select('id,order_no,status,updated_at,customers(name)').eq('status', 'delivery_failed')),
-      q(supabase.from('notifications').select('order_id').eq('event', 'payment_escalation').order('created_at', { ascending: false }).limit(50)),
-      q(supabase.from('notifications').select('order_id,created_at').in('event', ['code_locked', 'code_expired']).order('created_at', { ascending: false }).limit(50)),
+      q(supabase.rpc('attention_summary')),
       q(supabase.from('products').select('id,sku,name,on_hand,reserved,reorder_level').eq('active', true)),
     ])
-    const ids = [...new Set([...escalations, ...locked].map((n) => n.order_id).filter(Boolean))]
-    const open = ids.length ? await q(supabase.from('orders').select('id,order_no,status,updated_at,customers(name)').in('id', ids).in('status', ['payment_rejected', 'out_for_delivery'])) : []
+    // Only codes still locked or expired, so an order drops off once Ops re-issues its code
+    const ids = [...attention.code_problems, ...attention.escalations]
+    const open = ids.length ? await q(supabase.from('orders').select('id,order_no,status,updated_at,customers(name)').in('id', ids)) : []
     return { stuck, cancelReq, failed, open, low: low.filter((p) => p.on_hand - p.reserved <= p.reorder_level) }
   })
   if (!data) return <Loading />

@@ -11,6 +11,13 @@ const count = (table, build) => async () => {
   return c || 0
 }
 
+// Open items needing a person, from attention_summary(). Each kind holds order ids.
+const attention = (...kinds) => async () => {
+  const { data, error } = await supabase.rpc('attention_summary')
+  if (error) throw error
+  return new Set(kinds.flatMap((k) => data[k] || [])).size
+}
+
 export const MENUS = {
   customer: [
     { to: '/', label: 'Dashboard', end: true },
@@ -27,7 +34,7 @@ export const MENUS = {
     { to: '/ops/shortages', label: 'Shortage cases', count: count('orders', (q) => q.eq('status', 'shortage_hold')) },
     { to: '/ops/orders', label: 'All orders' },
     { to: '/ops/refunds', label: 'Refund requests' },
-    { to: '/ops/alerts', label: 'Alerts' },
+    { to: '/ops/alerts', label: 'Alerts', count: attention('code_problems', 'escalations', 'cancel_requests', 'failed') },
     { to: '/ops/customers', label: 'Customers' },
     { to: '/reports', label: 'Reports' },
   ],
@@ -52,7 +59,7 @@ export const MENUS = {
     { to: '/history', label: 'Recent deliveries' },
   ],
   dispatch: [
-    { to: '/', label: 'Dispatch board', end: true },
+    { to: '/', label: 'Dispatch board', end: true, count: attention('to_assign', 'failed', 'code_problems') },
     { to: '/dispatch/log', label: 'Delivery log' },
     { to: '/dispatch/fleet', label: 'Drivers & vehicles' },
   ],
