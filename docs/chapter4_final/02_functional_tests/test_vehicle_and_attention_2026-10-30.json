@@ -1,0 +1,2 @@
+{"run": "2026-10-30, rolled back, migration 0008",
+ "result": [{"status_after_unassign": "packed"}, {"in_to_assign": true}, {"no_vehicle": "Choose a vehicle as well as a driver."}, {"status_after_refusal": "packed"}, {"with_vehicle": "assigned"}, {"locked": true, "status": "out_for_delivery"}, {"dispatch_sees_lock": true}, {"ops_sees_lock": true}, {"listed_after_reissue": false}, {"customer_call": "Not allowed."}]}

@@ -1,8 +1,16 @@
 number_cited,meaning,source_file_and_field_or_cell
+200,valid questionnaire responses,06_questionnaire/questionnaire_results.json valid
+101,respondents whose orders are retyped or copied,"questionnaire_results.json categorical B3, Retyped by hand plus Copied and pasted"
+82,consistent main-channel answers,questionnaire_results.json main_channel_consistency
+0.928,SUS alpha,questionnaire_results.json reliability.SUS
+48.86,SUS mean all respondents,questionnaire_results.json sus.All.mean; questionnaire_tables.xlsx sheet SUS
+0.41,correlation PU mean with BI1,questionnaire_results.json corr_pu_bi1
 17,order statuses,01_system_facts/system_facts.json status_count
 36,permitted transitions,01_system_facts/system_facts.json transition_count
 26,functional test cases,02_functional_tests/functional_tests.csv row count
 23,functional tests passed,02_functional_tests/functional_tests.csv result = Pass
+6:17,ORD-9371 draft to delivered,02_functional_tests/manual_walkthrough_2026-10-30.json events
+13:28,ORD-9370 draft to delivered,02_functional_tests/manual_walkthrough_2026-10-30.json events
 500 x 3,orders per replicate,"03_simulation/raw/run5,6,7 row counts; metrics_final.json replicates.n.orders"
 "₦797,247,520.00",total order value replicate 1,metrics_final.json replicates.1.dataset.value_total
 13,run 4 harness artefacts,01_system_facts/system_facts.json run4_harness_defect
