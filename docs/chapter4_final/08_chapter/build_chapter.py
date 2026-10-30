@@ -283,6 +283,59 @@ table('Rows visible to each account when querying the database directly',
 P('The settings table, which holds values such as the tax rate and the automatic-approval switch, was readable by every signed-in '
   'account including drivers and customers. It could not be changed by them, but it is wider read access than the other tables allow.')
 
+H3('4.3.5 Manual end-to-end test')
+WT = json.loads((ROOT / '02_functional_tests' / 'manual_walkthrough_2026-10-30.json').read_text())
+import datetime as _dt
+_f = lambda x: _dt.datetime.fromisoformat(x)
+def _mmss(td):
+    sec = int(round(td.total_seconds()))
+    return f'{sec // 60}:{sec % 60:02d}'
+def _words(td):
+    sec = int(round(td.total_seconds()))
+    return f'{sec // 60} minutes {sec % 60} seconds'
+LBL = {'draft': 'Order started by the customer', 'submitted': 'Submitted', 'validation_failed': 'Blocked by validation',
+       'pending_approval': 'Passed validation, waiting for Ops Desk', 'awaiting_payment': 'Approved, invoice issued',
+       'payment_verification': 'Payment proof uploaded', 'paid': 'Payment confirmed', 'picking': 'Picking started',
+       'shortage_hold': 'Shortage found', 'packed': 'Packed', 'assigned': 'Driver assigned', 'out_for_delivery': 'Picked up by driver',
+       'delivery_failed': 'Delivery failed', 'delivered': 'Delivered with the customer code'}
+wt_rows, wt = [], {}
+for o in sorted(WT['orders'], key=lambda o: o['order_no'], reverse=True):
+    t0 = _f(o['events'][0]['at'])
+    for e in o['events']:
+        if e['to'] == 'submitted' and e is not o['events'][1] and e['from'] == 'validation_failed':
+            pass
+        wt_rows.append([o['order_no'], LBL[e['to']], e['role'].capitalize() if e['role'] != 'ops' else 'Ops Desk', _mmss(_f(e['at']) - t0), e['note'] or ''])
+    ev = o['events']
+    wt[o['order_no']] = {'total': _f(ev[-1]['at']) - t0, 'approve': next(_f(e['at']) for e in ev if e['to'] == 'awaiting_payment') - t0,
+                         'statuses': {e['to'] for e in ev}, 'roles': {e['role'] for e in ev}, 'o': o}
+a, b = wt['ORD-9371'], wt['ORD-9370']
+fail = next(e for e in b['o']['events'] if e['to'] == 'validation_failed')
+resub = next(e for e in b['o']['events'] if e['from'] == 'validation_failed')
+stat_all = a['statuses'] | b['statuses']
+roles_all = a['roles'] | b['roles']
+refund = b['o']['refunds'][0]
+P(f'Besides the scripted tests, the system was tested by hand on 30 October 2026, signing in with the demonstration account of '
+  f'each role in turn. Two orders were taken from the first entry by the customer to delivery, and the status history recorded every '
+  f'step with its time and the account that took it. Table 4.16 lists the steps. Order ORD-9371 went through without problems and '
+  f'was delivered {_words(a["total"])} after it was started. While building it the customer saw a stock message for '
+  f'electric cable and changed the order before submitting it.')
+P(f'Order ORD-9370 was used for the exceptions. Its first submission was blocked by the stock rule and it was corrected and '
+  f'resubmitted {int((_f(resub["at"]) - _f(fail["at"])).total_seconds())} seconds later. At picking the Warehouse found less stock than '
+  f'ordered and the customer accepted a partial delivery. Finance then paid the refund of {naira(refund["amount"])} with credit note '
+  f'{refund["credit_note"]}. On the road the first driver entered a wrong delivery code once and then recorded a vehicle breakdown. '
+  f'Dispatch reassigned the order to a second driver, who delivered it with the customer code {_words(b["total"])} after it was '
+  f'started. Together the two orders passed through {len(stat_all)} of the {FACTS["status_count"]} statuses and were handled by '
+  f'{len(roles_all)} of the seven roles. The three statuses for rejection and cancellation were not reached, either in this test or '
+  f'in the scripted tests of Table 4.14.')
+P('The accounts were used in quick succession, a few seconds to a few minutes apart, so the times show that each step responded at '
+  'once rather than how long the steps take in operation. They are not a measure of processing time and do not replace the comparison with manual '
+  'entry that Objective 4 requires.')
+trace(_mmss(a['total']), 'ORD-9371 draft to delivered', '02_functional_tests/manual_walkthrough_2026-10-30.json events')
+trace(_mmss(b['total']), 'ORD-9370 draft to delivered', '02_functional_tests/manual_walkthrough_2026-10-30.json events')
+table('Manual end-to-end test of two orders on 30 October 2026', ['Order', 'Step', 'Done by', 'Time after start, min:s', 'Note recorded'],
+      wt_rows, 'status history of orders ORD-9371 and ORD-9370 in the live database, 02_functional_tests/manual_walkthrough_2026-10-30.json and manual_walkthrough.sql.',
+      widths=[2, 5, 2.2, 2.6, 4.2], size=8)
+
 # =====================================================================================================================
 H2('4.4 Simulation design and dataset')
 H3('4.4.1 Procedure')
@@ -299,9 +352,9 @@ P('The final simulation used three replicates. Replicate 1 used the random seed 
   'show how much the measures move when the same design is drawn again. Each replicate contained 500 orders, made '
   'up of 200 clean orders and 300 erroneous orders, with 20 orders for each of fifteen planted error types. Twelve of the types '
   'are errors that a rule is designed to catch. The remaining three are realistic mistakes that no rule targets, shown at the '
-  'foot of Table 4.16. Including them means the accuracy figures '
+  'foot of Table 4.17. Including them means the accuracy figures '
   'reflect mistakes the rules were not written for as well as those they were. Automatic approval was switched off so that every '
-  'order passing validation went to the Ops Desk queue. Table 4.16 describes each planted error type.')
+  'order passing validation went to the Ops Desk queue. Table 4.17 describes each planted error type.')
 trace('500 x 3', 'orders per replicate', '03_simulation/raw/run5,6,7 row counts; metrics_final.json replicates.n.orders')
 types_rows = [
     ['SKU not in catalogue', 'An extra upload line with an unknown code such as XX-417', 'SKU'],
@@ -326,7 +379,7 @@ H3('4.4.3 Customers, catalogue and dataset')
 P(f'The simulation used twenty customer profiles and the twelve-product catalogue of the first run. As Section 1.5 sets out, '
   f'the profiles were set up for the test on the pattern of realistic business customers and do not belong to real customers. '
   f'Each customer had two saved addresses in one of six delivery regions and four earlier orders, which give the '
-  f'unusual-quantity rule a history to compare against. Table 4.17 lists the companies and Table 4.18 describes the replicate 1 '
+  f'unusual-quantity rule a history to compare against. Table 4.18 lists the companies and Table 4.19 describes the replicate 1 '
   f'dataset. Figure 4.4 shows how the orders were spread across the delivery regions.')
 R1ROWS = json.loads((ROOT / '03_simulation' / 'raw' / 'run5_replicate1.json').read_text())
 comp = {}
@@ -349,7 +402,7 @@ table('Description of the replicate 1 dataset', ['Measure', 'Value'],
 trace(naira(DS['value_total']), 'total order value replicate 1', 'metrics_final.json replicates.1.dataset.value_total')
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_1_regions.png', 'Simulated orders by delivery region, replicate 1',
        '07_analysis/figures/fig4_1_regions_data.csv, from replicate 1, database run 5.')
-P('Table 4.19 shows one order of each kind from replicate 1, with the decision the system took and the first message it showed. '
+P('Table 4.20 shows one order of each kind from replicate 1, with the decision the system took and the first message it showed. '
   'Every order of all three replicates is listed in the accompanying workbook, Verity_Simulation_Data_Final.xlsx.')
 LBL = {t['key']: t['label'] for t in R1['by_type']}
 DEC = {'pass': 'Passed', 'warn': 'Warned', 'fail': 'Blocked'}
@@ -384,7 +437,7 @@ trace(og['clean']['warn'], 'clean orders warned, replicate 1', 'metrics_final.js
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_2_outcomes.png', 'Outcome of each group of orders in replicate 1',
        '07_analysis/figures/fig4_2_outcomes_data.csv, from replicate 1, database run 5.')
 H3('4.5.2 Detection by planted error type')
-P('Table 4.20 gives the detection rate for each planted error type with a 95 percent Wilson interval, which behaves better than '
+P('Table 4.21 gives the detection rate for each planted error type with a 95 percent Wilson interval, which behaves better than '
   'the simple normal interval for small groups and for rates near zero or one (Brown et al., 2001; Wilson, 1927). Every one of the '
   'twelve rule-targeted types was flagged in all 20 of its orders, and in each case by the rule designed for it. Figure 4.6 '
   'shows the same rates graphically.')
@@ -412,7 +465,7 @@ trace(f"{NR['qty_typo']['warning_names_planted_line']}/{NR['qty_typo']['flagged'
 H3('4.5.3 Classification performance')
 P(f'For the binary measures an order counts as flagged when it is warned or blocked and as positive when it carries a planted error. '
   f'The primary measure uses all 300 erroneous orders against the 200 clean orders, and the secondary measure uses only the 240 '
-  f'rule-targeted orders against the same clean orders. Table 4.21 defines the measures. Table 4.22 gives both confusion matrices for replicate 1 and Table 4.23 '
+  f'rule-targeted orders against the same clean orders. Table 4.22 defines the measures. Table 4.23 gives both confusion matrices for replicate 1 and Table 4.24 '
   f'gives the measures with their intervals.')
 table('Definitions of the classification measures', ['Measure', 'Definition', 'Formula'],
       [['Accuracy', 'Share of all orders the system judged correctly, erroneous orders flagged and clean orders passed', '(TP + TN) / all orders'],
@@ -444,7 +497,7 @@ P(f'On the primary measure the engine reached an accuracy of {pc(A["accuracy"]["
 figure(ROOT / '07_analysis' / 'figures' / 'fig4_4_measures.png', 'Validation measures with 95 percent Wilson intervals',
        '07_analysis/figures/fig4_4_measures_data.csv, from replicates 1 to 3, database runs 5 to 7.')
 H3('4.5.4 Rule activity and false alarms')
-P(f'Table 4.24 shows how often each rule fired. The seven blocking rules fired only on erroneous orders and never on a clean '
+P(f'Table 4.25 shows how often each rule fired. The seven blocking rules fired only on erroneous orders and never on a clean '
   f'one. The stock rule also fired on the {RU["stock"]["on_other_error_types"]} orders whose quantity was above the maximum or '
   f'whose product was discontinued, because both also exceed the stock on hand. All {R1["confusion_all_errors"]["fp"]} false alarms on '
   f'clean orders came from the two warning rules, {R1["false_alarm_reasons"].get("unusual_quantity", 0)} from the unusual-quantity '
@@ -462,7 +515,7 @@ figure(ROOT / '07_analysis' / 'figures' / 'fig4_5_rules.png', 'Number of orders 
 H3('4.5.5 Processing time')
 blk = R1['validation_ms_mean_by_block_of_100']
 P(f'Validation time was measured as the clock time of submit_order inside the database, which validates the order and records '
-  f'the status change. It excludes network time and any time a person spends. Table 4.25 gives the statistics '
+  f'the status change. It excludes network time and any time a person spends. Table 4.26 gives the statistics '
   f'for replicate 1 and Figure 4.9 shows their distribution. The standard deviation is the sample value. The mean was {TM["mean"]} ms and the median {TM["median"]} ms, '
   f'with a 95th percentile of {TM["p95"]} ms and a maximum of {TM["max"]} ms. The time measured from the draft event to the last '
   f'event in the status history gave a mean of {R1["status_history_draft_to_last_event_ms"]["mean"]} ms over the '
@@ -484,7 +537,7 @@ figure(ROOT / '07_analysis' / 'figures' / 'fig4_7_timing_blocks.png', 'Validatio
        '07_analysis/figures/fig4_7_timing_blocks_data.csv, from replicates 1 to 3, database runs 5 to 7.')
 H3('4.5.6 Variation between replicates')
 spread = max(round(RR[k]['max'] - RR[k]['min'], 1) for k in RR if not k.startswith('validation_ms'))
-P(f'Table 4.26 sets the key measures of the three replicates side by side. No accuracy or detection measure moved by more than '
+P(f'Table 4.27 sets the key measures of the three replicates side by side. No accuracy or detection measure moved by more than '
   f'{spread} percentage points between replicates, so the headline figures do not depend on the particular seed. The timing '
   f'measures moved by an order of magnitude, as described above.')
 trace(spread, 'largest replicate spread of a non-timing measure', 'metrics_final.json replicate_range, max minus min')
@@ -505,7 +558,7 @@ H3('4.5.7 Sensitivity of the unusual-quantity warning')
 P(f'Because the unusual-quantity rule caused nearly all false alarms and also caught the quantity slips, its setting was examined. '
   f'Replicate 1 was replayed through the live functions with the threshold set from three to five times the customer\'s '
   f'average in steps of one, and with four or ten earlier orders per customer. The replay with the live setting reproduced replicate 1 exactly, with '
-  f'no difference in any order, so the six settings in Table 4.27 are compared on identical orders. These runs are for discussion '
+  f'no difference in any order, so the six settings in Table 4.28 are compared on identical orders. These runs are for discussion '
   f'only and the live setting was left at three.')
 srows = []
 for (f, h), s in sorted(SENS.items(), key=lambda kv: (kv[0][1], kv[0][0])):
@@ -534,7 +587,7 @@ trace(f"{mand['k']}/{mand['n']}", 'mandatory completion, replicate 1', 'metrics_
 # =====================================================================================================================
 H2('4.6 Evaluation against the success criteria and discussion')
 H3('4.6.1 Evaluation against the objectives')
-P('Table 4.28 sets each objective of Section 1.3, in its Chapter One wording, against its success criterion and the result of '
+P('Table 4.29 sets each objective of Section 1.3, in its Chapter One wording, against its success criterion and the result of '
   'this evaluation.')
 OBJ = [
     'To design and develop a web-based order processing system that replaces manual order entry done through Excel sheets and through e-mail and WhatsApp messages.',
@@ -612,7 +665,7 @@ P(f'The two parts of the evaluation point in different directions. The simulatio
   f'demonstration showed rather than what the system does. The open answers support this reading. The two features requested most '
   f'often, a history of changes and approvals and a history of corrections, are already provided by the audit trail and the status '
   f'history, and the problem named most often concerned mobile access and low data use. The importance ratings of Table 4.5 do not '
-  f'favour any check over the others, so they give no user priority against which the detection rates of Table 4.20 can be read. '
+  f'favour any check over the others, so they give no user priority against which the detection rates of Table 4.21 can be read. '
   f'Section C, which would have shown the error types respondents meet most often, could not be decoded, so the planted error types '
   f'cannot yet be compared with the errors seen in practice.')
 H3('4.6.4 Discussion')
