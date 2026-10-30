@@ -1,0 +1,20 @@
+From: Amina Bello <amina.bello@lekki4.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:18
+Subject: Order from Lekki Coastal Developers
+
+Good morning,
+
+Please supply the following:
+
+  - 23 x Iron rod, 12 mm (ROD-12) at ₦7,200
+  - 2 x PVC pipe, 2 inch, 6 m (PVC-2) at ₦4,100
+  - 80 x Floor tile 60x60, carton (TIL-6060) at ₦14,500
+
+Deliver to: Plot 104, Lekki-Ajah
+Delivery date: Wednesday 04 November 2026
+
+Regards,
+Amina Bello
+Lekki Coastal Developers
+08030418916

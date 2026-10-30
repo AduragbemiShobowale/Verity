@@ -1,0 +1,19 @@
+From: Tolulope Ogunleye <tolulope.ogunleye@eko6.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:40
+Subject: Order from Eko Bridge Contractors
+
+Good morning,
+
+Please supply the following:
+
+  - 31 x Cement, 50 kg bag (CEM-50) at ₦9,500
+  - 376 x Floor tile 60x60, carton (TIL-6060) at ₦14,500
+
+Deliver to: Plot 106, Lagos Island
+Delivery date: Thursday 12 November 2026
+
+Regards,
+Tolulope Ogunleye
+Eko Bridge Contractors
+08030628374

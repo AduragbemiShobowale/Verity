@@ -1,0 +1,19 @@
+From: Garba Usman <garba.usman@apapa20.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:42
+Subject: Order from Apapa Port Works Supplies
+
+Good morning,
+
+Please supply the following:
+
+  - 21 x Emulsion paint, white, 20 L (PNT-20W) at ₦38,000
+  - 1538 x Iron rod, 12 mm (ROD-12) at ₦7,200
+
+Deliver to: Plot 120, Lagos Mainland
+Delivery date: Thursday 05 November 2026
+
+Regards,
+Garba Usman
+Apapa Port Works Supplies
+08032094580

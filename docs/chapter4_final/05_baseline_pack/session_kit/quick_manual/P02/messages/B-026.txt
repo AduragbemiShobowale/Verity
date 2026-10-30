@@ -1,0 +1,20 @@
+From: Funmilayo Adeleke <funmilayo.adeleke@magodo19.example>
+To: orders@verity.example
+Date: Mon, 02 Nov 2026 09:36
+Subject: Order from Magodo Residential Ltd
+
+Good morning,
+
+Please supply the following:
+
+  - 43 x Iron rod, 12 mm (ROD-12) at ₦6,900
+  - 37 x PVC pipe, 4 inch, 6 m (PVC-4) at ₦8,600
+  - 12 x Electric cable, 2.5 mm, 100 m (WIRE-25) at ₦52,000
+
+Deliver to: 29 Main Road, Ikeja
+Delivery date: Sunday 08 November 2026
+
+Regards,
+Funmilayo Adeleke
+Magodo Residential Ltd
+08031989851
